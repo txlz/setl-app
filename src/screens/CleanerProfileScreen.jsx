@@ -36,7 +36,7 @@ export default function CleanerProfileScreen({ cleaner, hours, isFavorite, onTog
               <h2 className="text-xl font-semibold text-black">{cleaner.name}</h2>
               {cleaner.verified && <VerifiedBadge />}
             </div>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-setl-ink-3">
               ★ {cleaner.rating} · {cleaner.jobsDone} jobs done
             </p>
             <p className="text-sm font-semibold text-black">{cleaner.bookingFee} AED/hr</p>
@@ -56,18 +56,18 @@ export default function CleanerProfileScreen({ cleaner, hours, isFavorite, onTog
         {/* Facts */}
         <div className="mt-5 grid grid-cols-2 gap-3">
           <div className="rounded-xl bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-            <p className="text-xs text-gray-400">Experience</p>
+            <p className="text-xs text-setl-muted">Experience</p>
             <p className="text-[15px] font-semibold text-black">{cleaner.years} years</p>
           </div>
           <div className="rounded-xl bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-            <p className="text-xs text-gray-400">Speaks</p>
+            <p className="text-xs text-setl-muted">Speaks</p>
             <p className="text-[15px] font-semibold text-black">{cleaner.languages.join(', ')}</p>
           </div>
         </div>
 
         {/* About */}
         <h3 className="mt-5 font-semibold text-black">About</h3>
-        <p className="mt-1 text-sm text-gray-600">{cleaner.bio}</p>
+        <p className="mt-1 text-sm text-setl-ink-3">{cleaner.bio}</p>
 
         {/* Availability */}
         {cleaner.slots && (
@@ -78,7 +78,7 @@ export default function CleanerProfileScreen({ cleaner, hours, isFavorite, onTog
                 <span
                   key={s}
                   className={`rounded-full px-3 py-1 text-xs font-medium ${
-                    i === 0 ? 'bg-[#EDE4FD] text-[#8442FF]' : 'border border-gray-200 text-gray-400'
+                    i === 0 ? 'bg-[#EDE4FD] text-setl-purple' : 'border border-setl-line text-setl-muted'
                   }`}
                 >
                   {s}
@@ -91,7 +91,7 @@ export default function CleanerProfileScreen({ cleaner, hours, isFavorite, onTog
         <div className="grow" />
 
         {isFavorite && (
-          <p className="mt-4 text-center text-xs font-medium text-[#8442FF]">★ Your regular cleaner</p>
+          <p className="mt-4 text-center text-xs font-medium text-setl-purple">★ Your regular cleaner</p>
         )}
         <GradientButton className="mt-2" onClick={() => setBooking(true)}>
           Book {cleaner.name.split(' ')[0]} · {hours} {hours === 1 ? 'hr' : 'hrs'}

@@ -43,7 +43,7 @@ export default function ChooseServiceScreen({ onConfirm, onBack }) {
               className="w-full bg-transparent text-base text-black outline-none placeholder:text-[#B9B7BF]"
             />
           </div>
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#8442FF]">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-setl-purple">
             <svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="#8442FF" strokeWidth="1.8" strokeLinecap="round">
               <path d="M1 2h16M4 7h10M7 12h4" />
             </svg>
@@ -59,12 +59,12 @@ export default function ChooseServiceScreen({ onConfirm, onBack }) {
                 type="button"
                 onClick={() => toggle(name)}
                 className={`relative h-36 cursor-pointer overflow-hidden rounded-xl text-left transition-transform duration-100 active:scale-[0.98] ${
-                  active ? 'ring-3 ring-[#8442FF]' : ''
+                  active ? 'ring-3 ring-setl-purple' : ''
                 }`}
                 style={{ background: TILE_GRADIENTS[PROVIDER_SERVICES.indexOf(name) % TILE_GRADIENTS.length] }}
               >
                 {active && (
-                  <span className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-[#8442FF]">
+                  <span className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-setl-purple">
                     <svg width="12" height="9" viewBox="0 0 24 18" fill="none">
                       <path d="m2 9 7 7L22 2" stroke="#fff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>

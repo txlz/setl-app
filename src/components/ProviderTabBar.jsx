@@ -38,7 +38,7 @@ function TabIcon({ id, active }) {
 // Bottom navigation for the provider (worker) app.
 export default function ProviderTabBar({ active, onChange, requestBadge = 0, notifBadge = 0 }) {
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-30 mx-auto w-full max-w-[375px] border-t border-gray-100 bg-white pt-1 pb-2 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
+    <nav className="fixed inset-x-0 bottom-0 z-30 mx-auto w-full max-w-[375px] border-t border-setl-surface-3 bg-white pt-1 pb-2 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
       <div className="flex">
         {TABS.map((tab) => {
           const badge = tab.id === 'providerHome' ? requestBadge : tab.id === 'providerNotifications' ? notifBadge : 0
@@ -52,12 +52,12 @@ export default function ProviderTabBar({ active, onChange, requestBadge = 0, not
               <span className="relative">
                 <TabIcon id={tab.id} active={active === tab.id} />
                 {badge > 0 && (
-                  <span className="absolute -top-1.5 -right-2.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#8442FF] px-1 text-[10px] font-semibold text-white">
+                  <span className="absolute -top-1.5 -right-2.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-setl-purple px-1 text-[10px] font-semibold text-white">
                     {badge}
                   </span>
                 )}
               </span>
-              <span className={`text-[11px] ${active === tab.id ? 'font-medium text-[#8442FF]' : 'text-[#9C9AA5]'}`}>
+              <span className={`text-[11px] ${active === tab.id ? 'font-medium text-setl-purple' : 'text-[#9C9AA5]'}`}>
                 {tab.label}
               </span>
             </button>

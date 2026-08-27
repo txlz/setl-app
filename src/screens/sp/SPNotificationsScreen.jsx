@@ -33,7 +33,7 @@ export default function SPNotificationsScreen({ orders = [], onBack }) {
       </div>
 
       {items.length === 0 ? (
-        <p className="mx-4 mt-6 rounded-2xl bg-white p-5 text-center text-sm text-gray-400 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">No notifications yet.</p>
+        <p className="mx-4 mt-6 rounded-2xl bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">No notifications yet.</p>
       ) : (
         <div className="mx-4 mt-4 flex flex-col gap-2.5">
           {items.map((n) => {
@@ -43,7 +43,7 @@ export default function SPNotificationsScreen({ orders = [], onBack }) {
                 <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${ic.bg}`}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={ic.fg} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d={ic.d} /></svg>
                 </span>
-                <div className="min-w-0"><p className="text-sm font-semibold text-black">{n.title}</p><p className="truncate text-xs text-gray-400">{n.body}</p></div>
+                <div className="min-w-0"><p className="text-sm font-semibold text-black">{n.title}</p><p className="truncate text-xs text-setl-muted">{n.body}</p></div>
               </div>
             )
           })}

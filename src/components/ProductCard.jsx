@@ -49,7 +49,7 @@ export default function ProductCard({ product, selectable, selected, onToggle })
       {selectable && (
         <span
           className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 ${
-            selected ? 'border-[#8442FF] bg-[#8442FF]' : 'border-gray-300 bg-white'
+            selected ? 'border-setl-purple bg-setl-purple' : 'border-setl-line-3 bg-white'
           }`}
         >
           {selected && (
@@ -65,7 +65,7 @@ export default function ProductCard({ product, selectable, selected, onToggle })
       <div className="min-w-0 grow">
         <p className="font-semibold text-black">{product.name}</p>
         <div className="mt-1 flex items-center gap-2">
-          <span className="rounded-lg bg-[#F6F5F8] px-2.5 py-1 text-xs text-gray-400">
+          <span className="rounded-lg bg-[#F6F5F8] px-2.5 py-1 text-xs text-setl-muted">
             Qt.{product.qty}
           </span>
           <span className="text-[15px] font-semibold text-black">{product.price} AED</span>
@@ -84,7 +84,7 @@ export default function ProductCard({ product, selectable, selected, onToggle })
           )}
           {verdict.label}
         </span>
-        <p className="mt-1.5 text-[11px] text-gray-400">
+        <p className="mt-1.5 text-[11px] text-setl-muted">
           Recent Setl jobs: {lo}–{hi} AED
         </p>
       </div>

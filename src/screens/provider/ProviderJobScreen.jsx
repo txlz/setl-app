@@ -5,9 +5,9 @@ import GradientButton from '../../components/GradientButton.jsx'
 function Stepper({ value, onDec, onInc, suffix }) {
   return (
     <div className="flex items-center gap-1.5">
-      <button type="button" onClick={onDec} className="h-8 w-8 cursor-pointer rounded-md bg-gray-100 text-lg text-gray-500 active:scale-95">−</button>
+      <button type="button" onClick={onDec} className="h-8 w-8 cursor-pointer rounded-md bg-setl-surface-3 text-lg text-setl-ink-3 active:scale-95">−</button>
       <span className="min-w-14 text-center text-sm font-medium text-black">{value}{suffix}</span>
-      <button type="button" onClick={onInc} className="h-8 w-8 cursor-pointer rounded-md bg-gray-100 text-lg text-gray-500 active:scale-95">+</button>
+      <button type="button" onClick={onInc} className="h-8 w-8 cursor-pointer rounded-md bg-setl-surface-3 text-lg text-setl-ink-3 active:scale-95">+</button>
     </div>
   )
 }
@@ -87,12 +87,12 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
           </div>
           <span className="text-sm font-bold text-black">{order.amountDue ?? order.total ?? 0} AED</span>
         </div>
-        <p className="mt-0.5 text-sm text-gray-400">{CUSTOMER_ME.name}</p>
+        <p className="mt-0.5 text-sm text-setl-muted">{CUSTOMER_ME.name}</p>
 
         {/* Quick actions — the job is completed via the primary button below
             ("Send estimate" for inspections, "Mark as done" for direct work). */}
-        <div className="mt-3 flex overflow-hidden rounded-lg border border-gray-100">
-          <button type="button" onClick={() => setReporting(true)} className="flex-1 cursor-pointer bg-gray-100 py-2.5 text-sm font-medium text-gray-500 active:opacity-80">
+        <div className="mt-3 flex overflow-hidden rounded-lg border border-setl-surface-3">
+          <button type="button" onClick={() => setReporting(true)} className="flex-1 cursor-pointer bg-setl-surface-3 py-2.5 text-sm font-medium text-setl-ink-3 active:opacity-80">
             Report
           </button>
           <button type="button" onClick={onDial} className="flex-1 cursor-pointer bg-[#BFD3F5] py-2.5 text-sm font-medium text-[#2657B0] active:opacity-80">
@@ -108,9 +108,9 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
           {/* Custom line + catalog grid */}
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-2xl bg-white p-3 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-              <p className="text-xs text-gray-400">Pricing</p>
+              <p className="text-xs text-setl-muted">Pricing</p>
               <Stepper value={customPrice} suffix=" AED" onDec={() => setCustomPrice(Math.max(5, customPrice - 5))} onInc={() => setCustomPrice(customPrice + 5)} />
-              <p className="mt-2 text-xs text-gray-400">Quantity</p>
+              <p className="mt-2 text-xs text-setl-muted">Quantity</p>
               <Stepper value={customQty} onDec={() => setCustomQty(Math.max(1, customQty - 1))} onInc={() => setCustomQty(customQty + 1)} />
               <button
                 type="button"
@@ -120,7 +120,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
                     { name: 'Custom part', icon: 'tool', market: [Math.max(0, customPrice - 10), customPrice + 10], unitPrice: customPrice, qty: customQty },
                   ])
                 }
-                className="mt-2 h-8 w-full cursor-pointer rounded-full bg-[#8442FF] text-sm font-medium text-white active:opacity-90"
+                className="mt-2 h-8 w-full cursor-pointer rounded-full bg-setl-purple text-sm font-medium text-white active:opacity-90"
               >
                 Add
               </button>
@@ -132,7 +132,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
                   type="button"
                   onClick={() => addPart(part)}
                   aria-label={`Add ${part.name}`}
-                  className="absolute top-2 right-2 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-[#8442FF] text-white active:opacity-90"
+                  className="absolute top-2 right-2 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-setl-purple text-white active:opacity-90"
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M12 5v14M5 12h14" strokeLinecap="round" /></svg>
                 </button>
@@ -143,7 +143,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
                   </svg>
                 </div>
                 <p className="truncate text-center text-[13px] text-black">{part.name}</p>
-                <p className="text-center text-xs text-gray-400">{part.price} AED</p>
+                <p className="text-center text-xs text-setl-muted">{part.price} AED</p>
               </div>
             ))}
           </div>
@@ -156,7 +156,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
                 <div key={`${l.name}-${i}`} className="flex items-center justify-between border-b border-gray-50 py-2 last:border-0">
                   <div className="min-w-0">
                     <p className="truncate text-sm text-black">{l.name}</p>
-                    <p className="text-xs text-gray-400">{l.unitPrice} AED each</p>
+                    <p className="text-xs text-setl-muted">{l.unitPrice} AED each</p>
                   </div>
                   <div className="flex items-center gap-3">
                     <Stepper value={l.qty} onDec={() => setQty(i, -1)} onInc={() => setQty(i, 1)} />
@@ -179,7 +179,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
           <button
             type="button"
             onClick={() => send([])}
-            className="mt-3 h-12 w-full cursor-pointer rounded-xl border border-gray-200 bg-white text-[15px] font-medium text-gray-500 active:scale-[0.98]"
+            className="mt-3 h-12 w-full cursor-pointer rounded-xl border border-setl-line bg-white text-[15px] font-medium text-setl-ink-3 active:scale-[0.98]"
           >
             No products needed
           </button>
@@ -191,13 +191,13 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
               <p className="mb-2 text-sm font-semibold text-black">Approved work</p>
               {order.products.map((p) => (
                 <div key={p.name} className="flex justify-between py-1 text-sm">
-                  <span className="text-gray-500">{p.name} ×{p.qty}</span>
+                  <span className="text-setl-ink-3">{p.name} ×{p.qty}</span>
                   <span className="font-medium text-black">{p.price} AED</span>
                 </div>
               ))}
             </div>
           )}
-          <p className="mt-5 px-2 text-center text-sm text-gray-400">
+          <p className="mt-5 px-2 text-center text-sm text-setl-muted">
             Do the work, then mark the job done. The customer pays after completion.
           </p>
           <div className="grow" />
@@ -221,7 +221,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
                     setReporting(false)
                     onReport(order, r.state, r.label)
                   }}
-                  className="w-full cursor-pointer rounded-xl border border-gray-200 px-4 py-3 text-left text-sm text-black active:bg-gray-50"
+                  className="w-full cursor-pointer rounded-xl border border-setl-line px-4 py-3 text-left text-sm text-black active:bg-gray-50"
                 >
                   {r.label}
                 </button>

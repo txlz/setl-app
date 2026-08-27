@@ -30,7 +30,7 @@ function TabIcon({ id, active }) {
 // Bottom navigation, shown on the main tabs (Home / Orders / Profile).
 export default function TabBar({ active, onChange, ordersBadge = 0 }) {
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-30 mx-auto w-full max-w-[375px] border-t border-gray-100 bg-white pt-1 pb-2 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
+    <nav className="fixed inset-x-0 bottom-0 z-30 mx-auto w-full max-w-[375px] border-t border-setl-surface-3 bg-white pt-1 pb-2 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
       <div className="flex">
         {TABS.map((tab) => (
           <button
@@ -42,12 +42,12 @@ export default function TabBar({ active, onChange, ordersBadge = 0 }) {
             <span className="relative">
               <TabIcon id={tab.id} active={active === tab.id} />
               {tab.id === 'orders' && ordersBadge > 0 && (
-                <span className="absolute -top-1 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#8442FF] px-1 text-[10px] font-semibold text-white">
+                <span className="absolute -top-1 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-setl-purple px-1 text-[10px] font-semibold text-white">
                   {ordersBadge}
                 </span>
               )}
             </span>
-            <span className={`text-[11px] ${active === tab.id ? 'font-medium text-[#8442FF]' : 'text-[#9C9AA5]'}`}>
+            <span className={`text-[11px] ${active === tab.id ? 'font-medium text-setl-purple' : 'text-[#9C9AA5]'}`}>
               {tab.label}
             </span>
           </button>

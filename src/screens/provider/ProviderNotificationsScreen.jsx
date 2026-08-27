@@ -49,7 +49,7 @@ export default function ProviderNotificationsScreen({ orders = [] }) {
                 </span>
                 <div className="min-w-0">
                   <p className="text-sm font-semibold text-black">{n.title}</p>
-                  <p className="truncate text-xs text-gray-400">{n.body}</p>
+                  <p className="truncate text-xs text-setl-muted">{n.body}</p>
                 </div>
               </div>
             )

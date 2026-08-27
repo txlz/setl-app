@@ -26,7 +26,7 @@ export default function RejectReasonScreen({ onSubmit, onBack }) {
             />
             <span
               className={`flex h-11 w-11 items-center justify-center rounded-full transition-colors ${
-                reason === r ? 'bg-[#8442FF]' : 'bg-gray-200'
+                reason === r ? 'bg-setl-purple' : 'bg-setl-line'
               }`}
             >
               {reason === r && (
@@ -44,7 +44,7 @@ export default function RejectReasonScreen({ onSubmit, onBack }) {
             onChange={(e) => setNote(e.target.value)}
             placeholder="Tell us what went wrong (optional)"
             rows={3}
-            className="screen-enter mt-2 w-full resize-none rounded-xl bg-[#F3F2F5] p-3 text-base text-black outline-none placeholder:text-gray-400"
+            className="screen-enter mt-2 w-full resize-none rounded-xl bg-[#F3F2F5] p-3 text-base text-black outline-none placeholder:text-setl-muted"
           />
         )}
       </div>
@@ -59,7 +59,7 @@ export default function RejectReasonScreen({ onSubmit, onBack }) {
       <button
         type="button"
         onClick={() => onSubmit(null, '')}
-        className="mx-auto mt-3 cursor-pointer py-2 text-sm text-gray-400 underline underline-offset-2"
+        className="mx-auto mt-3 cursor-pointer py-2 text-sm text-setl-muted underline underline-offset-2"
       >
         Skip
       </button>

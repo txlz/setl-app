@@ -30,13 +30,13 @@ export default function ServiceOptionsScreen({ serviceKey, onSearchProviders, on
           {service.options.map((o) => (
             <label
               key={o.label}
-              className="flex cursor-pointer items-center gap-3 rounded-xl border border-gray-200 bg-white p-3.5 text-[15px] text-black has-[:checked]:border-[#8442FF]"
+              className="flex cursor-pointer items-center gap-3 rounded-xl border border-setl-line bg-white p-3.5 text-[15px] text-black has-[:checked]:border-setl-purple"
             >
               <input
                 type="checkbox"
                 checked={picked.has(o.label)}
                 onChange={() => toggle(o.label)}
-                className="h-5 w-5 accent-[#8442FF]"
+                className="h-5 w-5 accent-setl-purple"
               />
               <span className="grow">{o.label}</span>
               <span className="shrink-0 text-sm font-semibold">{o.price} AED</span>
@@ -44,7 +44,7 @@ export default function ServiceOptionsScreen({ serviceKey, onSearchProviders, on
           ))}
         </div>
 
-        <p className="mt-3 text-xs text-gray-400">
+        <p className="mt-3 text-xs text-setl-muted">
           The provider&apos;s call-out fee is added at checkout. AED 0 due now — pay when the work
           is done.
         </p>
@@ -52,7 +52,7 @@ export default function ServiceOptionsScreen({ serviceKey, onSearchProviders, on
         <div className="grow" />
 
         {selected.length === 0 && (
-          <p className="mb-2 text-center text-xs text-gray-400">
+          <p className="mb-2 text-center text-xs text-setl-muted">
             Select at least one job to search for providers
           </p>
         )}
@@ -67,11 +67,11 @@ export default function ServiceOptionsScreen({ serviceKey, onSearchProviders, on
           <button
             type="button"
             onClick={onSendPhoto}
-            className="mt-4 w-full cursor-pointer rounded-xl border border-[#8442FF] bg-white py-3 text-center"
+            className="mt-4 w-full cursor-pointer rounded-xl border border-setl-purple bg-white py-3 text-center"
           >
             <span className="block text-sm text-[#2790C3]">Not sure what&apos;s wrong?</span>
-            <span className="block text-lg font-medium text-[#8442FF]">Send a pro a photo</span>
-            <span className="block text-xs text-gray-400">
+            <span className="block text-lg font-medium text-setl-purple">Send a pro a photo</span>
+            <span className="block text-xs text-setl-muted">
               Get a ballpark — no visit needed to start
             </span>
           </button>

@@ -6,7 +6,7 @@ function Row({ label, value }) {
   return (
     <div className="flex items-start justify-between gap-4 py-2">
       <span className="shrink-0 text-sm text-black">{label}</span>
-      <span className="text-right text-sm text-gray-400">{value}</span>
+      <span className="text-right text-sm text-setl-muted">{value}</span>
     </div>
   )
 }
@@ -40,7 +40,7 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
         <span className="grow text-center font-semibold text-black">
           SETL-{String(order.id).padStart(4, '0')}
         </span>
-        <span className={`text-xs font-medium ${isNew ? 'text-green-500' : 'text-[#8442FF]'}`}>
+        <span className={`text-xs font-medium ${isNew ? 'text-green-500' : 'text-setl-purple'}`}>
           {isNew ? 'new' : statusLabel(order.state)}
         </span>
       </div>
@@ -60,7 +60,7 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
           <h2 className="mt-5 mb-2 px-1 text-lg font-semibold text-black">What the customer reported</h2>
           <div className="flex flex-wrap gap-2 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
             {symptoms.map((s) => (
-              <span key={s} className="rounded-full bg-[#F1ECFB] px-3 py-1 text-xs text-[#8442FF]">
+              <span key={s} className="rounded-full bg-[#F1ECFB] px-3 py-1 text-xs text-setl-purple">
                 {s}
               </span>
             ))}
@@ -70,8 +70,8 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
 
       <h2 className="mt-5 mb-2 px-1 text-lg font-semibold text-black">Location</h2>
       <div className="flex items-center justify-between rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
-        <span className="text-sm text-gray-400">{CUSTOMER_ME.area}</span>
-        <span className="flex items-center gap-1 text-sm font-medium text-[#8442FF]">
+        <span className="text-sm text-setl-muted">{CUSTOMER_ME.area}</span>
+        <span className="flex items-center gap-1 text-sm font-medium text-setl-purple">
           Maps
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11Z" strokeLinejoin="round" />
@@ -85,7 +85,7 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
         {order.flowType === 'inspection' ? (
           <>
             <Row label="Inspection fee (prepaid)" value={`${order.total ?? 0} AED`} />
-            <p className="pt-1 text-xs text-gray-400">
+            <p className="pt-1 text-xs text-setl-muted">
               Repair price is set from your on-site estimate, credited by the inspection fee.
             </p>
           </>
@@ -104,7 +104,7 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
           <button
             type="button"
             onClick={() => onDecline(order)}
-            className="mt-3 h-12 w-full cursor-pointer rounded-xl border border-gray-200 bg-white text-[15px] font-medium text-gray-500 transition-transform duration-100 active:scale-[0.98]"
+            className="mt-3 h-12 w-full cursor-pointer rounded-xl border border-setl-line bg-white text-[15px] font-medium text-setl-ink-3 transition-transform duration-100 active:scale-[0.98]"
           >
             Decline
           </button>
@@ -118,7 +118,7 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
           {continueLabel}
         </GradientButton>
       ) : (
-        <p className="mt-6 text-center text-sm text-gray-400">
+        <p className="mt-6 text-center text-sm text-setl-muted">
           {statusLabel(order.state)} — nothing to do here.
         </p>
       )}

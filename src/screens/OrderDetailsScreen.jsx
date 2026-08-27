@@ -93,7 +93,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
       {isInspection && (
         <>
           {service.requiresInspection && (
-            <p className="mt-3 flex items-center gap-3 rounded-xl bg-white p-3 text-xs text-gray-500 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+            <p className="mt-3 flex items-center gap-3 rounded-xl bg-white p-3 text-xs text-setl-ink-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-500 text-lg font-bold text-white">
                 !
               </span>
@@ -107,12 +107,12 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
               <p className="text-[15px] text-black">
                 {booking.date.day} {booking.date.num}
               </p>
-              <p className="text-sm text-gray-400">{booking.time}</p>
+              <p className="text-sm text-setl-muted">{booking.time}</p>
             </div>
             <button
               type="button"
               onClick={() => setRescheduling(true)}
-              className="cursor-pointer text-[15px] text-[#8442FF]"
+              className="cursor-pointer text-[15px] text-setl-purple"
             >
               Change
             </button>
@@ -122,13 +122,13 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
             <p className="text-[15px] text-black">
               {place?.nameNumber?.trim() ? place.nameNumber : CUSTOMER_ME.address}
             </p>
-            <p className="text-xs text-gray-400">{CUSTOMER_ME.area}</p>
+            <p className="text-xs text-setl-muted">{CUSTOMER_ME.area}</p>
             <div className="mt-2 flex gap-2">
               {['Indoor', 'Outdoor', 'Villa'].map((t) => (
                 <span
                   key={t}
                   className={`rounded-lg border px-4 py-1.5 text-sm ${
-                    (place?.type ?? 'Indoor') === t ? 'border-[#8442FF] text-[#8442FF]' : 'border-gray-200 text-gray-400'
+                    (place?.type ?? 'Indoor') === t ? 'border-setl-purple text-setl-purple' : 'border-setl-line text-setl-muted'
                   }`}
                 >
                   {t}
@@ -151,7 +151,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
       </div>
 
       {isInspection && (
-        <p className="mt-1 px-2 text-[11px] text-gray-400">
+        <p className="mt-1 px-2 text-[11px] text-setl-muted">
           After the inspection you approve or decline the repair. The fee is credited toward the
           repair if you proceed — non-refundable otherwise.
         </p>
@@ -175,7 +175,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
 
       {/* Pay after completion (decision B) */}
       {!isInspection && (
-        <div className="mt-4 rounded-xl bg-[#EDE4FD] p-3 text-center text-sm font-medium text-[#8442FF]">
+        <div className="mt-4 rounded-xl bg-[#EDE4FD] p-3 text-center text-sm font-medium text-setl-purple">
           AED 0 due now — pay when the work is done.
         </div>
       )}
@@ -184,7 +184,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
       <div className="mt-4 rounded-xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         <h3 className="font-semibold text-black">Order Summary</h3>
         {items.map((it) => (
-          <div key={it.label} className="mt-1 flex justify-between text-xs text-gray-400">
+          <div key={it.label} className="mt-1 flex justify-between text-xs text-setl-muted">
             <span>
               {it.qty}x {it.label}
             </span>
@@ -193,7 +193,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
         ))}
         <div className="mt-1 flex justify-between text-sm">
           <span className="text-black">
-            Subtotal <span className="text-xs text-gray-400">({items.length} {items.length === 1 ? 'item' : 'items'})</span>
+            Subtotal <span className="text-xs text-setl-muted">({items.length} {items.length === 1 ? 'item' : 'items'})</span>
           </span>
           <span className="text-black">{subtotal}.00 AED</span>
         </div>
@@ -201,27 +201,27 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
           <div className="flex items-baseline justify-between gap-2 text-sm">
             <span className="text-black">
               Saving &amp; Discounts{' '}
-              <span className="text-xs text-[#8442FF]">(Discount applied {baseRate * 100}%)</span>
+              <span className="text-xs text-setl-purple">(Discount applied {baseRate * 100}%)</span>
             </span>
-            <span className="shrink-0 whitespace-nowrap text-[#8442FF]">- {baseDiscount} AED</span>
+            <span className="shrink-0 whitespace-nowrap text-setl-purple">- {baseDiscount} AED</span>
           </div>
         )}
         {credit > 0 && (
           <div className="flex items-baseline justify-between gap-2 text-sm">
             <span className="text-black">
-              Inspection fee credit <span className="text-xs text-[#8442FF]">(paid at booking)</span>
+              Inspection fee credit <span className="text-xs text-setl-purple">(paid at booking)</span>
             </span>
-            <span className="shrink-0 whitespace-nowrap text-[#8442FF]">- {credit} AED</span>
+            <span className="shrink-0 whitespace-nowrap text-setl-purple">- {credit} AED</span>
           </div>
         )}
         {voucherDiscount > 0 && (
           <div className="flex items-baseline justify-between gap-2 text-sm">
             <span className="text-black">Voucher</span>
-            <span className="shrink-0 whitespace-nowrap text-[#8442FF]">- {voucherDiscount} AED</span>
+            <span className="shrink-0 whitespace-nowrap text-setl-purple">- {voucherDiscount} AED</span>
           </div>
         )}
-        <div className="mt-2 flex justify-between border-t border-gray-100 pt-2">
-          <span className="text-xs text-gray-400">
+        <div className="mt-2 flex justify-between border-t border-setl-surface-3 pt-2">
+          <span className="text-xs text-setl-muted">
             {isInspection ? '(VAT included)' : 'Due after completion'}
           </span>
           <span className="text-lg font-semibold text-black">{total} AED</span>

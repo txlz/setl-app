@@ -27,7 +27,7 @@ export default function WaitingApprovalScreen({ order, onStartWork, onBack }) {
             : 'The customer declined this estimate. No further action needed.'}
         </p>
         {approved ? (
-          <GradientButton className="mt-10 !bg-white !bg-none !text-[#8442FF]" onClick={() => onStartWork(order)}>
+          <GradientButton className="mt-10 !bg-white !bg-none !text-setl-purple" onClick={() => onStartWork(order)}>
             Start the work
           </GradientButton>
         ) : (

@@ -26,12 +26,12 @@ export default function ProfileScreen({ phone, onSwitchMode, onLogout }) {
             key={item.id}
             type="button"
             className={`flex w-full cursor-pointer items-center justify-between px-4 py-3.5 text-left ${
-              i < MENU.length - 1 ? 'border-b border-gray-100' : ''
+              i < MENU.length - 1 ? 'border-b border-setl-surface-3' : ''
             }`}
           >
             <span className="text-[15px] text-black">{item.label}</span>
             <span className="flex items-center gap-2">
-              {item.value && <span className="text-sm text-gray-400">{item.value}</span>}
+              {item.value && <span className="text-sm text-setl-muted">{item.value}</span>}
               <svg width="7" height="12" viewBox="0 0 10 18" fill="none">
                 <path d="m1 1 7 8-7 8" stroke="#C9C7D1" strokeWidth="2" strokeLinecap="round" />
               </svg>
@@ -46,7 +46,7 @@ export default function ProfileScreen({ phone, onSwitchMode, onLogout }) {
           onClick={onSwitchMode}
           className="mx-3 mt-4 flex cursor-pointer items-center justify-between rounded-2xl bg-white px-4 py-3.5 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
         >
-          <span className="text-[15px] font-medium text-[#8442FF]">Switch to service provider app</span>
+          <span className="text-[15px] font-medium text-setl-purple">Switch to service provider app</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8442FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M8 3 4 7l4 4M4 7h13M16 21l4-4-4-4M20 17H7" />
           </svg>
@@ -61,7 +61,7 @@ export default function ProfileScreen({ phone, onSwitchMode, onLogout }) {
         Log out
       </button>
 
-      <p className="mt-6 text-center text-xs text-gray-300">Setl v0.1.0</p>
+      <p className="mt-6 text-center text-xs text-setl-line-3">Setl v0.1.0</p>
     </div>
   )
 }

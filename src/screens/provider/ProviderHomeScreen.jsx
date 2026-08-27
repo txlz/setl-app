@@ -11,7 +11,7 @@ function bucket(state) {
 }
 
 const STATUS_STYLE = {
-  active: 'bg-[#EDE4FD] text-[#8442FF]',
+  active: 'bg-[#EDE4FD] text-setl-purple',
   waiting: 'bg-orange-50 text-orange-500',
   done: 'bg-green-50 text-green-600',
 }
@@ -38,7 +38,7 @@ function JobCard({ order, onOpen }) {
       onClick={() => onOpen(order)}
       className="w-full rounded-2xl bg-white p-4 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-transform duration-100 active:scale-[0.99]"
     >
-      <div className="flex items-center justify-between text-xs text-gray-400">
+      <div className="flex items-center justify-between text-xs text-setl-muted">
         <span className="flex items-center gap-1.5">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="12" cy="12" r="9" />
@@ -57,20 +57,20 @@ function JobCard({ order, onOpen }) {
 
       <div className="mt-3 flex items-end justify-between">
         <div className="min-w-0">
-          <p className="truncate text-[13px] text-gray-400">
-            Order no : <span className="text-gray-500">{orderNo(order)}</span>
+          <p className="truncate text-[13px] text-setl-muted">
+            Order no : <span className="text-setl-ink-3">{orderNo(order)}</span>
           </p>
           <p className="mt-1 truncate text-[15px] font-semibold text-black">{order.service}</p>
           <p className="mt-0.5 text-lg font-bold text-black">{money(order)} AED</p>
         </div>
         <div className="flex shrink-0 flex-col items-end gap-1.5">
           {order.flowType === 'inspection' && (
-            <span className="rounded-full bg-[#8442FF] px-2.5 py-0.5 text-[11px] font-medium text-white">
+            <span className="rounded-full bg-setl-purple px-2.5 py-0.5 text-[11px] font-medium text-white">
               Inspection
             </span>
           )}
           {b !== 'new' && (
-            <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium ${STATUS_STYLE[b] ?? 'bg-gray-100 text-gray-500'}`}>
+            <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium ${STATUS_STYLE[b] ?? 'bg-setl-surface-3 text-setl-ink-3'}`}>
               {statusLabel(order.state)}
             </span>
           )}
@@ -121,7 +121,7 @@ export default function ProviderHomeScreen({ orders, onOpenOrder, employee, comp
               <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1v-9.5Z" strokeLinejoin="round" />
             </svg>
             <p className="mt-4 font-medium text-black">No jobs yet</p>
-            <p className="mt-1 text-sm text-gray-400">
+            <p className="mt-1 text-sm text-setl-muted">
               When a customer books, their request appears here.
             </p>
           </div>
@@ -133,7 +133,7 @@ export default function ProviderHomeScreen({ orders, onOpenOrder, employee, comp
                 <h2 className="mb-3 text-lg font-semibold text-black">
                   {g.title}
                   {g.key === 'new' && (
-                    <span className="text-[#8442FF]">({g.items.length})</span>
+                    <span className="text-setl-purple">({g.items.length})</span>
                   )}
                 </h2>
                 <div className="flex flex-col gap-3">

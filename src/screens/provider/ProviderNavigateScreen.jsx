@@ -25,7 +25,7 @@ export default function ProviderNavigateScreen({ order, onArrived, onBack }) {
         <div className="relative overflow-hidden rounded-2xl">
           <FakeMap className="h-72 w-full" />
           <div className="absolute top-3 left-3 rounded-lg bg-white/95 px-3 py-1.5 text-xs font-medium text-black shadow">
-            Maps <span className="ml-1 text-gray-400">Satellite</span>
+            Maps <span className="ml-1 text-setl-muted">Satellite</span>
           </div>
           <div className="absolute top-24 left-6 rounded-lg bg-[#2563EB] px-2.5 py-1.5 text-xs font-semibold text-white shadow">
             🚗 {etaMin} min · {distanceKm} KM
@@ -33,13 +33,13 @@ export default function ProviderNavigateScreen({ order, onArrived, onBack }) {
         </div>
 
         <div className="mt-5 flex items-center justify-between rounded-xl bg-[#F1ECFB] px-4 py-3">
-          <span className="text-sm font-medium text-[#8442FF]">{distanceKm} KM</span>
-          <span className="text-sm font-medium text-[#8442FF]">≈ {etaMin} min</span>
+          <span className="text-sm font-medium text-setl-purple">{distanceKm} KM</span>
+          <span className="text-sm font-medium text-setl-purple">≈ {etaMin} min</span>
         </div>
 
         <div className="mt-4 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <p className="text-sm font-semibold text-black">{CUSTOMER_ME.name}</p>
-          <p className="mt-0.5 text-xs text-gray-400">{CUSTOMER_ME.address}</p>
+          <p className="mt-0.5 text-xs text-setl-muted">{CUSTOMER_ME.address}</p>
         </div>
 
         <div className="grow" />

@@ -53,7 +53,7 @@ export default function ProviderCard({
               <span
                 key={slot}
                 className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${
-                  i === 0 ? 'bg-[#EDE4FD] text-[#8442FF]' : 'border border-gray-200 text-gray-400'
+                  i === 0 ? 'bg-[#EDE4FD] text-setl-purple' : 'border border-setl-line text-setl-muted'
                 }`}
               >
                 {slot}
@@ -73,7 +73,7 @@ export default function ProviderCard({
             <button
               type="button"
               onClick={onOpenProfile}
-              className="cursor-pointer text-sm font-medium text-[#8442FF]"
+              className="cursor-pointer text-sm font-medium text-setl-purple"
             >
               View profile
             </button>

@@ -22,18 +22,18 @@ export default function ProgressSteps({ current }) {
         return (
           <Fragment key={step.key}>
             {i > 0 && (
-              <div className="relative z-0 mx-[-12px] mt-[21px] h-[3px] flex-1 overflow-hidden bg-gray-200">
-                {(done || active) && <div className="fill-enter h-full w-full bg-[#8442FF]" />}
+              <div className="relative z-0 mx-[-12px] mt-[21px] h-[3px] flex-1 overflow-hidden bg-setl-line">
+                {(done || active) && <div className="fill-enter h-full w-full bg-setl-purple" />}
               </div>
             )}
             <div className="relative z-10 flex w-20 flex-col items-center">
               <div
                 className={`flex h-11 w-11 items-center justify-center rounded-full text-[15px] font-semibold ${
                   done
-                    ? 'bg-[#8442FF] text-white'
+                    ? 'bg-setl-purple text-white'
                     : active
-                      ? 'border-2 border-[#8442FF] bg-white text-[#8442FF]'
-                      : 'border-2 border-gray-300 bg-white text-gray-400'
+                      ? 'border-2 border-setl-purple bg-white text-setl-purple'
+                      : 'border-2 border-setl-line-3 bg-white text-setl-muted'
                 }`}
               >
                 {done ? (
@@ -46,7 +46,7 @@ export default function ProgressSteps({ current }) {
               </div>
               <p
                 className={`mt-1 text-center text-xs leading-tight ${
-                  active ? 'font-semibold text-black' : 'text-gray-500'
+                  active ? 'font-semibold text-black' : 'text-setl-ink-3'
                 }`}
               >
                 {step.label}

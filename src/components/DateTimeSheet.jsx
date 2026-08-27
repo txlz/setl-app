@@ -16,7 +16,7 @@ export default function DateTimeSheet({ provider, title, onConfirm, onClose }) {
       <div className="fade-enter absolute inset-0 bg-black/30" onClick={onClose} />
 
       <div className="sheet-enter relative rounded-t-[24px] bg-[#F5F4F7] px-4 pt-3 pb-8">
-        <div className="mx-auto mb-3 h-1 w-16 rounded-full bg-gray-300" />
+        <div className="mx-auto mb-3 h-1 w-16 rounded-full bg-setl-line-3" />
 
         <div className="flex items-center gap-3">
           <div
@@ -28,7 +28,7 @@ export default function DateTimeSheet({ provider, title, onConfirm, onClose }) {
           <h2 className="text-lg font-medium text-black">{title}</h2>
         </div>
 
-        <p className="mt-4 text-sm font-semibold tracking-wide text-[#8442FF]">DATE</p>
+        <p className="mt-4 text-sm font-semibold tracking-wide text-setl-purple">DATE</p>
         <div className="no-scrollbar mt-2 flex gap-2 overflow-x-auto pb-1">
           {DATES.map((d) => (
             <button
@@ -36,7 +36,7 @@ export default function DateTimeSheet({ provider, title, onConfirm, onClose }) {
               type="button"
               onClick={() => setDate(d)}
               className={`shrink-0 cursor-pointer rounded-lg px-5 py-2 text-center shadow-sm ${
-                date.day === d.day ? 'bg-[#8442FF] text-white' : 'bg-white text-black'
+                date.day === d.day ? 'bg-setl-purple text-white' : 'bg-white text-black'
               }`}
             >
               <span className="block text-[15px]">{d.day}</span>
@@ -45,7 +45,7 @@ export default function DateTimeSheet({ provider, title, onConfirm, onClose }) {
           ))}
         </div>
 
-        <p className="mt-4 text-sm font-semibold tracking-wide text-[#8442FF]">TIME</p>
+        <p className="mt-4 text-sm font-semibold tracking-wide text-setl-purple">TIME</p>
         <div className="no-scrollbar mt-2 flex gap-2 overflow-x-auto pb-1">
           {TIMES.map((t) => (
             <button
@@ -53,7 +53,7 @@ export default function DateTimeSheet({ provider, title, onConfirm, onClose }) {
               type="button"
               onClick={() => setTime(t)}
               className={`shrink-0 cursor-pointer rounded-lg px-4 py-1.5 text-[15px] shadow-sm ${
-                time === t ? 'bg-[#8442FF] text-white' : 'bg-white text-black'
+                time === t ? 'bg-setl-purple text-white' : 'bg-white text-black'
               }`}
             >
               {t}

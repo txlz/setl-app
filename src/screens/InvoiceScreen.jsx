@@ -47,7 +47,7 @@ export default function InvoiceScreen({ order, onPay, onBack }) {
       <div className="mt-4 rounded-xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         <h3 className="font-semibold text-black">Invoice</h3>
         {order.items.map((it) => (
-          <div key={it.label} className="mt-1 flex justify-between text-xs text-gray-400">
+          <div key={it.label} className="mt-1 flex justify-between text-xs text-setl-muted">
             <span>
               {it.qty}x {it.label}
             </span>
@@ -57,7 +57,7 @@ export default function InvoiceScreen({ order, onPay, onBack }) {
         <div className="mt-1 flex justify-between text-sm">
           <span className="text-black">
             Subtotal{' '}
-            <span className="text-xs text-gray-400">
+            <span className="text-xs text-setl-muted">
               ({order.items.length} {order.items.length === 1 ? 'item' : 'items'})
             </span>
           </span>
@@ -66,27 +66,27 @@ export default function InvoiceScreen({ order, onPay, onBack }) {
         {discount > 0 && (
           <div className="flex items-baseline justify-between gap-2 text-sm">
             <span className="text-black">Saving &amp; Discounts</span>
-            <span className="shrink-0 whitespace-nowrap text-[#8442FF]">- {discount} AED</span>
+            <span className="shrink-0 whitespace-nowrap text-setl-purple">- {discount} AED</span>
           </div>
         )}
         {credit > 0 && (
           <div className="flex items-baseline justify-between gap-2 text-sm">
             <span className="text-black">
-              Inspection fee credit <span className="text-xs text-[#8442FF]">(paid at booking)</span>
+              Inspection fee credit <span className="text-xs text-setl-purple">(paid at booking)</span>
             </span>
-            <span className="shrink-0 whitespace-nowrap text-[#8442FF]">- {credit} AED</span>
+            <span className="shrink-0 whitespace-nowrap text-setl-purple">- {credit} AED</span>
           </div>
         )}
         {voucherDiscount > 0 && (
           <div className="flex items-baseline justify-between gap-2 text-sm">
             <span className="text-black">
-              Voucher <span className="text-xs text-[#8442FF]">({voucherCode})</span>
+              Voucher <span className="text-xs text-setl-purple">({voucherCode})</span>
             </span>
-            <span className="shrink-0 whitespace-nowrap text-[#8442FF]">- {voucherDiscount} AED</span>
+            <span className="shrink-0 whitespace-nowrap text-setl-purple">- {voucherDiscount} AED</span>
           </div>
         )}
-        <div className="mt-2 flex justify-between border-t border-gray-100 pt-2">
-          <span className="text-xs text-gray-400">(VAT included)</span>
+        <div className="mt-2 flex justify-between border-t border-setl-surface-3 pt-2">
+          <span className="text-xs text-setl-muted">(VAT included)</span>
           <span className="text-lg font-semibold text-black">{due} AED</span>
         </div>
       </div>

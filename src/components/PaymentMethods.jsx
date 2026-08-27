@@ -7,7 +7,7 @@ const PAYMENT_METHODS = [
 function PayIcon({ id }) {
   if (id === 'apple')
     return (
-      <span className="flex h-7 w-11 items-center justify-center rounded border border-[#8442FF] text-[10px] font-semibold text-black">
+      <span className="flex h-7 w-11 items-center justify-center rounded border border-setl-purple text-[10px] font-semibold text-black">
         Pay
       </span>
     )
@@ -39,7 +39,7 @@ export default function PaymentMethods({ method, onChange }) {
             name="payment"
             checked={method === m.id}
             onChange={() => onChange(m.id)}
-            className="h-5 w-5 accent-[#8442FF]"
+            className="h-5 w-5 accent-setl-purple"
           />
           <PayIcon id={m.id} />
           <span className="text-[16px] text-black">{m.label}</span>

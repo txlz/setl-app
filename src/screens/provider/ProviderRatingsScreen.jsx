@@ -18,7 +18,7 @@ function Stars({ n }) {
   return (
     <span className="text-[#F5A623]">
       {'★★★★★'.slice(0, n)}
-      <span className="text-gray-200">{'★★★★★'.slice(n)}</span>
+      <span className="text-setl-line">{'★★★★★'.slice(n)}</span>
     </span>
   )
 }
@@ -35,16 +35,16 @@ export default function ProviderRatingsScreen() {
           <div className="text-center">
             <p className="text-4xl font-bold text-black">{PROVIDER_ME.rating}</p>
             <Stars n={Math.round(PROVIDER_ME.rating)} />
-            <p className="mt-1 text-xs text-gray-400">{PROVIDER_ME.jobsDone} jobs</p>
+            <p className="mt-1 text-xs text-setl-muted">{PROVIDER_ME.jobsDone} jobs</p>
           </div>
           <div className="grow">
             {BREAKDOWN.map((b) => (
               <div key={b.stars} className="flex items-center gap-2 py-0.5">
-                <span className="w-3 text-xs text-gray-400">{b.stars}</span>
-                <div className="h-2 grow overflow-hidden rounded-full bg-gray-100">
+                <span className="w-3 text-xs text-setl-muted">{b.stars}</span>
+                <div className="h-2 grow overflow-hidden rounded-full bg-setl-surface-3">
                   <div className="h-full rounded-full bg-[#F5A623]" style={{ width: `${b.pct}%` }} />
                 </div>
-                <span className="w-8 text-right text-xs text-gray-400">{b.pct}%</span>
+                <span className="w-8 text-right text-xs text-setl-muted">{b.pct}%</span>
               </div>
             ))}
           </div>
@@ -58,7 +58,7 @@ export default function ProviderRatingsScreen() {
               <p className="font-semibold text-black">{r.name}</p>
               <Stars n={r.stars} />
             </div>
-            <p className="mt-1.5 text-sm text-gray-500">{r.text}</p>
+            <p className="mt-1.5 text-sm text-setl-ink-3">{r.text}</p>
           </div>
         ))}
       </div>

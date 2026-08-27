@@ -71,13 +71,13 @@ export default function SPEmployeesScreen({ title, employees, onAdd, onUpdate, o
               </div>
               <div className="px-4 pt-9 pb-4 text-center">
                 <p className="font-semibold text-black">{e.name}</p>
-                <p className="text-xs text-gray-400">{e.role}</p>
+                <p className="text-xs text-setl-muted">{e.role}</p>
                 <div className="mt-3 space-y-1.5 text-left">
-                  <p className="flex items-center gap-2 text-xs text-gray-500">
+                  <p className="flex items-center gap-2 text-xs text-setl-ink-3">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9C9AA5" strokeWidth="1.8"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></svg>
                     {e.email}
                   </p>
-                  <p className="flex items-center gap-2 text-xs text-gray-500">
+                  <p className="flex items-center gap-2 text-xs text-setl-ink-3">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9C9AA5" strokeWidth="1.8"><path d="M4 5c0 9 6 15 15 15l1-4-5-2-2 2a12 12 0 0 1-5-5l2-2-2-5-4 1Z" strokeLinejoin="round" /></svg>
                     {e.phone}
                   </p>
@@ -104,12 +104,12 @@ export default function SPEmployeesScreen({ title, employees, onAdd, onUpdate, o
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="Full name"
-              className="mb-3 w-full rounded-xl border border-gray-200 p-3 text-sm text-black outline-none focus:border-[#8442FF]"
+              className="mb-3 w-full rounded-xl border border-setl-line p-3 text-sm text-black outline-none focus:border-setl-purple"
             />
             <select
               value={form.role}
               onChange={(e) => setForm({ ...form, role: e.target.value })}
-              className="mb-3 w-full rounded-xl border border-gray-200 p-3 text-sm text-black outline-none focus:border-[#8442FF]"
+              className="mb-3 w-full rounded-xl border border-setl-line p-3 text-sm text-black outline-none focus:border-setl-purple"
             >
               {EMPLOYEE_ROLES.map((r) => <option key={r}>{r}</option>)}
             </select>
@@ -117,13 +117,13 @@ export default function SPEmployeesScreen({ title, employees, onAdd, onUpdate, o
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               placeholder="Email"
-              className="mb-3 w-full rounded-xl border border-gray-200 p-3 text-sm text-black outline-none focus:border-[#8442FF]"
+              className="mb-3 w-full rounded-xl border border-setl-line p-3 text-sm text-black outline-none focus:border-setl-purple"
             />
             <input
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
               placeholder="Phone number"
-              className="mb-4 w-full rounded-xl border border-gray-200 p-3 text-sm text-black outline-none focus:border-[#8442FF]"
+              className="mb-4 w-full rounded-xl border border-setl-line p-3 text-sm text-black outline-none focus:border-setl-purple"
             />
             <GradientButton disabled={!form.name.trim()} onClick={submit}>{editingId ? 'Save changes' : 'Add'}</GradientButton>
           </div>
@@ -135,12 +135,12 @@ export default function SPEmployeesScreen({ title, employees, onAdd, onUpdate, o
         <div className="fixed inset-0 z-50 mx-auto flex w-full max-w-[375px] items-center justify-center bg-black/40 px-6" onClick={() => setConfirmRemove(null)}>
           <div className="w-full rounded-2xl bg-white p-5 text-center" onClick={(ev) => ev.stopPropagation()}>
             <h3 className="text-lg font-semibold text-black">Remove {confirmRemove.name}?</h3>
-            <p className="mt-1 text-sm text-gray-400">They&apos;ll be taken off your roster and can no longer be assigned jobs.</p>
+            <p className="mt-1 text-sm text-setl-muted">They&apos;ll be taken off your roster and can no longer be assigned jobs.</p>
             <div className="mt-5 flex gap-3">
               <button
                 type="button"
                 onClick={() => setConfirmRemove(null)}
-                className="h-11 flex-1 cursor-pointer rounded-xl border border-gray-200 bg-white text-[15px] font-medium text-black active:scale-[0.98]"
+                className="h-11 flex-1 cursor-pointer rounded-xl border border-setl-line bg-white text-[15px] font-medium text-black active:scale-[0.98]"
               >
                 Cancel
               </button>

@@ -72,9 +72,9 @@ export default function ScrollRow({ children, className = '' }) {
           role="scrollbar"
           aria-valuenow={Math.round(progress * 100)}
         >
-          <div className="relative h-1.5 overflow-hidden rounded-full bg-gray-200">
+          <div className="relative h-1.5 overflow-hidden rounded-full bg-setl-line">
             <div
-              className="absolute h-full rounded-full bg-[#8442FF]"
+              className="absolute h-full rounded-full bg-setl-purple"
               style={{ width: `${THUMB * 100}%`, left: `${progress * (1 - THUMB) * 100}%` }}
             />
           </div>

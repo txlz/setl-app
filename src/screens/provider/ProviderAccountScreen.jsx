@@ -31,20 +31,20 @@ export default function ProviderAccountScreen({ orders = [], availableNow, onOpe
       <div className="-mt-5 mx-3 grid grid-cols-2 gap-3">
         <div className="rounded-2xl bg-white p-4 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <p className="text-2xl font-bold text-black">{earnings} AED</p>
-          <p className="text-xs text-gray-400">Earnings</p>
+          <p className="text-xs text-setl-muted">Earnings</p>
         </div>
         <div className="rounded-2xl bg-white p-4 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <p className="text-2xl font-bold text-black">{jobsDone}</p>
-          <p className="text-xs text-gray-400">Jobs done</p>
+          <p className="text-xs text-setl-muted">Jobs done</p>
         </div>
       </div>
 
       <div className="mx-3 mt-4 rounded-2xl bg-white p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         {menu.map((item, i) => (
-          <button key={item.id} type="button" onClick={item.onClick} className={`flex w-full cursor-pointer items-center justify-between px-4 py-3.5 text-left ${i < menu.length - 1 ? 'border-b border-gray-100' : ''}`}>
+          <button key={item.id} type="button" onClick={item.onClick} className={`flex w-full cursor-pointer items-center justify-between px-4 py-3.5 text-left ${i < menu.length - 1 ? 'border-b border-setl-surface-3' : ''}`}>
             <span className="text-[15px] text-black">{item.label}</span>
             <span className="flex items-center gap-2">
-              {item.value && <span className={`text-sm ${item.accent ? 'font-medium text-green-600' : 'text-gray-400'}`}>{item.value}</span>}
+              {item.value && <span className={`text-sm ${item.accent ? 'font-medium text-green-600' : 'text-setl-muted'}`}>{item.value}</span>}
               <svg width="7" height="12" viewBox="0 0 10 18" fill="none"><path d="m1 1 7 8-7 8" stroke="#C9C7D1" strokeWidth="2" strokeLinecap="round" /></svg>
             </span>
           </button>
@@ -52,7 +52,7 @@ export default function ProviderAccountScreen({ orders = [], availableNow, onOpe
       </div>
 
       <button type="button" onClick={onSwitchToCustomer} className="mx-3 mt-4 flex cursor-pointer items-center justify-between rounded-2xl bg-white px-4 py-3.5 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-        <span className="text-[15px] font-medium text-[#8442FF]">Switch to customer app</span>
+        <span className="text-[15px] font-medium text-setl-purple">Switch to customer app</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8442FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3 4 7l4 4M4 7h13M16 21l4-4-4-4M20 17H7" /></svg>
       </button>
 
@@ -60,7 +60,7 @@ export default function ProviderAccountScreen({ orders = [], availableNow, onOpe
         Log out
       </button>
 
-      <p className="mt-6 text-center text-xs text-gray-300">Setl Worker v0.1.0</p>
+      <p className="mt-6 text-center text-xs text-setl-line-3">Setl Worker v0.1.0</p>
     </div>
   )
 }

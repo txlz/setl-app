@@ -86,7 +86,7 @@ export default function OtpScreen({ onVerify }) {
             onChange={(e) => handleChange(i, e.target.value)}
             onKeyDown={(e) => handleKeyDown(i, e)}
             aria-label={`OTP digit ${i + 1}`}
-            className="w-8 border-b border-gray-400 pb-0.5 text-center text-lg text-black outline-none focus:border-[#8442FF]"
+            className="w-8 border-b border-setl-muted pb-0.5 text-center text-lg text-black outline-none focus:border-setl-purple"
           />
         ))}
       </div>
@@ -103,7 +103,7 @@ export default function OtpScreen({ onVerify }) {
           type="button"
           onClick={resend}
           disabled={resendIn > 0}
-          className="cursor-pointer font-medium text-[#2790C3] disabled:cursor-default disabled:text-gray-400"
+          className="cursor-pointer font-medium text-[#2790C3] disabled:cursor-default disabled:text-setl-muted"
         >
           {resendIn > 0 ? `Resend (0:${String(resendIn).padStart(2, '0')})` : 'Resend'}
         </button>

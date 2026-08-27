@@ -39,7 +39,7 @@ export default function SPHomeScreen({ company, counts, onOpen }) {
               className="relative flex aspect-square flex-col items-center justify-center gap-3 rounded-2xl bg-white shadow-[0_2px_10px_rgba(0,0,0,0.06)] transition-transform duration-100 active:scale-[0.97]"
             >
               {count > 0 && (
-                <span className="absolute top-3 right-3 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#8442FF] px-1 text-[11px] font-semibold text-white">{count}</span>
+                <span className="absolute top-3 right-3 flex h-5 min-w-5 items-center justify-center rounded-full bg-setl-purple px-1 text-[11px] font-semibold text-white">{count}</span>
               )}
               <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#F1ECFB]">
                 <TileIcon icon={t.icon} />

@@ -9,8 +9,8 @@ function orderNo(o) {
 
 const STATUS_STYLE = {
   Scheduled: 'bg-blue-50 text-blue-600',
-  'On the way': 'bg-[#EDE4FD] text-[#8442FF]',
-  'In progress': 'bg-[#EDE4FD] text-[#8442FF]',
+  'On the way': 'bg-[#EDE4FD] text-setl-purple',
+  'In progress': 'bg-[#EDE4FD] text-setl-purple',
   'Estimate ready': 'bg-orange-50 text-orange-500',
   'Repair booked': 'bg-blue-50 text-blue-600',
   Done: 'bg-green-50 text-green-600',
@@ -48,51 +48,51 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="font-semibold text-black">{order.service}</p>
-              <p className="mt-0.5 text-sm text-gray-400">
+              <p className="mt-0.5 text-sm text-setl-muted">
                 {order.date.day} {order.date.num} · {order.time}
               </p>
             </div>
             <div className="flex flex-col items-end gap-1.5">
               {order.flowType === 'inspection' && (
-                <span className="rounded-full bg-[#8442FF] px-2.5 py-0.5 text-[11px] font-medium text-white">
+                <span className="rounded-full bg-setl-purple px-2.5 py-0.5 text-[11px] font-medium text-white">
                   Inspection
                 </span>
               )}
               <span
                 className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium ${
-                  STATUS_STYLE[statusLabel(order.state)] ?? 'bg-gray-100 text-gray-500'
+                  STATUS_STYLE[statusLabel(order.state)] ?? 'bg-setl-surface-3 text-setl-ink-3'
                 }`}
               >
                 {statusLabel(order.state)}
               </span>
             </div>
           </div>
-          <div className="mt-3 flex items-center justify-between border-t border-gray-100 pt-3">
-            <span className="text-sm text-gray-400">{order.flowType === 'inspection' ? 'Inspection fee' : 'Job total'}</span>
+          <div className="mt-3 flex items-center justify-between border-t border-setl-surface-3 pt-3">
+            <span className="text-sm text-setl-muted">{order.flowType === 'inspection' ? 'Inspection fee' : 'Job total'}</span>
             <span className="text-lg font-bold text-black">{money} AED</span>
           </div>
         </div>
 
         {/* Customer */}
-        <h2 className="mt-5 mb-2 px-1 text-sm font-semibold text-gray-500">Customer</h2>
+        <h2 className="mt-5 mb-2 px-1 text-sm font-semibold text-setl-ink-3">Customer</h2>
         <div className="rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#8442FF] text-lg font-semibold text-white">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-setl-purple text-lg font-semibold text-white">
               {CUSTOMER_ME.name[0]}
             </div>
             <div>
               <p className="font-medium text-black">{CUSTOMER_ME.name}</p>
-              <p className="text-xs text-gray-400">{CUSTOMER_ME.phone}</p>
+              <p className="text-xs text-setl-muted">{CUSTOMER_ME.phone}</p>
             </div>
           </div>
-          <div className="mt-3 flex items-start gap-2 border-t border-gray-100 pt-3">
+          <div className="mt-3 flex items-start gap-2 border-t border-setl-surface-3 pt-3">
             <svg width="16" height="18" viewBox="0 0 18 22" fill="none" stroke="#8442FF" strokeWidth="1.8" className="mt-0.5 shrink-0">
               <path d="M9 1a7 7 0 0 1 7 7c0 5-7 12.5-7 12.5S2 13 2 8a7 7 0 0 1 7-7Z" />
               <circle cx="9" cy="8" r="2.5" />
             </svg>
             <p className="text-sm text-black">
               {CUSTOMER_ME.address}
-              <span className="mt-0.5 block text-xs text-gray-400">≈ {distanceKm} KM from base</span>
+              <span className="mt-0.5 block text-xs text-setl-muted">≈ {distanceKm} KM from base</span>
             </p>
           </div>
         </div>
@@ -100,10 +100,10 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
         {/* What the customer reported */}
         {symptoms.length > 0 && (
           <>
-            <h2 className="mt-5 mb-2 px-1 text-sm font-semibold text-gray-500">Reported</h2>
+            <h2 className="mt-5 mb-2 px-1 text-sm font-semibold text-setl-ink-3">Reported</h2>
             <div className="flex flex-wrap gap-2">
               {symptoms.map((s) => (
-                <span key={s} className="rounded-full bg-[#EDE4FD] px-3 py-1.5 text-xs font-medium text-[#8442FF]">
+                <span key={s} className="rounded-full bg-[#EDE4FD] px-3 py-1.5 text-xs font-medium text-setl-purple">
                   {s}
                 </span>
               ))}
@@ -112,7 +112,7 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
         )}
 
         {/* Assignment */}
-        <h2 className="mt-5 mb-2 px-1 text-sm font-semibold text-gray-500">
+        <h2 className="mt-5 mb-2 px-1 text-sm font-semibold text-setl-ink-3">
           {showPicker ? `${unassigned ? 'Assign' : 'Reassign'} a worker · ${weekday}` : 'Assigned worker'}
         </h2>
 
@@ -123,13 +123,13 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
             </div>
             <div className="grow">
               <p className="text-sm font-medium text-black">{order.assignedName}</p>
-              <p className="text-xs text-gray-400">On this job</p>
+              <p className="text-xs text-setl-muted">On this job</p>
             </div>
             {canReassign && (
               <button
                 type="button"
                 onClick={() => setReassigning(true)}
-                className="shrink-0 cursor-pointer rounded-full border border-[#8442FF] px-3 py-1.5 text-xs font-medium text-[#8442FF] active:bg-[#F3EDFE]"
+                className="shrink-0 cursor-pointer rounded-full border border-setl-purple px-3 py-1.5 text-xs font-medium text-setl-purple active:bg-[#F3EDFE]"
               >
                 Change
               </button>
@@ -141,7 +141,7 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
           <button
             type="button"
             onClick={() => setReassigning(false)}
-            className="mb-2 cursor-pointer text-xs font-medium text-gray-400 underline"
+            className="mb-2 cursor-pointer text-xs font-medium text-setl-muted underline"
           >
             Cancel — keep {order.assignedName}
           </button>
@@ -149,7 +149,7 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
 
         {showPicker &&
           (employees.length === 0 ? (
-            <p className="rounded-2xl bg-white p-5 text-center text-sm text-gray-400 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+            <p className="rounded-2xl bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
               Add employees before you can assign this job.
             </p>
           ) : (
@@ -168,7 +168,7 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
                   </div>
                   <div className="min-w-0 grow">
                     <p className="truncate text-sm font-medium text-black">{e.name}</p>
-                    <p className="text-xs text-gray-400">{e.role}</p>
+                    <p className="text-xs text-setl-muted">{e.role}</p>
                     <div className="mt-1.5 flex flex-wrap gap-1.5">
                       <span
                         className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${
@@ -179,17 +179,17 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
                       </span>
                       <span
                         className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${
-                          e.available ? 'bg-green-50 text-green-600' : 'bg-gray-100 text-gray-400'
+                          e.available ? 'bg-green-50 text-green-600' : 'bg-setl-surface-3 text-setl-muted'
                         }`}
                       >
                         {e.available ? `On shift ${weekday}` : `Off ${weekday}`}
                       </span>
                       {e.availableNow && (
-                        <span className="rounded-full bg-[#EDE4FD] px-2 py-0.5 text-[10px] font-medium text-[#8442FF]">Online now</span>
+                        <span className="rounded-full bg-[#EDE4FD] px-2 py-0.5 text-[10px] font-medium text-setl-purple">Online now</span>
                       )}
                     </div>
                   </div>
-                  <span className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-medium text-white ${e.name === order.assignedName ? 'bg-[#0FA3A3]' : 'bg-[#8442FF]'}`}>
+                  <span className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-medium text-white ${e.name === order.assignedName ? 'bg-[#0FA3A3]' : 'bg-setl-purple'}`}>
                     {e.name === order.assignedName ? 'Current' : 'Assign'}
                   </span>
                 </button>
@@ -198,7 +198,7 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
           ))}
 
         {!unassigned && !order.assignedName && (
-          <p className="rounded-2xl bg-white p-5 text-center text-sm text-gray-400 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+          <p className="rounded-2xl bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             This request was handled without a worker assignment.
           </p>
         )}

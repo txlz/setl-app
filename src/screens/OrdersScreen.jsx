@@ -3,9 +3,9 @@ import { orderAction } from '../data/orders.js'
 
 const STATUS_STYLES = {
   Scheduled: 'bg-blue-50 text-blue-600',
-  'On the way': 'bg-[#EDE4FD] text-[#8442FF]',
-  'In progress': 'bg-[#EDE4FD] text-[#8442FF]',
-  'Estimate ready': 'bg-[#8442FF] text-white',
+  'On the way': 'bg-[#EDE4FD] text-setl-purple',
+  'In progress': 'bg-[#EDE4FD] text-setl-purple',
+  'Estimate ready': 'bg-setl-purple text-white',
   'Repair booked': 'bg-blue-50 text-blue-600',
   Done: 'bg-green-50 text-green-600',
   'Awaiting payment': 'bg-orange-50 text-orange-500',
@@ -27,7 +27,7 @@ export default function OrdersScreen({ orders, onOpenOrder, onBook }) {
             <path d="M9 7h6M9 11h6" strokeLinecap="round" />
           </svg>
           <p className="mt-4 font-medium text-black">No orders yet</p>
-          <p className="mt-1 text-sm text-gray-400">Book a service and track it here</p>
+          <p className="mt-1 text-sm text-setl-muted">Book a service and track it here</p>
           <GradientButton className="mt-8 max-w-56" onClick={onBook}>
             Book a service
           </GradientButton>
@@ -58,11 +58,11 @@ export default function OrdersScreen({ orders, onOpenOrder, onBook }) {
                 </div>
                 <div className="min-w-0 grow">
                   <p className="truncate font-semibold text-black">{order.provider.name}</p>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-setl-muted">
                     {order.service} · {order.date.day} {order.date.num}, {order.time}
                   </p>
                   <span
-                    className={`mt-1 inline-block rounded-full px-2 py-0.5 text-[11px] font-medium ${STATUS_STYLES[order.status] ?? 'bg-gray-100 text-gray-500'}`}
+                    className={`mt-1 inline-block rounded-full px-2 py-0.5 text-[11px] font-medium ${STATUS_STYLES[order.status] ?? 'bg-setl-surface-3 text-setl-ink-3'}`}
                   >
                     {order.status}
                   </span>
@@ -70,7 +70,7 @@ export default function OrdersScreen({ orders, onOpenOrder, onBook }) {
                 <div className="flex shrink-0 flex-col items-end gap-1">
                   <span className="text-sm font-semibold text-black">{amount} AED</span>
                   {action === 'pay' && (
-                    <span className="text-[11px] font-medium text-[#8442FF]">Pay now</span>
+                    <span className="text-[11px] font-medium text-setl-purple">Pay now</span>
                   )}
                   {openable && (
                     <svg width="8" height="14" viewBox="0 0 10 18" fill="none">

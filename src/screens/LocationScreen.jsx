@@ -26,7 +26,7 @@ export default function LocationScreen({ onConfirm }) {
         </div>
         <div className="absolute top-20 left-4 flex overflow-hidden rounded-lg bg-white text-sm shadow">
           <span className="px-3 py-1.5 font-semibold text-black">Maps</span>
-          <span className="px-3 py-1.5 text-gray-400">Satellite</span>
+          <span className="px-3 py-1.5 text-setl-muted">Satellite</span>
         </div>
       </div>
 
@@ -48,7 +48,7 @@ export default function LocationScreen({ onConfirm }) {
               type="button"
               onClick={() => setType(t)}
               className={`cursor-pointer rounded-lg border px-5 py-2 text-[15px] shadow-sm transition-colors ${
-                type === t ? 'border-[#8442FF] bg-white text-[#8442FF]' : 'border-transparent bg-white text-gray-400'
+                type === t ? 'border-setl-purple bg-white text-setl-purple' : 'border-transparent bg-white text-setl-muted'
               }`}
             >
               {t}

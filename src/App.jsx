@@ -964,9 +964,9 @@ function App() {
           type="button"
           key={toast.key}
           onClick={() => setToast(null)}
-          className="pop-enter absolute top-3 left-1/2 z-50 w-[92%] -translate-x-1/2 cursor-pointer rounded-2xl border border-gray-100 bg-white p-3 text-left shadow-[0_6px_24px_rgba(0,0,0,0.18)]"
+          className="pop-enter absolute top-3 left-1/2 z-50 w-[92%] -translate-x-1/2 cursor-pointer rounded-2xl border border-setl-surface-3 bg-white p-3 text-left shadow-[0_6px_24px_rgba(0,0,0,0.18)]"
         >
-          <span className="text-[11px] font-semibold text-[#8442FF]">Setl</span>
+          <span className="text-[11px] font-semibold text-setl-purple">Setl</span>
           <span className="block text-sm text-black">{toast.text}</span>
         </button>
       )}

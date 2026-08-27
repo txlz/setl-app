@@ -10,18 +10,18 @@ function Counter({ value, onChange }) {
         type="button"
         aria-label="decrease"
         onClick={() => onChange(Math.max(0, value - 1))}
-        className="h-10 w-10 cursor-pointer rounded-md bg-gray-100 text-lg text-gray-500 transition-transform duration-100 active:scale-95"
+        className="h-10 w-10 cursor-pointer rounded-md bg-setl-surface-3 text-lg text-setl-ink-3 transition-transform duration-100 active:scale-95"
       >
         −
       </button>
-      <span className="flex h-10 w-10 items-center justify-center rounded-md border border-[#8442FF] text-[15px] text-black">
+      <span className="flex h-10 w-10 items-center justify-center rounded-md border border-setl-purple text-[15px] text-black">
         {value}
       </span>
       <button
         type="button"
         aria-label="increase"
         onClick={() => onChange(Math.min(MAX_UNITS, value + 1))}
-        className="h-10 w-10 cursor-pointer rounded-md bg-gray-100 text-lg text-gray-500 transition-transform duration-100 active:scale-95"
+        className="h-10 w-10 cursor-pointer rounded-md bg-setl-surface-3 text-lg text-setl-ink-3 transition-transform duration-100 active:scale-95"
       >
         +
       </button>
@@ -36,12 +36,12 @@ export default function AcServiceScreen({ counts, setCounts, onSearchProviders, 
       <div className="flex grow flex-col px-4 pt-5 pb-6">
         <h2 className="text-2xl font-semibold text-black">AC Services</h2>
 
-        <div className="mt-4 flex items-center justify-between rounded-lg border border-gray-200 bg-white p-4">
+        <div className="mt-4 flex items-center justify-between rounded-lg border border-setl-line bg-white p-4">
           <p className="text-[15px] text-black">How many AC&apos;s need refilling</p>
           <Counter value={counts.refill} onChange={(v) => setCounts({ ...counts, refill: v })} />
         </div>
 
-        <div className="mt-4 flex items-center justify-between rounded-lg border border-gray-200 bg-white p-4">
+        <div className="mt-4 flex items-center justify-between rounded-lg border border-setl-line bg-white p-4">
           <p className="text-[15px] text-black">How many AC&apos;s need cleaning</p>
           <Counter value={counts.clean} onChange={(v) => setCounts({ ...counts, clean: v })} />
         </div>
@@ -49,7 +49,7 @@ export default function AcServiceScreen({ counts, setCounts, onSearchProviders, 
         <div className="grow" />
 
         {nothingSelected && (
-          <p className="mb-2 text-center text-xs text-gray-400">
+          <p className="mb-2 text-center text-xs text-setl-muted">
             Select at least one AC service to search for providers
           </p>
         )}
@@ -60,11 +60,11 @@ export default function AcServiceScreen({ counts, setCounts, onSearchProviders, 
         <button
           type="button"
           onClick={onSendPhoto}
-          className="mt-4 w-full cursor-pointer rounded-xl border border-[#8442FF] bg-white py-3 text-center"
+          className="mt-4 w-full cursor-pointer rounded-xl border border-setl-purple bg-white py-3 text-center"
         >
           <span className="block text-sm text-[#2790C3]">Not sure what&apos;s wrong?</span>
-          <span className="block text-lg font-medium text-[#8442FF]">Send a pro a photo</span>
-          <span className="block text-xs text-gray-400">Get a ballpark — no visit needed to start</span>
+          <span className="block text-lg font-medium text-setl-purple">Send a pro a photo</span>
+          <span className="block text-xs text-setl-muted">Get a ballpark — no visit needed to start</span>
         </button>
       </div>
     </GradientHeader>

@@ -95,7 +95,7 @@ export default function PhotoTriageScreen({ serviceKey, onChoosePro, onBookInspe
                 <div key={i} className={m.from === 'me' ? 'self-end' : 'self-start'}>
                   <div
                     className={`max-w-[240px] rounded-2xl px-3 py-2 text-sm ${
-                      m.from === 'me' ? 'bg-[#8442FF] text-white' : 'bg-white text-black shadow-[0_2px_8px_rgba(0,0,0,0.06)]'
+                      m.from === 'me' ? 'bg-setl-purple text-white' : 'bg-white text-black shadow-[0_2px_8px_rgba(0,0,0,0.06)]'
                     }`}
                   >
                     {m.photos?.length > 0 && (
@@ -118,14 +118,14 @@ export default function PhotoTriageScreen({ serviceKey, onChoosePro, onBookInspe
                 onChange={(e) => setDraft(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && send()}
                 placeholder="Message…"
-                className="h-11 grow rounded-full border border-gray-200 px-4 text-sm text-black outline-none placeholder:text-gray-400 focus:border-[#8442FF]"
+                className="h-11 grow rounded-full border border-setl-line px-4 text-sm text-black outline-none placeholder:text-setl-muted focus:border-setl-purple"
               />
               <button
                 type="button"
                 onClick={send}
                 disabled={!draft.trim()}
                 aria-label="Send message"
-                className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#8442FF] text-white disabled:opacity-40"
+                className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full bg-setl-purple text-white disabled:opacity-40"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z" />
@@ -140,7 +140,7 @@ export default function PhotoTriageScreen({ serviceKey, onChoosePro, onBookInspe
         ) : status !== 'replied' ? (
           <>
             <h2 className="text-2xl font-semibold text-black">Show us the problem</h2>
-            <p className="mt-1 text-sm text-gray-400">
+            <p className="mt-1 text-sm text-setl-muted">
               Add a photo or two and a quick note. We&apos;ll send it to Setl{' '}
               {service.label.toLowerCase()} pros — they reply with a ballpark and you pick who
               comes. No visit needed to start.
@@ -165,7 +165,7 @@ export default function PhotoTriageScreen({ serviceKey, onChoosePro, onBookInspe
                 <button
                   type="button"
                   onClick={() => fileRef.current?.click()}
-                  className="flex h-24 w-24 cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-gray-300 text-gray-400"
+                  className="flex h-24 w-24 cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-setl-line-3 text-setl-muted"
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                     <rect x="3" y="6" width="18" height="14" rx="2" />
@@ -194,7 +194,7 @@ export default function PhotoTriageScreen({ serviceKey, onChoosePro, onBookInspe
               rows={3}
               disabled={status === 'sending'}
               placeholder="Describe what's happening — e.g. water pooling under the sink since this morning"
-              className="mt-4 w-full resize-none rounded-xl border border-gray-200 p-3 text-sm text-black outline-none placeholder:text-gray-400 focus:border-[#8442FF] disabled:opacity-60"
+              className="mt-4 w-full resize-none rounded-xl border border-setl-line p-3 text-sm text-black outline-none placeholder:text-setl-muted focus:border-setl-purple disabled:opacity-60"
             />
 
             <div className="grow" />
@@ -211,7 +211,7 @@ export default function PhotoTriageScreen({ serviceKey, onChoosePro, onBookInspe
               Send to pros
             </GradientButton>
             {!canSend && (
-              <p className="mt-2 text-center text-xs text-gray-400">
+              <p className="mt-2 text-center text-xs text-setl-muted">
                 Add a photo or a short description to send
               </p>
             )}
@@ -219,7 +219,7 @@ export default function PhotoTriageScreen({ serviceKey, onChoosePro, onBookInspe
         ) : (
           <>
             <h2 className="text-2xl font-semibold text-black">{quotes.length} pros replied</h2>
-            <p className="mt-1 text-sm text-gray-400">
+            <p className="mt-1 text-sm text-setl-muted">
               Tap a pro to chat, then book whoever you like. The exact price is confirmed on site —
               you pay after the work is done.
             </p>
@@ -241,7 +241,7 @@ export default function PhotoTriageScreen({ serviceKey, onChoosePro, onBookInspe
                     </div>
                     <div className="min-w-0 grow">
                       <p className="truncate font-semibold text-black">{q.provider.name}</p>
-                      <p className="text-xs text-gray-400">
+                      <p className="text-xs text-setl-muted">
                         ★ {q.provider.rating}
                         {q.provider.slots?.[0] ? ` · earliest ${q.provider.slots[0]}` : ''}
                       </p>
@@ -250,7 +250,7 @@ export default function PhotoTriageScreen({ serviceKey, onChoosePro, onBookInspe
                       <p className="text-sm font-semibold text-black">
                         AED {q.lo}–{q.hi}
                       </p>
-                      <p className="text-[10px] text-gray-400">ballpark</p>
+                      <p className="text-[10px] text-setl-muted">ballpark</p>
                     </div>
                   </div>
                   <span className="mt-3 flex h-10 w-full items-center justify-center gap-2 rounded-full bg-linear-[270deg,#366EE9_-95.36%,#F15CFA_212.48%] text-sm font-medium text-white">
@@ -263,7 +263,7 @@ export default function PhotoTriageScreen({ serviceKey, onChoosePro, onBookInspe
               ))}
             </div>
 
-            <p className="mt-3 text-center text-[11px] text-gray-400">
+            <p className="mt-3 text-center text-[11px] text-setl-muted">
               Ballparks from recent Setl jobs — not final quotes.
             </p>
 
@@ -272,11 +272,11 @@ export default function PhotoTriageScreen({ serviceKey, onChoosePro, onBookInspe
             <button
               type="button"
               onClick={onBookInspection}
-              className="mt-4 h-12 w-full cursor-pointer rounded-xl border border-[#8442FF] bg-white text-[15px] font-medium text-[#8442FF] transition-transform duration-100 active:scale-[0.98]"
+              className="mt-4 h-12 w-full cursor-pointer rounded-xl border border-setl-purple bg-white text-[15px] font-medium text-setl-purple transition-transform duration-100 active:scale-[0.98]"
             >
               Book an inspection instead
             </button>
-            <p className="mt-2 text-center text-[11px] text-gray-400">
+            <p className="mt-2 text-center text-[11px] text-setl-muted">
               Inspection fee is credited toward your repair if you proceed
             </p>
           </>

@@ -16,17 +16,17 @@ export default function AppointmentCard({ booking, label, price, onChange }) {
           <p className="text-sm text-black">
             {booking.date.day} {booking.date.num}, {booking.time}
           </p>
-          <p className="text-xs text-[#8442FF]">{label}</p>
+          <p className="text-xs text-setl-purple">{label}</p>
         </div>
         <p className="text-black">{price} AED</p>
       </div>
-      <div className="mt-1 pl-12 text-sm text-gray-400">
+      <div className="mt-1 pl-12 text-sm text-setl-muted">
         <p>{CUSTOMER_ME.name}</p>
         <p>{CUSTOMER_ME.phone}</p>
         <div className="flex items-end justify-between">
           <p>{CUSTOMER_ME.address}</p>
           {onChange && (
-            <button type="button" onClick={onChange} className="cursor-pointer text-[15px] text-[#8442FF]">
+            <button type="button" onClick={onChange} className="cursor-pointer text-[15px] text-setl-purple">
               Change
             </button>
           )}

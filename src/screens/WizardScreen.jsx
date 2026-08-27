@@ -42,7 +42,7 @@ export default function WizardScreen({ onRoute, onBack }) {
                     setSymptoms(new Set())
                     setStep(1)
                   }}
-                  className="flex cursor-pointer items-center justify-between rounded-xl border border-gray-200 bg-white p-4 text-left text-[15px] text-black active:border-[#8442FF]"
+                  className="flex cursor-pointer items-center justify-between rounded-xl border border-setl-line bg-white p-4 text-left text-[15px] text-black active:border-setl-purple"
                 >
                   {a.label}
                   <svg width="8" height="14" viewBox="0 0 10 18" fill="none">
@@ -57,20 +57,20 @@ export default function WizardScreen({ onRoute, onBack }) {
         {step === 1 && (
           <>
             <h2 className="text-2xl font-semibold text-black">What&apos;s happening?</h2>
-            <p className="mt-1 text-sm text-gray-400">
+            <p className="mt-1 text-sm text-setl-muted">
               Pick everything that applies — it helps your provider come prepared.
             </p>
             <div className="mt-4 flex flex-col gap-2.5">
               {service.symptoms.map((s) => (
                 <label
                   key={s}
-                  className="flex cursor-pointer items-center gap-3 rounded-xl border border-gray-200 bg-white p-3.5 text-[15px] text-black has-[:checked]:border-[#8442FF]"
+                  className="flex cursor-pointer items-center gap-3 rounded-xl border border-setl-line bg-white p-3.5 text-[15px] text-black has-[:checked]:border-setl-purple"
                 >
                   <input
                     type="checkbox"
                     checked={symptoms.has(s)}
                     onChange={() => toggleSymptom(s)}
-                    className="h-5 w-5 accent-[#8442FF]"
+                    className="h-5 w-5 accent-setl-purple"
                   />
                   {s}
                 </label>
@@ -91,12 +91,12 @@ export default function WizardScreen({ onRoute, onBack }) {
               <button
                 type="button"
                 onClick={() => onRoute(area, true, [...symptoms])}
-                className="cursor-pointer rounded-xl border border-[#8442FF] bg-white p-4 text-left active:scale-[0.99]"
+                className="cursor-pointer rounded-xl border border-setl-purple bg-white p-4 text-left active:scale-[0.99]"
               >
-                <span className="block text-[16px] font-medium text-[#8442FF]">
+                <span className="block text-[16px] font-medium text-setl-purple">
                   Yes — choose the service
                 </span>
-                <span className="mt-0.5 block text-xs text-gray-400">
+                <span className="mt-0.5 block text-xs text-setl-muted">
                   {service.requiresInspection
                     ? 'This service starts with an inspection visit'
                     : 'Pick exactly what you need and book directly'}
@@ -105,12 +105,12 @@ export default function WizardScreen({ onRoute, onBack }) {
               <button
                 type="button"
                 onClick={() => onRoute(area, false, [...symptoms])}
-                className="cursor-pointer rounded-xl border border-gray-200 bg-white p-4 text-left active:scale-[0.99]"
+                className="cursor-pointer rounded-xl border border-setl-line bg-white p-4 text-left active:scale-[0.99]"
               >
                 <span className="block text-[16px] font-medium text-black">
                   {service.requiresInspection ? 'Not sure — book an inspection' : 'Not sure — send a pro a photo'}
                 </span>
-                <span className="mt-0.5 block text-xs text-gray-400">
+                <span className="mt-0.5 block text-xs text-setl-muted">
                   {service.requiresInspection
                     ? 'Standardized fee, credited toward your repair if you proceed'
                     : 'Get a ballpark from real pros — no visit needed to start'}

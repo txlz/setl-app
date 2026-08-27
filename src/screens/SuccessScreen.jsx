@@ -53,7 +53,7 @@ export default function SuccessScreen({ variant, total, credit, onDone, onTrack 
       <p className="mt-2 text-white/90">{body}</p>
       {track ? (
         <>
-          <GradientButton className="mt-10 !bg-white !bg-none !text-[#8442FF]" onClick={onTrack}>
+          <GradientButton className="mt-10 !bg-white !bg-none !text-setl-purple" onClick={onTrack}>
             Track your order
           </GradientButton>
           <button type="button" onClick={onDone} className="mt-4 cursor-pointer text-sm text-white/80 underline">
@@ -61,7 +61,7 @@ export default function SuccessScreen({ variant, total, credit, onDone, onTrack 
           </button>
         </>
       ) : (
-        <GradientButton className="mt-10 !bg-white !bg-none !text-[#8442FF]" onClick={onDone}>
+        <GradientButton className="mt-10 !bg-white !bg-none !text-setl-purple" onClick={onDone}>
           Back to home
         </GradientButton>
       )}

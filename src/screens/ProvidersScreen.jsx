@@ -26,7 +26,7 @@ export default function ProvidersScreen({ service: serviceId, variant, onConfirm
     <div className="relative">
       <GradientHeader title={title} onBack={onBack} sheetClassName="bg-[#F5F4F7]">
         {isInspection && service.requiresInspection && (
-          <p className="mx-4 flex items-center gap-3 text-xs text-gray-500">
+          <p className="mx-4 flex items-center gap-3 text-xs text-setl-ink-3">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-red-500 text-lg font-bold text-white">
               !
             </span>

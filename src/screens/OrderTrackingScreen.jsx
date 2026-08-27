@@ -82,18 +82,18 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
 
       {!products ? (
         <>
-          <p className="mt-5 text-center text-sm text-gray-400">{waitingText}</p>
+          <p className="mt-5 text-center text-sm text-setl-muted">{waitingText}</p>
           {/* Skeleton placeholders, like the design */}
           {[1, 2, 3].map((i) => (
             <div
               key={i}
               className="mt-4 flex animate-pulse items-center gap-4 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
             >
-              <div className="h-20 w-20 shrink-0 rounded-2xl bg-gray-100" />
+              <div className="h-20 w-20 shrink-0 rounded-2xl bg-setl-surface-3" />
               <div className="grow">
-                <div className="h-4 w-20 rounded-full bg-gray-100" />
-                <div className="mt-2 h-4 w-32 rounded-full bg-gray-100" />
-                <div className="mt-3 h-2.5 w-24 rounded-full bg-gray-100" />
+                <div className="h-4 w-20 rounded-full bg-setl-surface-3" />
+                <div className="mt-2 h-4 w-32 rounded-full bg-setl-surface-3" />
+                <div className="mt-3 h-2.5 w-24 rounded-full bg-setl-surface-3" />
               </div>
             </div>
           ))}
@@ -102,7 +102,7 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
         <>
           <div className="mt-6 rounded-2xl bg-white p-5 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             <p className="font-semibold text-black">No parts needed</p>
-            <p className="mt-1 text-sm text-gray-400">
+            <p className="mt-1 text-sm text-setl-muted">
               The inspector found nothing to replace — the visit is covered by your inspection fee.
             </p>
           </div>
@@ -114,7 +114,7 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
       ) : (
         <>
           <h2 className="mt-5 text-lg font-semibold text-black">Products</h2>
-          <p className="mb-2 text-xs text-gray-400">
+          <p className="mb-2 text-xs text-setl-muted">
             Each price is compared with the typical range from recent Setl jobs, so you know it&apos;s fair.
           </p>
           <div className="screen-enter flex flex-col gap-3">
@@ -154,7 +154,7 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
           <button
             type="button"
             onClick={() => setEditing(!editing)}
-            className="mt-3 h-12 w-full cursor-pointer rounded-xl border border-[#8442FF] bg-white text-[15px] font-medium text-[#8442FF] transition-transform duration-100 active:scale-[0.98]"
+            className="mt-3 h-12 w-full cursor-pointer rounded-xl border border-setl-purple bg-white text-[15px] font-medium text-setl-purple transition-transform duration-100 active:scale-[0.98]"
           >
             {editing ? 'Done editing' : 'Edit selected work'}
           </button>
@@ -162,11 +162,11 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
             <button
               type="button"
               onClick={() => setAsking(true)}
-              className="cursor-pointer text-[#8442FF] underline"
+              className="cursor-pointer text-setl-purple underline"
             >
               Ask a question
             </button>
-            <span className="text-gray-300">·</span>
+            <span className="text-setl-line-3">·</span>
             <button
               type="button"
               disabled={quoteRequested}
@@ -174,11 +174,11 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
                 setQuoteRequested(true)
                 onOrderEvent?.('second_quote_requested')
               }}
-              className="cursor-pointer text-[#8442FF] underline disabled:cursor-default disabled:text-gray-300 disabled:no-underline"
+              className="cursor-pointer text-setl-purple underline disabled:cursor-default disabled:text-setl-line-3 disabled:no-underline"
             >
               Request another quote
             </button>
-            <span className="text-gray-300">·</span>
+            <span className="text-setl-line-3">·</span>
             <button
               type="button"
               onClick={() => onReject(products)}
@@ -187,7 +187,7 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
               Decline
             </button>
           </div>
-          <p className="mt-2 text-center text-[11px] text-gray-400">
+          <p className="mt-2 text-center text-[11px] text-setl-muted">
             Total {total} AED. Your {booking.price} AED inspection fee is credited toward the repair if you approve.
           </p>
         </>
@@ -206,7 +206,7 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
               onChange={(e) => setQuestion(e.target.value)}
               rows={3}
               placeholder="e.g. Is the pipe replacement really necessary?"
-              className="mt-3 w-full resize-none rounded-xl border border-gray-200 p-3 text-sm text-black outline-none placeholder:text-gray-400 focus:border-[#8442FF]"
+              className="mt-3 w-full resize-none rounded-xl border border-setl-line p-3 text-sm text-black outline-none placeholder:text-setl-muted focus:border-setl-purple"
             />
             <GradientButton
               className="mt-4"
