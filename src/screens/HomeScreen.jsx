@@ -3,22 +3,32 @@ import { CUSTOMER_ME } from '../data/providers.js'
 import acImg from '../assets/ac.png'
 import sinkImg from '../assets/sink.png'
 import electricImg from '../assets/electric.png'
+// Service photography lifted from the Figma boards.
+import cleaningImg from '../assets/services/cleaning.png'
+import pestImg from '../assets/services/pest.png'
+import carwashImg from '../assets/services/carwash.png'
+import carpolishImg from '../assets/services/carpolish.png'
+import carglassImg from '../assets/services/carglass.png'
 
 // The real catalog from the FigJam board — every card opens a working flow.
+// `photo` fills the card edge-to-edge (real service photography); `img` is a
+// product cut-out that sits on a light tile; `gradient` is the fallback.
 const HOME_SERVICES = [
   { name: 'AC cleaning & refilling', img: acImg, target: 'acService' },
-  { name: 'House cleaning', gradient: 'linear-gradient(135deg,#8442FF,#C05CF7)', target: 'cleaningService' },
+  { name: 'House cleaning', photo: cleaningImg, target: 'cleaningService' },
   { name: 'Plumber', img: sinkImg, target: 'plumberProviders' },
   { name: 'Electrician', img: electricImg, target: 'options:electrician' },
+  { name: 'Pest control', photo: pestImg, target: 'pestControl' },
   { name: 'Technician', gradient: 'linear-gradient(135deg,#B25B0E,#E8A34C)', target: 'options:technician' },
   { name: 'Network technician', gradient: 'linear-gradient(135deg,#1D8FC4,#6BD0F0)', target: 'options:network' },
-  { name: 'Pest control', gradient: 'linear-gradient(135deg,#B5533C,#6E2A1B)', target: 'pestControl' },
   { name: 'Curtains', gradient: 'linear-gradient(135deg,#B23A0E,#E88B4C)', target: 'options:curtains' },
   { name: 'Outdoor furniture', gradient: 'linear-gradient(135deg,#3A7D2C,#8FC46B)', target: 'options:outdoor' },
 ]
 
 const CAR_SERVICES = [
-  { name: 'car wash', gradient: 'linear-gradient(135deg,#4B5A68,#1D242B)', target: 'carWash' },
+  { name: 'car wash', photo: carwashImg, target: 'carWash' },
+  { name: 'car polish', photo: carpolishImg, target: 'carWash' },
+  { name: 'glass & windows', photo: carglassImg, target: 'carWash' },
 ]
 
 function ServiceCard({ service, onClick }) {
@@ -29,10 +39,24 @@ function ServiceCard({ service, onClick }) {
       className={`relative h-40 w-52 shrink-0 overflow-hidden rounded-lg bg-[#EEF0F4] text-left ${onClick ? 'cursor-pointer' : 'cursor-default'}`}
       style={service.gradient ? { background: service.gradient } : undefined}
     >
+      {service.photo && (
+        <img src={service.photo} alt="" className="h-full w-full object-cover" />
+      )}
       {service.img && (
         <img src={service.img} alt="" className="h-full w-full object-contain p-4 pb-10" />
       )}
-      <span className="absolute inset-x-0 bottom-0 bg-black/40 px-3 py-2 text-[15px] text-white">
+      {/* Scrim keeps the label readable over photography */}
+      {service.photo && (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-black/70 to-transparent"
+        />
+      )}
+      <span
+        className={`absolute inset-x-0 bottom-0 px-3 py-2 text-[15px] text-white ${
+          service.photo ? '' : 'bg-black/40'
+        }`}
+      >
         {service.name}
       </span>
     </button>

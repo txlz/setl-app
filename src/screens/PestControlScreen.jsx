@@ -1,6 +1,7 @@
 import GradientHeader from '../components/GradientHeader.jsx'
 import GradientButton from '../components/GradientButton.jsx'
 import { PEST_TYPES } from '../data/providers.js'
+import pestImg from '../assets/services/pest.png'
 
 const MAX_ROOMS = 10
 
@@ -40,7 +41,19 @@ export default function PestControlScreen({ pests, setPests, onSearchProviders, 
   return (
     <GradientHeader title="Pest control" onBack={onBack} sheetClassName="bg-setl-surface">
       <div className="font-poppins flex grow flex-col px-4 pt-5 pb-6">
-        <h2 className="text-2xl font-semibold text-setl-navy">Add pest control</h2>
+        {/* Hero photo, as on the Figma board */}
+        <div className="relative h-28 overflow-hidden rounded-2xl">
+          <img src={pestImg} alt="" className="h-full w-full object-cover" />
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/60 to-transparent"
+          />
+          <span className="absolute bottom-3 left-4 text-lg font-medium text-white">
+            Pest control
+          </span>
+        </div>
+
+        <h2 className="mt-4 text-2xl font-semibold text-setl-navy">Add pest control</h2>
         <p className="mt-1 text-xs text-setl-muted">
           How many infected rooms for each pest?
         </p>

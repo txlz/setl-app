@@ -1,6 +1,11 @@
 import GradientHeader from '../components/GradientHeader.jsx'
 import GradientButton from '../components/GradientButton.jsx'
 import { CAR_SIZES, WASH_PACKAGES, WASH_EXTRAS, MY_VEHICLES } from '../data/providers.js'
+import carwashImg from '../assets/services/carwash.png'
+import carpolishImg from '../assets/services/carpolish.png'
+
+// Package artwork, keyed to the package the customer is choosing.
+const PKG_IMG = { basic: carwashImg, premium: carpolishImg }
 
 // Car wash builder from the Figma boards: pick the vehicle (which sets the
 // size), a wash package priced by that size, then optional extras.
@@ -25,7 +30,18 @@ export default function CarWashScreen({ wash, setWash, onSearchProviders, onBack
   return (
     <GradientHeader title="Car wash" onBack={onBack} sheetClassName="bg-setl-surface">
       <div className="font-poppins flex grow flex-col px-4 pt-5 pb-6">
-        <h2 className="text-2xl font-semibold text-setl-navy">Take care of your car</h2>
+        <div className="relative h-28 overflow-hidden rounded-2xl">
+          <img src={carwashImg} alt="" className="h-full w-full object-cover" />
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/60 to-transparent"
+          />
+          <span className="absolute bottom-3 left-4 text-lg font-medium text-white">
+            Take care of your car
+          </span>
+        </div>
+
+        <h2 className="mt-4 text-2xl font-semibold text-setl-navy">Choose a wash</h2>
 
         {/* Saved vehicles — picking one sets the size */}
         <p className="mt-5 mb-2 text-xs font-semibold text-setl-ink-3">Your vehicle</p>
@@ -87,8 +103,13 @@ export default function CarWashScreen({ wash, setWash, onSearchProviders, onBack
                 on ? 'border-setl-purple bg-white' : 'border-setl-line bg-white'
               }`}
             >
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
+              <div className="flex items-start gap-3">
+                <img
+                  src={PKG_IMG[p.key]}
+                  alt=""
+                  className="h-14 w-14 shrink-0 rounded-xl object-cover"
+                />
+                <div className="min-w-0 grow">
                   <p className="text-[15px] text-setl-ink">{p.label}</p>
                   <p className="mt-0.5 text-xs text-setl-muted">{p.blurb}</p>
                 </div>
