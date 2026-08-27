@@ -66,6 +66,8 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
               qty: booking.hours,
               price: booking.hours * booking.provider.bookingFee,
             },
+            // specific jobs added on top of the hourly rate
+            ...(booking.cleanItems ?? []),
           ]
         : [
             { label: 'Ac refilling', qty: counts.refill, price: counts.refill * AC_PRICE_PER_UNIT },

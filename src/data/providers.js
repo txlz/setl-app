@@ -134,6 +134,41 @@ export const CARWASH_PROVIDERS = [
   { id: 'cw3', name: 'Desert Shine', bookingFee: 25, rating: 4.7, color: '#C47A1D', perVisit: true, slots: ['Tomorrow 8:45am', 'Tomorrow 1:45pm', 'Tomorrow 6:45pm'] },
 ]
 
+// House-cleaning add-ons from the Figma boards. The hourly cleaner rate
+// covers general cleaning; these are the specific jobs the customer can add
+// on top, grouped the way the board groups them.
+export const CLEANING_GROUPS = [
+  {
+    key: 'rooms',
+    title: 'Rooms cleaning',
+    items: [
+      { key: 'bedrooms', label: 'Bedrooms', price: 40, unit: 'room' },
+      { key: 'bathroom', label: 'Bathroom', price: 45, unit: 'room' },
+      { key: 'kitchen', label: 'Kitchen cleaning', price: 60, unit: 'room' },
+      { key: 'deep', label: 'Deep cleaning of the house and counter', price: 180, unit: 'job' },
+    ],
+  },
+  {
+    key: 'sofa',
+    title: 'Sofa & chairs',
+    items: [
+      { key: 'single', label: 'Single sofa', price: 35, unit: 'seat' },
+      { key: 'loveseat', label: 'Loveseat sofa', price: 55, unit: 'seat' },
+      { key: 'three', label: 'Three seater', price: 75, unit: 'seat' },
+      { key: 'chair', label: 'Chair cleaning', price: 25, unit: 'chair' },
+    ],
+  },
+  {
+    key: 'extras',
+    title: 'Extras',
+    items: [
+      { key: 'ironing', label: 'Ironing clothes', price: 30, unit: 'hour' },
+      { key: 'windows', label: 'Window cleaning', price: 50, unit: 'job' },
+      { key: 'tank', label: 'Tank cleaning service', price: 220, unit: 'job' },
+    ],
+  },
+]
+
 // Car wash from the Figma boards: a package (Basic / Premium) priced by
 // vehicle size, plus optional extras. Price = package.price[size] + extras.
 export const CAR_SIZES = [

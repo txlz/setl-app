@@ -42,7 +42,7 @@ import SPAccountScreen from './screens/sp/SPAccountScreen.jsx'
 import TabBar from './components/TabBar.jsx'
 import ProviderTabBar from './components/ProviderTabBar.jsx'
 import SPTabBar from './components/SPTabBar.jsx'
-import { SERVICES, PEST_TYPES, WASH_PACKAGES, WASH_EXTRAS, PROVIDER_ME, emptyCompany, seedServicePricing, defaultAvailability, estimateCatalog } from './data/providers.js'
+import { SERVICES, PEST_TYPES, WASH_PACKAGES, WASH_EXTRAS, CLEANING_GROUPS, PROVIDER_ME, emptyCompany, seedServicePricing, defaultAvailability, estimateCatalog } from './data/providers.js'
 import WizardScreen from './screens/WizardScreen.jsx'
 import { advance, createOrder, isActive, recordEvent, seedOrderIds, transition } from './data/orders.js'
 
@@ -95,6 +95,7 @@ function App() {
   const [counts, setCounts] = useState({ refill: 1, clean: 1 })
   const [hours, setHours] = useState(2) // hourly services (house cleaning)
   const [pests, setPests] = useState({}) // pest control: { [pestKey]: infected rooms }
+  const [cleanExtras, setCleanExtras] = useState({}) // cleaning add-ons: { [itemKey]: qty }
   const [wash, setWash] = useState({ vehicle: 'v1', size: 'large', pkg: 'basic', extras: [] })
   const [serviceOptions, setServiceOptions] = useState([]) // jobs picked on the options screen
   // The customer's regular cleaner — persisted so "default" actually sticks
@@ -241,6 +242,14 @@ function App() {
     }))
   }
 
+  // Turn the cleaning add-on counters into checkout line items.
+  function cleanItems() {
+    const all = CLEANING_GROUPS.flatMap((g) => g.items)
+    return all
+      .filter((i) => (cleanExtras[i.key] ?? 0) > 0)
+      .map((i) => ({ label: i.label, qty: cleanExtras[i.key], price: cleanExtras[i.key] * i.price }))
+  }
+
   // Turn the car-wash builder state into checkout line items.
   function washItems() {
     const pkg = WASH_PACKAGES.find((p) => p.key === wash.pkg)
@@ -272,6 +281,8 @@ function App() {
         pestItems: variant === 'booking' && service === 'pest' ? pestItems() : undefined,
         // car wash: the chosen package (priced by vehicle size) plus extras
         washItems: variant === 'booking' && service === 'carwash' ? washItems() : undefined,
+        // house cleaning: specific jobs added on top of the hourly rate
+        cleanItems: variant === 'booking' && service === 'cleaning' ? cleanItems() : undefined,
         // Inspection pricing is Setl's, standardized per service (decision B)
         price:
           variant === 'inspection' ? SERVICES[service].standardInspectionFee : provider.bookingFee,
@@ -677,6 +688,8 @@ function App() {
       <CleaningServiceScreen
         hours={hours}
         setHours={setHours}
+        extras={cleanExtras}
+        setExtras={setCleanExtras}
         favorite={favoriteCleaner}
         onRebook={(provider, date, time) => confirmBooking('cleaning', 'booking')(provider, date, time)}
         onClearFavorite={() => toggleFavorite(favoriteCleaner)}
