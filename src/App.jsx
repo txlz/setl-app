@@ -6,6 +6,8 @@ import LocationScreen from './screens/LocationScreen.jsx'
 import HomeScreen from './screens/HomeScreen.jsx'
 import AcServiceScreen from './screens/AcServiceScreen.jsx'
 import CleaningServiceScreen from './screens/CleaningServiceScreen.jsx'
+import PestControlScreen from './screens/PestControlScreen.jsx'
+import CarWashScreen from './screens/CarWashScreen.jsx'
 import ServiceOptionsScreen from './screens/ServiceOptionsScreen.jsx'
 import PhotoTriageScreen from './screens/PhotoTriageScreen.jsx'
 import CleanerProfileScreen from './screens/CleanerProfileScreen.jsx'
@@ -40,7 +42,7 @@ import SPAccountScreen from './screens/sp/SPAccountScreen.jsx'
 import TabBar from './components/TabBar.jsx'
 import ProviderTabBar from './components/ProviderTabBar.jsx'
 import SPTabBar from './components/SPTabBar.jsx'
-import { SERVICES, PROVIDER_ME, emptyCompany, seedServicePricing, defaultAvailability, estimateCatalog } from './data/providers.js'
+import { SERVICES, PEST_TYPES, WASH_PACKAGES, WASH_EXTRAS, PROVIDER_ME, emptyCompany, seedServicePricing, defaultAvailability, estimateCatalog } from './data/providers.js'
 import WizardScreen from './screens/WizardScreen.jsx'
 import { advance, createOrder, isActive, recordEvent, seedOrderIds, transition } from './data/orders.js'
 
@@ -92,6 +94,8 @@ function App() {
   const [phone, setPhone] = useState('')
   const [counts, setCounts] = useState({ refill: 1, clean: 1 })
   const [hours, setHours] = useState(2) // hourly services (house cleaning)
+  const [pests, setPests] = useState({}) // pest control: { [pestKey]: infected rooms }
+  const [wash, setWash] = useState({ vehicle: 'v1', size: 'large', pkg: 'basic', extras: [] })
   const [serviceOptions, setServiceOptions] = useState([]) // jobs picked on the options screen
   // The customer's regular cleaner — persisted so "default" actually sticks
   const [favoriteCleaner, setFavoriteCleaner] = useState(() => {
@@ -220,10 +224,33 @@ function App() {
   // "I know the service"): its options screen, the AC screen, or providers.
   function bookService(service, symptoms) {
     if (service === 'ac') setScreen('acService')
+    else if (service === 'pest') setScreen('pestControl')
+    else if (service === 'carwash') setScreen('carWash')
     else if (SERVICES[service].options) {
       setFlow({ service, variant: 'booking', symptoms })
       setScreen('serviceOptions')
     } else openProviders(service, 'booking', symptoms)
+  }
+
+  // Turn the pest-room counters into checkout line items.
+  function pestItems() {
+    return PEST_TYPES.filter((p) => (pests[p.key] ?? 0) > 0).map((p) => ({
+      label: p.label,
+      rooms: pests[p.key],
+      pricePerRoom: p.pricePerRoom,
+    }))
+  }
+
+  // Turn the car-wash builder state into checkout line items.
+  function washItems() {
+    const pkg = WASH_PACKAGES.find((p) => p.key === wash.pkg)
+    return [
+      ...(pkg ? [{ label: `${pkg.label} (${wash.size})`, price: pkg.price[wash.size] }] : []),
+      ...WASH_EXTRAS.filter((e) => wash.extras.includes(e.key)).map((e) => ({
+        label: e.label,
+        price: e.price,
+      })),
+    ]
   }
 
   function confirmBooking(service, variant, symptoms) {
@@ -237,7 +264,14 @@ function App() {
         symptoms,
         hours, // used by hourly services (rate x hours at checkout)
         // jobs picked for options-based services (checkout adds the call-out fee)
-        options: variant === 'booking' && SERVICES[service].options ? serviceOptions : undefined,
+        options:
+          variant === 'booking' && SERVICES[service].options && !SERVICES[service].usesWashBuilder
+            ? serviceOptions
+            : undefined,
+        // pest control: the affected rooms per pest type, priced per room
+        pestItems: variant === 'booking' && service === 'pest' ? pestItems() : undefined,
+        // car wash: the chosen package (priced by vehicle size) plus extras
+        washItems: variant === 'booking' && service === 'carwash' ? washItems() : undefined,
         // Inspection pricing is Setl's, standardized per service (decision B)
         price:
           variant === 'inspection' ? SERVICES[service].standardInspectionFee : provider.bookingFee,
@@ -577,6 +611,22 @@ function App() {
         onBack={() => setScreen('home')}
       />
     ),
+    pestControl: (
+      <PestControlScreen
+        pests={pests}
+        setPests={setPests}
+        onSearchProviders={() => openProviders('pest', 'booking')}
+        onBack={() => setScreen('home')}
+      />
+    ),
+    carWash: (
+      <CarWashScreen
+        wash={wash}
+        setWash={setWash}
+        onSearchProviders={() => openProviders('carwash', 'booking')}
+        onBack={() => setScreen('home')}
+      />
+    ),
     wizard: (
       <WizardScreen
         onBack={() => setScreen('home')}
@@ -659,7 +709,7 @@ function App() {
         }
         onBack={() =>
           setScreen(
-            { ac: 'acService', cleaning: 'cleaningService' }[flow.service] ??
+            { ac: 'acService', cleaning: 'cleaningService', pest: 'pestControl', carwash: 'carWash' }[flow.service] ??
               (SERVICES[flow.service].options ? 'serviceOptions' : 'home'),
           )
         }

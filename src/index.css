@@ -10,6 +10,27 @@
   --color-setl-purple: #8442ff;
   --color-setl-blue: #366ee9;
   --color-setl-pink: #f15cfa;
+
+  /* Palette sampled from the Figma exports (desing_html) so every screen
+     draws from the same ink/grey ramp instead of ad-hoc gray-400s. */
+  --color-setl-violet: #7e43ff;
+  --color-setl-deep: #583b8e;
+  --color-setl-navy: #061737; /* headings + primary label text */
+  --color-setl-ink: #0d0000; /* body copy */
+  --color-setl-ink-2: #202020;
+  --color-setl-ink-3: #626262; /* secondary copy */
+  --color-setl-muted: #8d8d8d; /* captions, helper text */
+  --color-setl-muted-2: #a8a3a3;
+  --color-setl-muted-3: #b3b3b3; /* placeholders */
+  --color-setl-line: #ebebeb; /* hairlines */
+  --color-setl-line-2: #e2e0e1;
+  --color-setl-line-3: #d1d1d1; /* input borders */
+  --color-setl-surface: #f9f9f9; /* screen background */
+  --color-setl-surface-2: #f8f8f8;
+  --color-setl-surface-3: #f3f3f3;
+  --color-setl-gold: #ffa800; /* ratings + highlight badges */
+  --color-setl-green: #25b43d; /* success / confirmed */
+  --color-setl-red: #ff4343; /* destructive / cancel */
 }
 
 /* Light gray backdrop so the 375px phone frame stands out on desktop */
@@ -26,6 +47,26 @@ body {
 }
 .brand-splash {
   background-image: linear-gradient(200deg, #8442ff 0%, #f15cfa 100%);
+}
+/* The hero gradient used across the Figma boards for feature banners and
+   category tiles (blue -> pink), and its violet counterpart for CTAs. */
+.brand-hero {
+  background-image: linear-gradient(275deg, #366ee9 0%, #f15cfa 100%);
+}
+.brand-cta {
+  background-image: linear-gradient(264deg, #7e43ff 0%, #d142fa 100%);
+}
+
+/* Card elevations lifted straight from the exports: wide, soft and low-alpha
+   rather than tight dark drop shadows. */
+.shadow-card {
+  box-shadow: 0 4px 33px rgba(0, 0, 0, 0.05);
+}
+.shadow-card-sm {
+  box-shadow: 0 0 13px rgba(0, 0, 0, 0.05);
+}
+.shadow-sheet {
+  box-shadow: 0 4px 62px rgba(0, 0, 0, 0.06);
 }
 
 /* Horizontal card rows scroll without showing a scrollbar (like a native app) */

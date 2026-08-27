@@ -83,6 +83,24 @@ export const CLEANING_PROVIDERS = [
 // Providers for the rest of the catalog (FigJam board): bookingFee is the
 // call-out / visit charge shown on the card; selected job options are added
 // on top at checkout.
+// Pest control (from the Figma boards): the customer picks which pests are a
+// problem and how many rooms are affected, so the price is per-room per-pest.
+export const PEST_PROVIDERS = [
+  { id: 'pc1', name: 'Al Rashid Pest Control', bookingFee: 60, rating: 4.8, color: '#B5533C', perVisit: true, slots: ['Today 4:00pm', 'Tomorrow 9:30am', 'Tomorrow 2:00pm'] },
+  { id: 'pc2', name: 'GreenShield Services', bookingFee: 75, rating: 4.6, color: '#2E9E4F', perVisit: true, slots: ['Today 6:15pm', 'Tomorrow 11:00am', 'Tomorrow 5:00pm'] },
+  { id: 'pc3', name: 'Emirates Pest Care', bookingFee: 55, rating: 4.9, color: '#6E2A1B', perVisit: true, slots: ['Tomorrow 8:45am', 'Tomorrow 1:15pm', 'Tomorrow 6:45pm'] },
+]
+
+// The pest types shown on the "Add pest control" screen, priced per room.
+export const PEST_TYPES = [
+  { key: 'cockroach', label: 'Cockroach control', pricePerRoom: 45, icon: '\u{1FAB3}' },
+  { key: 'ant', label: 'Ant control', pricePerRoom: 35, icon: '\u{1F41C}' },
+  { key: 'mice', label: 'Mice control', pricePerRoom: 70, icon: '\u{1F401}' },
+  { key: 'mosquito', label: 'Mosquito control', pricePerRoom: 40, icon: '\u{1F99F}' },
+  { key: 'lizards', label: 'Lizards control', pricePerRoom: 50, icon: '\u{1F98E}' },
+  { key: 'flea', label: 'Flea control', pricePerRoom: 55, icon: '\u{1FAB0}' },
+]
+
 export const TECH_PROVIDERS = [
   { id: 'tc1', name: 'FixIt Technicians', bookingFee: 40, rating: 4.6, color: '#B25B0E', perVisit: true, slots: ['Today 2:30pm', 'Today 6:00pm', 'Tomorrow 10:00am'] },
   { id: 'tc2', name: 'HomeGenie Tech', bookingFee: 35, rating: 4.8, color: '#0E5BB2', perVisit: true, slots: ['Tomorrow 9:00am', 'Tomorrow 1:30pm', 'Tomorrow 6:30pm'] },
@@ -114,6 +132,41 @@ export const CARWASH_PROVIDERS = [
   { id: 'cw1', name: 'Shiny Mobile Wash', bookingFee: 20, rating: 4.8, color: '#1D50C4', perVisit: true, slots: ['Today 1:30pm', 'Today 5:45pm', 'Tomorrow 9:15am'] },
   { id: 'cw2', name: 'EcoWash UAE', bookingFee: 15, rating: 4.6, color: '#1DC4A2', perVisit: true, slots: ['Today 3:45pm', 'Tomorrow 10:15am', 'Tomorrow 2:15pm'] },
   { id: 'cw3', name: 'Desert Shine', bookingFee: 25, rating: 4.7, color: '#C47A1D', perVisit: true, slots: ['Tomorrow 8:45am', 'Tomorrow 1:45pm', 'Tomorrow 6:45pm'] },
+]
+
+// Car wash from the Figma boards: a package (Basic / Premium) priced by
+// vehicle size, plus optional extras. Price = package.price[size] + extras.
+export const CAR_SIZES = [
+  { key: 'small', label: 'Small', hint: 'Hatchback, sedan' },
+  { key: 'middle', label: 'Middle', hint: 'Crossover, small SUV' },
+  { key: 'large', label: 'Large', hint: 'SUV, 4x4, van' },
+]
+
+export const WASH_PACKAGES = [
+  {
+    key: 'basic',
+    label: 'Basic wash',
+    blurb: 'Exterior wash, wheels and a hand dry.',
+    price: { small: 30, middle: 40, large: 50 },
+  },
+  {
+    key: 'premium',
+    label: 'Premium wash',
+    blurb: 'Basic wash plus interior vacuum, dashboard and glass polish.',
+    price: { small: 60, middle: 75, large: 90 },
+  },
+]
+
+export const WASH_EXTRAS = [
+  { key: 'polish', label: 'Car polish', price: 45 },
+  { key: 'interior', label: 'Interior deep clean', price: 80 },
+  { key: 'engine', label: 'Engine bay clean', price: 55 },
+]
+
+// The vehicles the customer has saved (Figma "add vehicle" flow).
+export const MY_VEHICLES = [
+  { id: 'v1', name: 'Nissan Patrol', plate: 'A 12345', size: 'large', color: '#1D3F8F' },
+  { id: 'v2', name: 'Toyota Corolla', plate: 'B 55831', size: 'small', color: '#C43B1D' },
 ]
 
 // What the inspector proposes after the visit, per service.
@@ -319,6 +372,9 @@ export const SERVICES = {
     providers: CARWASH_PROVIDERS,
     requiresInspection: false,
     pricingModel: 'fixed',
+    // Priced through the car-wash builder (package x vehicle size + extras)
+    // rather than a flat option list.
+    usesWashBuilder: true,
     options: [
       { label: 'Sedan wash', price: 30 },
       { label: 'SUV wash', price: 45 },
@@ -327,6 +383,21 @@ export const SERVICES = {
     ],
     bookingSheetTitle: 'Car wash',
     listTitle: { booking: 'Car wash providers' },
+  },
+  // Priced per affected room per pest type, via the pest builder screen.
+  pest: {
+    label: 'Pest control',
+    inspectionLabel: 'Pest inspection',
+    maintenanceLabel: 'Pest control',
+    providers: PEST_PROVIDERS,
+    requiresInspection: false,
+    pricingModel: 'fixed',
+    standardInspectionFee: 25,
+    usesPestBuilder: true,
+    problemArea: 'Pests & insects',
+    symptoms: ['Cockroaches', 'Ants', 'Mice or rats', 'Mosquitoes', 'Lizards', 'Fleas'],
+    bookingSheetTitle: 'Pest control',
+    listTitle: { booking: 'Pest control providers', inspection: 'Inspection options' },
   },
 }
 

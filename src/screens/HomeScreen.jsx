@@ -12,12 +12,13 @@ const HOME_SERVICES = [
   { name: 'Electrician', img: electricImg, target: 'options:electrician' },
   { name: 'Technician', gradient: 'linear-gradient(135deg,#B25B0E,#E8A34C)', target: 'options:technician' },
   { name: 'Network technician', gradient: 'linear-gradient(135deg,#1D8FC4,#6BD0F0)', target: 'options:network' },
+  { name: 'Pest control', gradient: 'linear-gradient(135deg,#B5533C,#6E2A1B)', target: 'pestControl' },
   { name: 'Curtains', gradient: 'linear-gradient(135deg,#B23A0E,#E88B4C)', target: 'options:curtains' },
   { name: 'Outdoor furniture', gradient: 'linear-gradient(135deg,#3A7D2C,#8FC46B)', target: 'options:outdoor' },
 ]
 
 const CAR_SERVICES = [
-  { name: 'car wash', gradient: 'linear-gradient(135deg,#4B5A68,#1D242B)', target: 'options:carwash' },
+  { name: 'car wash', gradient: 'linear-gradient(135deg,#4B5A68,#1D242B)', target: 'carWash' },
 ]
 
 function ServiceCard({ service, onClick }) {

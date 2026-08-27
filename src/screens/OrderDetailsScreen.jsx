@@ -48,6 +48,17 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
             { label: 'Visit & labor', qty: 1, price: booking.provider.bookingFee },
             ...booking.options.map((o) => ({ label: o.label, qty: 1, price: o.price })),
           ]
+        : booking.pestItems
+        ? [
+            { label: 'Call-out fee', qty: 1, price: booking.provider.bookingFee },
+            ...booking.pestItems.map((p) => ({
+              label: `${p.label} (${p.rooms} ${p.rooms === 1 ? 'room' : 'rooms'})`,
+              qty: p.rooms,
+              price: p.rooms * p.pricePerRoom,
+            })),
+          ]
+        : booking.washItems
+        ? booking.washItems.map((w) => ({ label: w.label, qty: 1, price: w.price }))
         : service.pricingModel === 'hourly'
         ? [
             {
