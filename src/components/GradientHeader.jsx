@@ -9,7 +9,7 @@ export default function GradientHeader({ title, onBack, children, sheetClassName
   return (
     <div className="relative flex min-h-screen flex-col">
       {/* Coloured block — 222 tall, radius 30 */}
-      <div className="brand-cta absolute inset-x-0 top-0 h-55.5 rounded-b-[30px]" aria-hidden />
+      <div className="brand-header absolute inset-x-0 top-0 h-55.5 rounded-b-[40px]" aria-hidden />
 
       <div className="relative shrink-0" style={{ height: 100 }}>
         {onBack && (

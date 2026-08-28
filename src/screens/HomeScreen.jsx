@@ -60,15 +60,12 @@ function ServiceCard({ service, onClick }) {
 export default function HomeScreen({ onOpenService }) {
   return (
     <div className="font-poppins relative flex min-h-screen flex-col bg-setl-surface-2">
-      {/* Header block: 375x245, radius 30, solid #7E43FF (from the export). */}
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 h-[245px] rounded-b-[30px] bg-setl-violet"
-      />
+      {/* Header block: 375x222, radius 40, the boards' pink -> blue gradient. */}
+      <div aria-hidden className="brand-header absolute inset-x-0 top-0 h-[222px] rounded-b-[40px]" />
 
       {/* Header row — the export puts the menu at x=28/y=63, the pin at x=82,
           the label at x=110 (17px, regular) and the bell at x=324/y=66. */}
-      <div className="relative shrink-0" style={{ height: 118 }}>
+      <div className="relative shrink-0" style={{ height: 130 }}>
         <button
           type="button"
           aria-label="Menu"
