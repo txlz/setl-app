@@ -70,10 +70,14 @@ export default function OtpScreen({ onVerify }) {
         </div>
       </div>
 
-      <h1 className="mt-8 text-center text-[17px] font-semibold text-black">Enter your OTP</h1>
-      <p className="mt-2 text-center text-sm text-[#6B6B6B]">Enter OTP sent to your phone number</p>
+      <h1 className="mt-[18px] text-center text-[20px] leading-[30px] font-semibold tracking-[0.5px] text-black">
+        Enter your OTP
+      </h1>
+      <p className="mt-[10px] text-center text-[12px] leading-[18px] tracking-[0.5px] text-black/60">
+        Enter OTP sent to your phone number
+      </p>
 
-      <div className="mt-8 flex h-12 items-center justify-around rounded-[11px] border-[0.5px] border-[#2790C3] bg-white px-4">
+      <div className="mt-[53px] flex h-12 items-center justify-around rounded-[12px] border-[0.5px] border-[#2790C3] bg-setl-surface px-4">
         {digits.map((digit, i) => (
           <input
             key={i}
@@ -86,24 +90,24 @@ export default function OtpScreen({ onVerify }) {
             onChange={(e) => handleChange(i, e.target.value)}
             onKeyDown={(e) => handleKeyDown(i, e)}
             aria-label={`OTP digit ${i + 1}`}
-            className="w-8 border-b border-setl-muted pb-0.5 text-center text-[15px] text-black outline-none focus:border-setl-purple"
+            className="w-[25px] border-b border-black/60 pb-0.5 text-center text-[22.5px] font-light text-black outline-none focus:border-setl-purple"
           />
         ))}
       </div>
 
       {error && <p className="mt-3 text-center text-xs text-red-500">{error}</p>}
 
-      <GradientButton className="mt-10" loading={verifying} onClick={verify}>
+      <GradientButton className="mt-[34px]" loading={verifying} onClick={verify}>
         Verify
       </GradientButton>
 
-      <div className="mt-5 flex items-center justify-center gap-1.5 text-sm">
-        <span className="text-[#6B6B6B]">Didn&apos;t receive the code?</span>
+      <div className="mt-[9px] flex items-center justify-center gap-1.5 text-[12px] leading-[18px] tracking-[0.5px]">
+        <span className="text-black/70">Didn&apos;t receive the code?</span>
         <button
           type="button"
           onClick={resend}
           disabled={resendIn > 0}
-          className="cursor-pointer font-medium text-[#2790C3] disabled:cursor-default disabled:text-setl-muted"
+          className="cursor-pointer text-[#2790C3] disabled:cursor-default disabled:text-setl-muted"
         >
           {resendIn > 0 ? `Resend (0:${String(resendIn).padStart(2, '0')})` : 'Resend'}
         </button>
