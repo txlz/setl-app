@@ -31,7 +31,7 @@ export default function CleaningServiceScreen({
       <div className="flex grow flex-col pt-1">
         {/* Your regular cleaner (retention loop) */}
         {/* No artboard counterpart (app-only retention card) — uses house card
-            geometry: 1.html:1602 white card, radius 16, shadow-card-sm. */}
+            geometry: 1.html:1587 white card (336x55, radius 11, 0 0 13px rgba(0,0,0,.05)). */}
         {favorite && (
           <div className="mb-5 rounded-[16px] bg-white p-4 shadow-card-sm">
             <p className="text-[11px] font-medium text-setl-violet">Your regular cleaner</p>
@@ -48,7 +48,7 @@ export default function CleaningServiceScreen({
                   {favorite.name[0].toUpperCase()}
                 </div>
                 <div className="min-w-0 grow">
-                  {/* 1.html:1596 — provider name 14px/500 #0D0000; meta 11px/400 */}
+                  {/* 1.html:1602 — row title 14px/500 rgba(0,0,0,.95); :1594 meta 11px/400 */}
                   <p className="truncate text-sm font-medium text-setl-ink">{favorite.name}</p>
                   <p className="text-[11px] text-setl-muted">
                     ★ {favorite.rating} · {favorite.bookingFee} AED/hr · View profile
@@ -67,7 +67,7 @@ export default function CleaningServiceScreen({
             <button
               type="button"
               onClick={() => setRebooking(true)}
-              className="brand-cta mt-3 h-11 w-full cursor-pointer rounded-[12px] text-sm font-medium text-white active:opacity-90"
+              className="mt-3 h-11 w-full cursor-pointer rounded-[12px] bg-linear-[270deg,#366EE9_-95.36%,#F15CFA_212.48%] text-sm font-medium text-white active:opacity-90"
             >
               Book {favorite.name.split(' ')[0]} again · {hours} {hours === 1 ? 'hr' : 'hrs'}
             </button>
@@ -83,11 +83,13 @@ export default function CleaningServiceScreen({
           />
         </div>
 
-        {/* 4.js:598 — "how many hours do you need your professional to stay ?" 14px/500 #0D0000 */}
+        {/* 4.js:982 — "how many hours do you need your professional to stay ?"
+            13px/500 #0D0000 on the cleaning board (4.js:838). Its one 14px is the
+            centred screen title, not this in-content label. */}
         <div className="mt-4 flex items-center justify-between rounded-[11px] border border-setl-line bg-white p-4">
-          <p className="text-sm font-medium text-setl-ink">Hours of cleaning</p>
+          <p className="text-[13px] font-medium text-setl-ink">Hours of cleaning</p>
           <div className="flex items-center gap-1.5">
-            {/* 5.js:81 — #F3F3F3 plate, radius 9; 4.js:605 — numerals 15px/400 */}
+            {/* 5.js:81 — #F3F3F3 plate, radius 9; 4.js:594 — numerals 15px/400 */}
             <button
               type="button"
               aria-label="decrease"
@@ -127,7 +129,7 @@ export default function CleaningServiceScreen({
 
             {CLEANING_GROUPS.map((group) => (
               <div key={group.key} className="mt-4">
-                {/* 5.js:265 — group/tab labels are 13px/500 on the boards */}
+                {/* 4.js:982 — the cleaning board runs 13px/500 for its content labels. */}
                 <p className="mb-2 text-[13px] font-medium text-setl-ink-3">{group.title}</p>
                 {group.items.map((item) => {
                   const qty = extras[item.key] ?? 0
@@ -136,7 +138,7 @@ export default function CleaningServiceScreen({
                       key={item.key}
                       className="row-card mb-2 flex items-center justify-between gap-2 px-3 py-2.5"
                     >
-                      {/* 1.html:1596 — row title 14px/500 #0D0000; :1600 meta 11px/400 */}
+                      {/* 1.html:1602 — row title 14px/500 rgba(0,0,0,.95); :1594 meta 11px/400 */}
                       <div className="min-w-0 pr-2">
                         <p className="text-sm leading-tight font-medium text-setl-ink">
                           {item.label}
