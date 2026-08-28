@@ -34,6 +34,10 @@ function content({ variant, total, credit }) {
 
 export default function SuccessScreen({ variant, total, credit, onDone, onTrack }) {
   const { title, body, track } = content({ variant, total, credit })
+  // The board (1.html:1140-1148) draws this as a 290x301 r20 modal on an
+  // 18%-black scrim; the app uses a full-bleed brand screen instead, so only
+  // the shared values are matched: the #7E43FF accent and the 15px/700 CTA
+  // label from "Back To Home" (1.html:1148).
   return (
     <div className="font-poppins flex min-h-screen flex-col items-center justify-center brand-splash px-6 text-center text-white">
       <div className="pop-enter flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-lg">
@@ -41,7 +45,7 @@ export default function SuccessScreen({ variant, total, credit, onDone, onTrack 
           <path
             className="draw-check"
             d="m2 9 7 7L22 2"
-            stroke="#8442FF"
+            stroke="#7E43FF"
             strokeWidth="3.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -53,7 +57,7 @@ export default function SuccessScreen({ variant, total, credit, onDone, onTrack 
       <p className="mt-2 text-white/90">{body}</p>
       {track ? (
         <>
-          <GradientButton className="mt-10 !bg-white !bg-none !text-setl-purple" onClick={onTrack}>
+          <GradientButton className="mt-10 !bg-white !bg-none !text-[15px] !font-bold !text-setl-violet" onClick={onTrack}>
             Track your order
           </GradientButton>
           <button type="button" onClick={onDone} className="mt-4 cursor-pointer text-sm text-white/80 underline">
@@ -61,7 +65,7 @@ export default function SuccessScreen({ variant, total, credit, onDone, onTrack 
           </button>
         </>
       ) : (
-        <GradientButton className="mt-10 !bg-white !bg-none !text-setl-purple" onClick={onDone}>
+        <GradientButton className="mt-10 !bg-white !bg-none !text-[15px] !font-bold !text-setl-violet" onClick={onDone}>
           Back to home
         </GradientButton>
       )}
