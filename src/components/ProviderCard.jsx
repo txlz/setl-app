@@ -72,7 +72,7 @@ export default function ProviderCard({
           <button
             type="button"
             onClick={onBook}
-            className="cursor-pointer rounded-[12px] bg-linear-[270deg,#366EE9_-95.36%,#F15CFA_212.48%] px-6 py-1.5 text-[13px] text-white active:opacity-90"
+            className="cursor-pointer rounded-[12px] brand-hero px-6 py-1.5 text-[13px] text-white active:opacity-90"
           >
             {buttonLabel}
           </button>

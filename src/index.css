@@ -54,8 +54,11 @@ body {
 .brand-splash {
   background-image: linear-gradient(200deg, #8442ff 0%, #f15cfa 100%);
 }
-/* The hero gradient used across the Figma boards for feature banners and
-   category tiles (blue -> pink), and its violet counterpart for CTAs. */
+/* The blue -> pink gradient — the only one of its kind in the exports (15
+   uses: feature banners, category tiles and every primary CTA). The app used
+   to stretch its stops to -95.36%/212.48%, which never reached the board's
+   blue; keep the 0%/100% stops so buttons render the designed colour.
+   .brand-cta is the violet counterpart, used where the boards call for it. */
 .brand-hero {
   background-image: linear-gradient(275deg, #366ee9 0%, #f15cfa 100%);
 }

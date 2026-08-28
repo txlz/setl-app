@@ -67,7 +67,7 @@ export default function CleaningServiceScreen({
             <button
               type="button"
               onClick={() => setRebooking(true)}
-              className="mt-3 h-11 w-full cursor-pointer rounded-[12px] bg-linear-[270deg,#366EE9_-95.36%,#F15CFA_212.48%] text-sm font-medium text-white active:opacity-90"
+              className="mt-3 h-11 w-full cursor-pointer rounded-[12px] brand-hero text-sm font-medium text-white active:opacity-90"
             >
               Book {favorite.name.split(' ')[0]} again · {hours} {hours === 1 ? 'hr' : 'hrs'}
             </button>

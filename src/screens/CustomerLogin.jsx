@@ -83,7 +83,7 @@ export default function CustomerLogin({ onContinue, asProvider = false, onSwitch
         <button
           type="submit"
           disabled={sending}
-          className="font-inter mt-14 inline-flex h-[52px] w-full cursor-pointer items-center justify-center rounded-[11px] bg-linear-[270deg,#366EE9_-95.36%,#F15CFA_212.48%] text-[17px] font-medium text-white transition-transform duration-100 active:scale-[0.98] active:opacity-90"
+          className="font-inter mt-14 inline-flex h-[52px] w-full cursor-pointer items-center justify-center rounded-[11px] brand-hero text-[17px] font-medium text-white transition-transform duration-100 active:scale-[0.98] active:opacity-90"
         >
           {sending ? (
             <svg className="h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none">
