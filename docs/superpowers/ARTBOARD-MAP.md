@@ -158,3 +158,56 @@ changing them. Settle them in a dedicated pass.
   cart with per-line steppers and total, and the non-inspection "Mark as done" path.
 - `WaitingApprovalScreen`: the approved / declined result states (the board only
   draws the waiting state).
+
+## Settled decisions (task: SP / company screens)
+
+- **SP Services board.** `5.js:236-311` is the SP's own **Services tab** screen —
+  identified by its tab bar with "Services" active in `#7E43FF` (`5.js:226`)
+  and the Services/coupons underline tabs (`5.js:264-265`, rule `:262`
+  `#EBEBEB` with a 155px `#7E43FF` active segment `:263`). Screen title "Services"
+  17/500 black (`5.js:311`). Service card **324x95 white radius 20**
+  (`5.js:268`) over a blurred `#EBEBEB` shadow (`5.js:267`). Row title 12/500
+  `#0D0000` (`5.js:300`); sub-line 11/400 `rgba(0,0,0,.55)` lh 15.4
+  (`5.js:269`); price 12/700 (`5.js:270`). Row action chips are **24x24 r2 on
+  `#D9D9D9`@23%** — delete `#FF4343` (`5.js:271-277`), edit `#3879E9`
+  (`5.js:282-288`).
+- **SP "Add Services" form board** (`5.js:64-80` tallest; also `:395-426`,
+  `:491-521`, `:587-617`, `:683-713`, `:779-809`, `:875-905`, `:1484-1501`).
+  Used `5.js:1484-1501` for the field spec — the cleanest complete iteration
+  (Name / price / Discount / description / send with nothing else layered on).
+  Fields are `rgba(217,217,217,.28)` at **radius 5**, 311x41 (`5.js:1497`),
+  description box 311x89 (`5.js:1499`); section labels 15/500
+  `rgba(0,0,0,.78)` capitalize; field ink 12/500 (`5.js:408`); the send button
+  is **113x40 r10 `#7E43FF`** with a 12/500 white label (`5.js:424`, `:425`).
+  The form itself is not a screen in the app (the SP edits prices inline on the
+  Services screen), so only its field spec was borrowed.
+- **`5.js` is Arabic.** Geometry/type/colour applied; no Arabic copy copied.
+
+## SP screens with NO board (verified, left untouched)
+
+Exhaustive greps across `1.html`/`3.js`/`4.js`/`5.js` found zero hits for
+"Employee"(as a screen), "Coverage", "Existing requests", "Previous requests",
+"Assign", "Company Name", "customer service", "Your all"/"SETLed".
+
+- `SPEmployeesScreen`, `SPCoverageScreen`, `SPHomeScreen`, `SPAccountScreen`,
+  `SPRequestsScreen`, `SPRequestDetailScreen`, `SPProfileScreen`,
+  `SPDoneScreen`, `SPNotificationsScreen` — **no board**. App-only screens.
+- Two near-misses that are NOT boards: `3.js:3` `data-layer="Employee"` is a
+  **300px Figma page heading at left 1810** (canvas furniture, off-canvas), and
+  every `notifications` hit (`5.js:218`, `:954`, `:1296`, `:1716`,
+  `3.js:350`) is the 10px **tab-bar label**, which belongs to `SPTabBar`
+  (off-limits), not to `SPNotificationsScreen`.
+- `ChooseServiceScreen`'s 2-up gradient tile picker has no board either; the
+  "Add Services" hits are the form above, not a service picker.
+
+## Shared-component mismatches (SP flow — deferred)
+
+- **`GradientHeader` on `SPServicesScreen`.** The Services board has **no
+  gradient header at all** — it is a plain white screen with a 17/500 black
+  title at top 56 (`5.js:311`) above the Services/coupons tabs. The app wraps
+  the screen in the violet `GradientHeader`. Left alone: `GradientHeader` is
+  shared with `ChooseServiceScreen`, `SPProfileScreen` and `SPEmployeesScreen`,
+  so swapping it is a cross-screen decision, not a per-screen fidelity fix.
+- **Services/coupons tab strip not built.** The board's Services|coupons tabs
+  (`5.js:264-265`) have no app counterpart — the app has no coupons feature.
+  Adding one would be a new feature, so the tabs were not introduced.

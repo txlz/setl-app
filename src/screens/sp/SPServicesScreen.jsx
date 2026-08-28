@@ -68,52 +68,62 @@ export default function SPServicesScreen({ company, onUpdatePricing, onBack }) {
               </div>
 
               <p className="mt-3 mb-1.5 px-1 text-xs font-semibold text-setl-ink-3">Job prices</p>
-              <div className="rounded-[15px] bg-white p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+              {/* Service card on the SP "Services" tab board is white at radius 20
+                  (5.js:268, 324x95) — not the app's generic 15. */}
+              <div className="rounded-[20px] bg-white p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
                 {tasks.map((t, i) => (
                   <div key={`${t.label}-${i}`} className="flex items-center gap-2 border-b border-gray-50 px-2 py-2 last:border-0">
-                    <span className="grow text-sm text-black">{t.label}</span>
-                    <div className="flex items-center gap-1 rounded-[11px] bg-[#F5F4F7] px-2 py-1">
+                    {/* Row title 12/500 #0D0000 (5.js:300 "rooms cleaning") */}
+                    <span className="grow text-[12px] font-medium text-setl-ink">{t.label}</span>
+                    {/* Board's field fill: rgba(217,217,217,.28) at radius 5
+                        (5.js:1497). Price reads 12px/700 (5.js:270 "63.4 SA"). */}
+                    <div className="flex items-center gap-1 rounded-[5px] bg-[rgba(217,217,217,0.28)] px-2 py-1">
                       <input
                         value={t.price}
                         onChange={(e) => setPrice(service, i, e.target.value)}
                         inputMode="numeric"
                         aria-label={`Price for ${t.label}`}
-                        className="w-14 bg-transparent text-right text-sm font-semibold text-black outline-none"
+                        className="w-14 bg-transparent text-right text-[12px] font-bold text-black outline-none"
                       />
-                      <span className="text-xs text-setl-muted">AED</span>
+                      <span className="text-[11px] text-setl-muted">AED</span>
                     </div>
+                    {/* Row action chip: 24x24 r2 on #D9D9D9 @23% with #FF4343 ink
+                        (5.js:271-277 — the delete chip on the services board). */}
                     <button
                       type="button"
                       onClick={() => removeTask(service, i)}
                       aria-label={`Remove ${t.label}`}
-                      className="flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center rounded-full text-setl-muted active:bg-setl-surface-3"
+                      className="flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-[2px] bg-[rgba(217,217,217,0.23)] text-setl-red active:bg-[rgba(217,217,217,0.4)]"
                     >
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M6 6l12 12M18 6 6 18" /></svg>
                     </button>
                   </div>
                 ))}
 
-                {/* Add a custom job */}
-                <div className="mt-1 flex items-center gap-2 rounded-[11px] bg-[#F5F4F7] px-2 py-2">
+                {/* Add a custom job. Same field spec as the "Add Services" form
+                    board: rgba(217,217,217,.28) at radius 5 (5.js:1497), with the
+                    board's 12px/500 field ink (5.js:408 "12$"). */}
+                <div className="mt-1 flex items-center gap-2 rounded-[5px] bg-[rgba(217,217,217,0.28)] px-2 py-2">
                   <input
                     value={draft.label}
                     onChange={(e) => setAdding((a) => ({ ...a, [service]: { ...draft, label: e.target.value } }))}
                     placeholder="Add a job"
-                    className="grow bg-transparent text-sm text-black outline-none placeholder:text-setl-muted"
+                    className="grow bg-transparent text-[12px] font-medium text-black outline-none placeholder:text-setl-muted"
                   />
                   <input
                     value={draft.price}
                     onChange={(e) => setAdding((a) => ({ ...a, [service]: { ...draft, price: e.target.value.replace(/\D/g, '') } }))}
                     inputMode="numeric"
                     placeholder="AED"
-                    className="w-14 bg-transparent text-right text-sm text-black outline-none placeholder:text-setl-muted"
+                    className="w-14 bg-transparent text-right text-[12px] font-medium text-black outline-none placeholder:text-setl-muted"
                   />
+                  {/* The board's send/confirm fill is #7E43FF (5.js:424) */}
                   <button
                     type="button"
                     onClick={() => addTask(service)}
                     disabled={!draft.label?.trim() || !draft.price}
                     aria-label="Add job"
-                    className="flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center rounded-full bg-setl-purple text-white active:opacity-90 disabled:opacity-40"
+                    className="flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-[2px] bg-setl-violet text-white active:opacity-90 disabled:opacity-40"
                   >
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M12 5v14M5 12h14" /></svg>
                   </button>
