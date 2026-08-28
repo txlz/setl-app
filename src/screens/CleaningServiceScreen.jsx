@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import GradientHeader from '../components/GradientHeader.jsx'
+import ScreenHeader from '../components/ScreenHeader.jsx'
 import GradientButton from '../components/GradientButton.jsx'
 import DateTimeSheet from '../components/DateTimeSheet.jsx'
 import { CLEANING_GROUPS } from '../data/providers.js'
@@ -27,8 +27,8 @@ export default function CleaningServiceScreen({
   const [rebooking, setRebooking] = useState(false) // date sheet for the regular
 
   return (
-    <GradientHeader title="House cleaning" onBack={onBack}>
-      <div className="flex grow flex-col px-4 pt-5 pb-6">
+    <ScreenHeader title="House cleaning" subtitle="How many hours do you need?" onBack={onBack}>
+      <div className="flex grow flex-col pt-1">
         {/* Your regular cleaner (retention loop) */}
         {favorite && (
           <div className="mb-5 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
@@ -76,12 +76,7 @@ export default function CleaningServiceScreen({
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/60 to-transparent"
           />
-          <span className="absolute bottom-3 left-4 text-lg font-medium text-white">
-            House cleaning
-          </span>
         </div>
-
-        <h2 className="mt-4 text-2xl font-semibold text-black">How many hours do you need?</h2>
 
         <div className="mt-4 flex items-center justify-between rounded-lg border border-setl-line bg-white p-4">
           <p className="text-[15px] text-black">Hours of cleaning</p>
@@ -129,7 +124,7 @@ export default function CleaningServiceScreen({
                   return (
                     <div
                       key={item.key}
-                      className="shadow-card-sm mb-2 flex items-center justify-between rounded-xl border border-setl-line bg-white p-3"
+                      className="row-card mb-2 flex items-center justify-between gap-2 px-3 py-2.5"
                     >
                       <div className="min-w-0 pr-2">
                         <p className="text-sm leading-tight text-setl-ink">{item.label}</p>
@@ -186,6 +181,6 @@ export default function CleaningServiceScreen({
           }}
         />
       )}
-    </GradientHeader>
+    </ScreenHeader>
   )
 }

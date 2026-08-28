@@ -5,7 +5,7 @@ export default function GradientButton({ children, className = '', loading = fal
     <button
       type="button"
       disabled={disabled || loading}
-      className={`inline-flex h-[52px] w-full cursor-pointer items-center justify-center rounded-xl bg-linear-[270deg,#366EE9_-95.36%,#F15CFA_212.48%] text-[17px] font-medium text-white transition-transform duration-100 active:scale-[0.98] active:opacity-90 ${loading ? 'cursor-wait' : 'disabled:cursor-not-allowed disabled:opacity-40'} ${className}`}
+      className={`inline-flex h-[52px] w-full cursor-pointer items-center justify-center rounded-[12px] bg-linear-[270deg,#366EE9_-95.36%,#F15CFA_212.48%] text-[17px] font-medium text-white transition-transform duration-100 active:scale-[0.98] active:opacity-90 ${loading ? 'cursor-wait' : 'disabled:cursor-not-allowed disabled:opacity-40'} ${className}`}
       {...props}
     >
       {loading ? (

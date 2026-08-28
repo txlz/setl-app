@@ -48,7 +48,7 @@ export default function SPTabBar({ active, onChange, notifBadge = 0 }) {
                 <span className="absolute -top-1.5 -right-2.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-setl-purple px-1 text-[10px] font-semibold text-white">{notifBadge}</span>
               )}
             </span>
-            <span className={`text-[11px] ${active === tab.id ? 'font-medium text-setl-purple' : 'text-[#9C9AA5]'}`}>{tab.label}</span>
+            <span className={`text-[11px] ${active === tab.id ? 'font-medium text-setl-purple' : 'text-setl-muted-3'}`}>{tab.label}</span>
           </button>
         ))}
       </div>

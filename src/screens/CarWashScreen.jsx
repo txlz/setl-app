@@ -1,4 +1,4 @@
-import GradientHeader from '../components/GradientHeader.jsx'
+import ScreenHeader from '../components/ScreenHeader.jsx'
 import GradientButton from '../components/GradientButton.jsx'
 import { CAR_SIZES, WASH_PACKAGES, WASH_EXTRAS } from '../data/providers.js'
 import carwashImg from '../assets/services/carwash.png'
@@ -28,20 +28,15 @@ export default function CarWashScreen({ wash, setWash, vehicles = [], onManageVe
   }
 
   return (
-    <GradientHeader title="Car wash" onBack={onBack} sheetClassName="bg-setl-surface">
-      <div className="font-poppins flex grow flex-col px-4 pt-5 pb-6">
+    <ScreenHeader title="Take care of your car" subtitle="Pick a package for your vehicle" onBack={onBack}>
+      <div className="flex grow flex-col pt-1">
         <div className="relative h-28 overflow-hidden rounded-2xl">
           <img src={carwashImg} alt="" className="h-full w-full object-cover" />
           <span
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/60 to-transparent"
           />
-          <span className="absolute bottom-3 left-4 text-lg font-medium text-white">
-            Take care of your car
-          </span>
         </div>
-
-        <h2 className="mt-4 text-2xl font-semibold text-setl-navy">Choose a wash</h2>
 
         {/* Saved vehicles — picking one sets the size */}
         <div className="mt-5 mb-2 flex items-center justify-between">
@@ -150,7 +145,7 @@ export default function CarWashScreen({ wash, setWash, vehicles = [], onManageVe
               key={e.key}
               type="button"
               onClick={() => toggleExtra(e.key)}
-              className="mb-2 flex w-full cursor-pointer items-center justify-between rounded-xl border border-setl-line bg-white p-3.5 text-left"
+              className="row-card mb-2 flex w-full cursor-pointer items-center justify-between px-3 py-2.5 text-left"
             >
               <span className="flex items-center gap-3">
                 <span
@@ -179,6 +174,6 @@ export default function CarWashScreen({ wash, setWash, vehicles = [], onManageVe
           Search for providers
         </GradientButton>
       </div>
-    </GradientHeader>
+    </ScreenHeader>
   )
 }

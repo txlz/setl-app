@@ -103,7 +103,7 @@ export default function HomeScreen({ onOpenService }) {
           <input
             type="search"
             placeholder="Smart home installation"
-            className="w-full bg-transparent text-[16px] text-black outline-none placeholder:text-[#9C9AA5]"
+            className="w-full bg-transparent text-[16px] text-black outline-none placeholder:text-setl-muted-3"
           />
         </div>
 

@@ -5,7 +5,7 @@ const TABS = [
 ]
 
 function TabIcon({ id, active }) {
-  const stroke = active ? '#8442FF' : '#9C9AA5'
+  const stroke = active ? '#8442FF' : '#B3B3B3'
   if (id === 'home')
     return (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth="1.8">
@@ -30,7 +30,7 @@ function TabIcon({ id, active }) {
 // Bottom navigation, shown on the main tabs (Home / Orders / Profile).
 export default function TabBar({ active, onChange, ordersBadge = 0 }) {
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-30 mx-auto w-full max-w-[375px] border-t border-setl-surface-3 bg-white pt-1 pb-2 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
+    <nav className="fixed inset-x-0 bottom-0 z-30 mx-auto w-full max-w-[375px] rounded-t-[18px] bg-white pt-2 pb-3 shadow-[0_-4px_24px_rgba(0,0,0,0.07)]">
       <div className="flex">
         {TABS.map((tab) => (
           <button
@@ -47,7 +47,7 @@ export default function TabBar({ active, onChange, ordersBadge = 0 }) {
                 </span>
               )}
             </span>
-            <span className={`text-[11px] ${active === tab.id ? 'font-medium text-setl-purple' : 'text-[#9C9AA5]'}`}>
+            <span className={`text-[11px] ${active === tab.id ? 'font-medium text-setl-purple' : 'text-setl-muted-3'}`}>
               {tab.label}
             </span>
           </button>

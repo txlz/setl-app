@@ -57,7 +57,7 @@ export default function ProviderTabBar({ active, onChange, requestBadge = 0, not
                   </span>
                 )}
               </span>
-              <span className={`text-[11px] ${active === tab.id ? 'font-medium text-setl-purple' : 'text-[#9C9AA5]'}`}>
+              <span className={`text-[11px] ${active === tab.id ? 'font-medium text-setl-purple' : 'text-setl-muted-3'}`}>
                 {tab.label}
               </span>
             </button>

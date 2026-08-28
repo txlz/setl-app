@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import GradientHeader from '../components/GradientHeader.jsx'
+import ScreenHeader from '../components/ScreenHeader.jsx'
 import GradientButton from '../components/GradientButton.jsx'
 import { CAR_SIZES } from '../data/providers.js'
 
@@ -21,8 +21,8 @@ export default function VehiclesScreen({ vehicles, onSave, onRemove, onBack }) {
   }
 
   return (
-    <GradientHeader title="My vehicles" onBack={onBack} sheetClassName="bg-setl-surface">
-      <div className="font-poppins flex grow flex-col px-4 pt-5 pb-6">
+    <ScreenHeader title="My vehicles" onBack={onBack}>
+      <div className="flex grow flex-col pt-1">
         {vehicles.length === 0 && !adding && (
           <p className="shadow-card-sm mt-2 rounded-2xl bg-white p-5 text-center text-sm text-setl-muted">
             No vehicles yet. Add one to book a car wash faster.
@@ -32,7 +32,7 @@ export default function VehiclesScreen({ vehicles, onSave, onRemove, onBack }) {
         {vehicles.map((v) => (
           <div
             key={v.id}
-            className="shadow-card-sm mb-3 flex items-center gap-3 rounded-xl border border-setl-line bg-white p-4"
+            className="row-card mb-3 flex items-center gap-3 px-3 py-2.5"
           >
             <span
               aria-hidden
@@ -147,6 +147,6 @@ export default function VehiclesScreen({ vehicles, onSave, onRemove, onBack }) {
 
         <GradientButton onClick={onBack}>Done</GradientButton>
       </div>
-    </GradientHeader>
+    </ScreenHeader>
   )
 }

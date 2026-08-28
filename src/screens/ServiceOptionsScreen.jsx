@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import GradientHeader from '../components/GradientHeader.jsx'
+import ScreenHeader from '../components/ScreenHeader.jsx'
 import GradientButton from '../components/GradientButton.jsx'
 import { SERVICES } from '../data/providers.js'
 
@@ -22,8 +22,8 @@ export default function ServiceOptionsScreen({ serviceKey, onSearchProviders, on
   const total = selected.reduce((sum, o) => sum + o.price, 0)
 
   return (
-    <GradientHeader title={service.label} onBack={onBack}>
-      <div className="flex grow flex-col px-4 pt-5 pb-6">
+    <ScreenHeader title={service.label} onBack={onBack}>
+      <div className="flex grow flex-col pt-1">
         <h2 className="text-2xl font-semibold text-black">What do you need done?</h2>
 
         <div className="mt-4 flex flex-col gap-2.5">
@@ -77,6 +77,6 @@ export default function ServiceOptionsScreen({ serviceKey, onSearchProviders, on
           </button>
         )}
       </div>
-    </GradientHeader>
+    </ScreenHeader>
   )
 }

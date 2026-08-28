@@ -1,4 +1,4 @@
-import GradientHeader from '../components/GradientHeader.jsx'
+import ScreenHeader from '../components/ScreenHeader.jsx'
 import GradientButton from '../components/GradientButton.jsx'
 import { PEST_TYPES } from '../data/providers.js'
 import pestImg from '../assets/services/pest.png'
@@ -39,8 +39,8 @@ export default function PestControlScreen({ pests, setPests, onSearchProviders, 
   const nothingSelected = rooms === 0
 
   return (
-    <GradientHeader title="Pest control" onBack={onBack} sheetClassName="bg-setl-surface">
-      <div className="font-poppins flex grow flex-col px-4 pt-5 pb-6">
+    <ScreenHeader title="Add pest control" subtitle="How many infected rooms for each pest?" onBack={onBack}>
+      <div className="flex grow flex-col pt-1">
         {/* Hero photo, as on the Figma board */}
         <div className="relative h-28 overflow-hidden rounded-2xl">
           <img src={pestImg} alt="" className="h-full w-full object-cover" />
@@ -48,22 +48,14 @@ export default function PestControlScreen({ pests, setPests, onSearchProviders, 
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/60 to-transparent"
           />
-          <span className="absolute bottom-3 left-4 text-lg font-medium text-white">
-            Pest control
-          </span>
         </div>
-
-        <h2 className="mt-4 text-2xl font-semibold text-setl-navy">Add pest control</h2>
-        <p className="mt-1 text-xs text-setl-muted">
-          How many infected rooms for each pest?
-        </p>
 
         {PEST_TYPES.map((pest) => (
           <div
             key={pest.key}
-            className="shadow-card-sm mt-3 flex items-center justify-between rounded-lg border border-setl-line bg-white p-4"
+            className="row-card mt-3 flex items-center justify-between gap-2 px-3 py-2.5"
           >
-            <div className="flex min-w-0 items-center gap-2.5">
+            <div className="flex min-w-0 grow items-center gap-2.5">
               <span
                 aria-hidden
                 className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-setl-surface-3 text-base"
@@ -71,7 +63,7 @@ export default function PestControlScreen({ pests, setPests, onSearchProviders, 
                 {pest.icon}
               </span>
               <div className="min-w-0">
-                <p className="text-sm leading-tight text-setl-ink">{pest.label}</p>
+                <p className="text-sm leading-tight whitespace-nowrap text-setl-ink">{pest.label}</p>
                 <p className="text-xs text-setl-muted">AED {pest.pricePerRoom} / room</p>
               </div>
             </div>
@@ -104,6 +96,6 @@ export default function PestControlScreen({ pests, setPests, onSearchProviders, 
           </GradientButton>
         </div>
       </div>
-    </GradientHeader>
+    </ScreenHeader>
   )
 }

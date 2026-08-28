@@ -1,4 +1,4 @@
-import GradientHeader from '../components/GradientHeader.jsx'
+import ScreenHeader from '../components/ScreenHeader.jsx'
 import GradientButton from '../components/GradientButton.jsx'
 
 const MAX_UNITS = 10
@@ -32,9 +32,8 @@ function Counter({ value, onChange }) {
 export default function AcServiceScreen({ counts, setCounts, onSearchProviders, onSendPhoto, onBack }) {
   const nothingSelected = counts.refill + counts.clean === 0
   return (
-    <GradientHeader title="AC cleaning & Refilling" onBack={onBack}>
-      <div className="flex grow flex-col px-4 pt-5 pb-6">
-        <h2 className="text-2xl font-semibold text-black">AC Services</h2>
+    <ScreenHeader title="AC cleaning & refilling" subtitle="Tell us how many units need work" onBack={onBack}>
+      <div className="flex grow flex-col pt-1">
 
         <div className="mt-4 flex items-center justify-between rounded-lg border border-setl-line bg-white p-4">
           <p className="text-[15px] text-black">How many AC&apos;s need refilling</p>
@@ -67,6 +66,6 @@ export default function AcServiceScreen({ counts, setCounts, onSearchProviders, 
           <span className="block text-xs text-setl-muted">Get a ballpark — no visit needed to start</span>
         </button>
       </div>
-    </GradientHeader>
+    </ScreenHeader>
   )
 }
