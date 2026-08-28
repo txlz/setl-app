@@ -10,9 +10,17 @@ no backend, no admin panel. `desing_html/` holds the raw Figma export
 duplicated dump of every artboard iteration, not a clean per-screen source.
 
 An earlier pass already started nudging some screens toward the Figma
-sizing (uncommitted diff across 39 files — mostly `text-lg` → `text-[15px]`
-and radius tweaks). That work is now committed as a checkpoint
-(`e319e41`) so this spec starts from a clean baseline.
+sizing (uncommitted diff across 41 files, including a few provider/SP
+screens — mostly `text-lg` → `text-[15px]` and radius tweaks). That work
+is now committed as a checkpoint (`e319e41`) so this spec starts from a
+clean baseline; the provider/SP files it touched are not otherwise in
+scope here.
+
+`APPS_AND_WORKFLOW.md` §7 ("Code structure") describes an older layout
+(`registry.jsx`, `src/apps/customer/screens.jsx`, a gallery-tab shell) that
+no longer matches this repo — the real layout is `src/screens/*.jsx` per
+screen plus a single state-machine `App.jsx`. Only §4 (the WF-1…WF-10
+workflow descriptions) is used as a reference here; §7 should be ignored.
 
 The admin panel and cross-app backend "connection" mentioned in the
 original request do not exist in this codebase and are explicitly **out of
@@ -46,7 +54,10 @@ mismatches found along the way.
 1. Identify the screen's corresponding artboard(s) in `desing_html/1.html`
    by searching for its visible text/labels (`data-layer` / literal
    strings), since the file has no clean per-screen boundaries and repeats
-   near-duplicate iterations.
+   near-duplicate iterations. When multiple near-duplicate iterations match,
+   prefer the one with the most complete/polished layer names and content
+   (fewer placeholder-looking labels, fuller set of expected fields) over
+   earlier, sparser duplicates.
 2. Compare the current `cloned/src/screens/*.jsx` implementation against
    that artboard for: colors (vs. `theme.css`/Tailwind config tokens),
    spacing/padding, font sizes/weights, corner radii, icon usage, and
