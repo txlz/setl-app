@@ -386,6 +386,29 @@ splash screen. Quick paths from a fresh `npm run dev` load:
     (should still be simulated per `PLAN.md`'s "current simulations"
     list); if it's a real fetch call, flag it in the commit message as
     out-of-scope-but-noticed rather than changing behavior.
+  - **CARRIED OVER FROM TASK 3 — resolve the chip drift here.** Task 3
+    restyled the Indoor/Outdoor/Villa chips on `LocationScreen.jsx:53-55`
+    to the artboard at `desing_html/1.html:809-814`
+    (`setl-violet` / `setl-line-2` / `setl-muted-2`, `text-[12px]`, fixed
+    `h-[27px] w-[66px]`, `border-[0.5px]`, no shadow). The SAME chips at
+    `OrderDetailsScreen.jsx:132-133` still use the old styling
+    (`setl-purple` / `setl-line` / `setl-muted`, `text-sm`,
+    content-sized) — `setl-purple #8442ff` and `setl-violet #7e43ff` are
+    visibly different purples on the same control. When measuring this
+    screen's artboard:
+    - If this screen's artboard agrees with `1.html:809-814`, make the two
+      consistent, then extract a shared `<PlaceTypeChips>` component
+      (props: `value`, `onChange`, and an `interactive` flag) and hoist
+      the `PLACE_TYPES` array (currently duplicated — exported from
+      `LocationScreen.jsx:5`, re-inlined in `OrderDetailsScreen.jsx`) into
+      shared data. Extraction is explicitly IN SCOPE for this task only,
+      as the deferred follow-up from Task 3.
+    - If the two artboards genuinely differ, leave them separate and add a
+      cross-reference comment in both files explaining why they diverge.
+  - Also consider documenting the `setl-purple` vs `setl-violet`
+    distinction in the `@theme` block of `src/index.css` — two
+    near-identical purples with no note on which is canonical is the most
+    likely source of future drift.
 
 ### Task 16: OrderTrackingScreen
 
