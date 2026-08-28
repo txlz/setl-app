@@ -27,8 +27,8 @@ Hard-won during the customer-app fidelity pass. The `desing_html/` export is
 | House cleaning | `4.js:838` (frame), labels `4.js:982-987` | 375x812 on #F9F9F9. Content labels **13px/500 #0D0000**; the single 14px is the centred screen title. Numerals `4.js:594` 15/400 #B3B3B3. No gradient anywhere on this board. |
 | Pest control |  `1.html:1557-1721` | Row cards 336x55 r11 `0 0 13px rgba(0,0,0,.05)` (`:1587`); row title 14/500 rgba(0,0,0,.95) (`:1602`); meta 11/400 (`:1594`); CTA r12. |
 | Car wash | **none** | The builder has no board. Every "Basic wash" hit sits at `left: 381` — off-canvas leftovers. `4.js:1` is a *providers-list* board ("servicies provider"), `5.js:1419` a provider-side "Add Services" form, `1.html:1554` a Home section heading, `1.html:1385` a Home tile. Extras rows inherit the pest row-card spec. |
-| Providers list | search `"Most Ordred"` (sic), `"Available Today at 10.00 Am"` | Typo is the artboard's own. |
-| Order details | `1.html:805-816` (+ `1.html:1055`, `4.js:1149/1399` — identical copies) | Also `"Booking Details"`, `"Applye"` (sic) in `4.js`. |
+| Providers list | **`1.html:363`** (frame `عرض الموفرين`, title "servicies provider" `:643`) | Single-column list; card 333 wide at left 21, r9 (`:499`); card pitch 219px (`:500`/`:557`); name 15/400; availability 11px; chip r3 on `rgba(217,217,217,.56)`. NOT `1.html:1386+`, which is a denser 2-up grid. Typo "Most Ordred" is the board's own. |
+| Order details | **`1.html:684-894`** (English "Review Summary" — the only complete iteration; it alone has the Total block `:889-891` and CTA `:892`). Arabic twins: `1.html:1001/:1048`, `4.js:1095/:1142/:1345/:1392` | Detail cards r5 + `0 4px 4px rgba(0,0,0,.03)` (`:795`); headings 14/500 `#0D0000`; body ramp 12px; total 15/700 violet (`:891`); voucher Apply 11px white (`:751`). Title "Booking Details" 17/500 white (`4.js:492`). |
 
 ## Convention notes settled by review
 
@@ -96,3 +96,22 @@ changing them. Settle them in a dedicated pass.
 - `PEST_TYPES` has no `color` field, so pest medallions render grey with an
   emoji. The board gives each a solid fill: `#D142FA` cockroach, `#EB4D4B`
   mice, `#10D830` ant, `#1AAAE9` mosquito, `#FFA800` lizards, `#751AE9` anti.
+
+## Settled cross-screen decisions
+
+- **CTA gradient.** The export contains exactly ONE blue→pink gradient:
+  `linear-gradient(275deg, #366EE9 0%, #F15CFA 100%)`, 15 uses — it is
+  `.brand-hero` in `index.css`. The app previously stretched the stops to
+  `-95.36%/212.48%`, which never reached the board's blue (right edge rendered
+  `rgb(114,104,238)` vs the board's `rgb(64,109,234)`). All six call sites now
+  use `.brand-hero`. Do not reintroduce the stretched variant.
+- **Indoor/Outdoor/Villa chips** render identically on `LocationScreen` and
+  `OrderDetailsScreen`: `h-[27px] w-[66px] rounded-[11px] border-[0.5px]
+  text-[12px]`, selected `border-setl-violet text-setl-violet`, unselected
+  `border-setl-line-2 text-setl-muted-2`. They keep `rounded-[11px]` over the
+  board's `borderRadius: 2` so the two screens agree with house geometry.
+  A future component pass could hoist them; two reviewers endorsed not
+  refactoring mid-fidelity-pass.
+- **Steppers** use one idiom: `h-9 w-9 rounded-[9px] bg-setl-surface-3`, value
+  box `border-setl-violet text-[15px]`. `#7E43FF` (`setl-violet`) is the purple
+  the boards actually use — prefer it over `setl-purple #8442ff` for new work.
