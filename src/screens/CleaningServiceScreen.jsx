@@ -49,7 +49,7 @@ export default function CleaningServiceScreen({
                 </div>
                 <div className="min-w-0 grow">
                   {/* 1.html:1602 — row title 14px/500 rgba(0,0,0,.95); :1594 meta 11px/400 */}
-                  <p className="truncate text-sm font-medium text-setl-ink">{favorite.name}</p>
+                  <p className="truncate text-[14px] font-medium text-setl-ink">{favorite.name}</p>
                   <p className="text-[11px] text-setl-muted">
                     ★ {favorite.rating} · {favorite.bookingFee} AED/hr · View profile
                   </p>
@@ -140,7 +140,7 @@ export default function CleaningServiceScreen({
                     >
                       {/* 1.html:1602 — row title 14px/500 rgba(0,0,0,.95); :1594 meta 11px/400 */}
                       <div className="min-w-0 pr-2">
-                        <p className="text-sm leading-tight font-medium text-setl-ink">
+                        <p className="text-[14px] leading-tight font-medium text-setl-ink">
                           {item.label}
                         </p>
                         <p className="text-[11px] text-setl-muted">

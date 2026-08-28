@@ -14,18 +14,18 @@ function Counter({ value, onChange }) {
         type="button"
         aria-label="decrease"
         onClick={() => onChange(Math.max(0, value - 1))}
-        className="h-9 w-9 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 transition-transform duration-100 active:scale-95"
+        className="h-9 w-9 cursor-pointer rounded-[9px] bg-setl-surface-3 text-[15px] text-setl-ink-3 transition-transform duration-100 active:scale-95"
       >
         −
       </button>
-      <span className="flex h-9 w-9 items-center justify-center rounded-md border border-setl-purple text-sm text-setl-ink">
+      <span className="flex h-9 w-9 items-center justify-center rounded-[9px] border border-setl-violet text-[15px] text-setl-ink">
         {value}
       </span>
       <button
         type="button"
         aria-label="increase"
         onClick={() => onChange(Math.min(MAX_ROOMS, value + 1))}
-        className="h-9 w-9 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 transition-transform duration-100 active:scale-95"
+        className="h-9 w-9 cursor-pointer rounded-[9px] bg-setl-surface-3 text-[15px] text-setl-ink-3 transition-transform duration-100 active:scale-95"
       >
         +
       </button>

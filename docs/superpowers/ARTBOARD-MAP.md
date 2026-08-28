@@ -25,8 +25,8 @@ Hard-won during the customer-app fidelity pass. The `desing_html/` export is
 | Home | `1.html:1343-1384` | Banner 320x111 r15 @left 27; tile label plate "Rectangle 944" 146x26.9 rgba(0,0,0,.11) blur 1.5 r-b 5; labels 9/500; section cards r7 + `0 4px 33px rgba(0,0,0,.05)`. |
 | AC service | **none** | No AC/refill/air-conditioner board in any file. |
 | House cleaning | `4.js:838` (frame), labels `4.js:982-987` | 375x812 on #F9F9F9. Content labels **13px/500 #0D0000**; the single 14px is the centred screen title. Numerals `4.js:594` 15/400 #B3B3B3. No gradient anywhere on this board. |
-| Pest control | `1.html:1557-1620` | Row cards 336x55 r11 `0 0 13px rgba(0,0,0,.05)` (`:1587`); row title 14/500 rgba(0,0,0,.95) (`:1602`); meta 11/400 (`:1594`); CTA r12. |
-| Car wash | `1.html` + `4.js` | Layers: "Basic wash", "Premium wash", "car polish", "best car wash shops". |
+| Pest control |  `1.html:1557-1721` | Row cards 336x55 r11 `0 0 13px rgba(0,0,0,.05)` (`:1587`); row title 14/500 rgba(0,0,0,.95) (`:1602`); meta 11/400 (`:1594`); CTA r12. |
+| Car wash | **none** | The builder has no board. Every "Basic wash" hit sits at `left: 381` — off-canvas leftovers. `4.js:1` is a *providers-list* board ("servicies provider"), `5.js:1419` a provider-side "Add Services" form, `1.html:1554` a Home section heading, `1.html:1385` a Home tile. Extras rows inherit the pest row-card spec. |
 | Providers list | search `"Most Ordred"` (sic), `"Available Today at 10.00 Am"` | Typo is the artboard's own. |
 | Order details | `1.html:805-816` (+ `1.html:1055`, `4.js:1149/1399` — identical copies) | Also `"Booking Details"`, `"Applye"` (sic) in `4.js`. |
 
