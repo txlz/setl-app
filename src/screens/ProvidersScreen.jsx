@@ -24,7 +24,8 @@ export default function ProvidersScreen({ service: serviceId, variant, onConfirm
 
   return (
     <div className="relative">
-      <GradientHeader title={title} onBack={onBack} sheetClassName="bg-[#F5F4F7]">
+      {/* Providers board frame is 375x812 on #F9F9F9 (1.html:363) = --color-setl-surface */}
+      <GradientHeader title={title} onBack={onBack} sheetClassName="bg-setl-surface">
         {isInspection && service.requiresInspection && (
           <p className="mx-4 flex items-center gap-3 text-xs text-setl-ink-3">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-red-500 text-[15px] font-bold text-white">
@@ -57,7 +58,8 @@ export default function ProvidersScreen({ service: serviceId, variant, onConfirm
 
         {isInspection && <h2 className="px-4 pt-4 text-[15px] font-semibold text-black">Providers</h2>}
 
-        <div className="flex flex-col gap-3 px-3 pt-4 pb-4">
+        {/* Cards are 333 wide at left 21 on the board (1.html:499, :556) */}
+        <div className="flex flex-col gap-3 px-[21px] pt-4 pb-4">
           {providers.map((p, i) => (
             <ProviderCard
               key={`${p.id}-${i}`}

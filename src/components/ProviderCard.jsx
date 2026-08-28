@@ -26,8 +26,10 @@ export default function ProviderCard({
     .join('')
     .toUpperCase()
 
+  // Board card: white, radius 9 (1.html:499) / 10 (1.html:556) — 9 is the
+  // polished first card, which also carries the selected 1px #7E43FF/38 border.
   return (
-    <div className="flex items-center gap-3 rounded-[11px] bg-white p-3 shadow-card-sm">
+    <div className="flex items-center gap-3 rounded-[9px] bg-white p-3 shadow-card-sm">
       <div
         className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[15px] font-bold text-white"
         style={{ background: provider.color }}
@@ -39,7 +41,7 @@ export default function ProviderCard({
           type="button"
           onClick={onOpenProfile}
           disabled={!onOpenProfile}
-          className={`block max-w-full truncate text-left font-semibold text-black ${onOpenProfile ? 'cursor-pointer' : ''}`}
+          className={`block max-w-full truncate text-left text-[15px] font-normal text-black ${onOpenProfile ? 'cursor-pointer' : ''}`}
         >
           {provider.name}
         </button>
@@ -47,13 +49,18 @@ export default function ProviderCard({
           {price}
           {priceSuffix}
         </p>
+        {/* Availability plate on the board: rgba(217,217,217,.56) radius 3
+            (1.html:528, :585) with 11px/400 rgba(126,67,255,.79) text
+            (1.html:529, :586). The 2nd/3rd alternative chips are app-only. */}
         {provider.slots && (
           <div className="no-scrollbar mt-1.5 flex gap-1 overflow-x-auto">
             {provider.slots.map((slot, i) => (
               <span
                 key={slot}
-                className={`shrink-0 rounded-full px-2 py-0.5 text-[11px] font-medium whitespace-nowrap ${
-                  i === 0 ? 'bg-setl-purple/12 text-setl-purple' : 'border border-setl-line text-setl-muted'
+                className={`shrink-0 rounded-[3px] px-2 py-0.5 text-[11px] font-normal whitespace-nowrap ${
+                  i === 0
+                    ? 'bg-[rgba(217,217,217,0.56)] text-setl-violet/79'
+                    : 'border border-setl-line text-setl-muted'
                 }`}
               >
                 {slot}
