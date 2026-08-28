@@ -87,9 +87,9 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
           {[1, 2, 3].map((i) => (
             <div
               key={i}
-              className="mt-4 flex animate-pulse items-center gap-4 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+              className="mt-4 flex animate-pulse items-center gap-4 rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
             >
-              <div className="h-20 w-20 shrink-0 rounded-2xl bg-setl-surface-3" />
+              <div className="h-20 w-20 shrink-0 rounded-[15px] bg-setl-surface-3" />
               <div className="grow">
                 <div className="h-4 w-20 rounded-full bg-setl-surface-3" />
                 <div className="mt-2 h-4 w-32 rounded-full bg-setl-surface-3" />
@@ -100,7 +100,7 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
         </>
       ) : products.length === 0 ? (
         <>
-          <div className="mt-6 rounded-2xl bg-white p-5 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+          <div className="mt-6 rounded-[15px] bg-white p-5 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             <p className="font-semibold text-black">No parts needed</p>
             <p className="mt-1 text-sm text-setl-muted">
               The inspector found nothing to replace — the visit is covered by your inspection fee.
@@ -130,12 +130,12 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
           </div>
 
           {questionSent && (
-            <p className="mt-3 rounded-xl bg-green-50 p-2.5 text-center text-xs text-green-600">
+            <p className="mt-3 rounded-[11px] bg-green-50 p-2.5 text-center text-xs text-green-600">
               Question sent — the inspector will reply here.
             </p>
           )}
           {quoteRequested && (
-            <p className="mt-3 rounded-xl bg-green-50 p-2.5 text-center text-xs text-green-600">
+            <p className="mt-3 rounded-[11px] bg-green-50 p-2.5 text-center text-xs text-green-600">
               Request sent — we&apos;ll notify you when another quote arrives.
             </p>
           )}
@@ -154,7 +154,7 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
           <button
             type="button"
             onClick={() => setEditing(!editing)}
-            className="mt-3 h-12 w-full cursor-pointer rounded-xl border border-setl-purple bg-white text-[15px] font-medium text-setl-purple transition-transform duration-100 active:scale-[0.98]"
+            className="mt-3 h-12 w-full cursor-pointer rounded-[11px] border border-setl-purple bg-white text-[15px] font-medium text-setl-purple transition-transform duration-100 active:scale-[0.98]"
           >
             {editing ? 'Done editing' : 'Edit selected work'}
           </button>
@@ -206,7 +206,7 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
               onChange={(e) => setQuestion(e.target.value)}
               rows={3}
               placeholder="e.g. Is the pipe replacement really necessary?"
-              className="mt-3 w-full resize-none rounded-xl border border-setl-line p-3 text-sm text-black outline-none placeholder:text-setl-muted focus:border-setl-purple"
+              className="mt-3 w-full resize-none rounded-[11px] border border-setl-line p-3 text-sm text-black outline-none placeholder:text-setl-muted focus:border-setl-purple"
             />
             <GradientButton
               className="mt-4"

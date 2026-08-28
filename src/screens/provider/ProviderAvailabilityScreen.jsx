@@ -52,7 +52,7 @@ export default function ProviderAvailabilityScreen({ availability, availableNow,
     <GradientHeader title="My availability" onBack={onBack} sheetClassName="bg-[#F5F4F7]">
       <div className="font-poppins flex grow flex-col px-4 pb-24">
         {/* Available now */}
-        <div className="mt-1 flex items-center justify-between rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+        <div className="mt-1 flex items-center justify-between rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <div className="pr-3">
             <p className="font-semibold text-black">Available now</p>
             <p className="mt-0.5 text-xs text-setl-muted">
@@ -66,7 +66,7 @@ export default function ProviderAvailabilityScreen({ availability, availableNow,
         <p className="mt-5 mb-2 px-1 text-sm font-semibold text-setl-ink-3">Weekly hours</p>
         <div className="flex flex-col gap-2.5">
           {days.map((d, i) => (
-            <div key={d.day} className="rounded-2xl bg-white p-3.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+            <div key={d.day} className="rounded-[15px] bg-white p-3.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
               <div className="flex items-center justify-between">
                 <span className={`text-sm font-medium ${d.on ? 'text-black' : 'text-setl-muted'}`}>{d.day}</span>
                 <div className="flex items-center gap-3">

@@ -27,7 +27,7 @@ export default function ProviderCard({
     .toUpperCase()
 
   return (
-    <div className="flex items-center gap-3 rounded-2xl bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
+    <div className="flex items-center gap-3 rounded-[11px] bg-white p-3 shadow-card-sm">
       <div
         className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-lg font-bold text-white"
         style={{ background: provider.color }}
@@ -48,12 +48,12 @@ export default function ProviderCard({
           {priceSuffix}
         </p>
         {provider.slots && (
-          <div className="mt-1.5 flex flex-wrap gap-1">
+          <div className="no-scrollbar mt-1.5 flex gap-1 overflow-x-auto">
             {provider.slots.map((slot, i) => (
               <span
                 key={slot}
-                className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${
-                  i === 0 ? 'bg-[#EDE4FD] text-setl-purple' : 'border border-setl-line text-setl-muted'
+                className={`shrink-0 rounded-full px-2 py-0.5 text-[11px] font-medium whitespace-nowrap ${
+                  i === 0 ? 'bg-setl-purple/12 text-setl-purple' : 'border border-setl-line text-setl-muted'
                 }`}
               >
                 {slot}
@@ -65,7 +65,7 @@ export default function ProviderCard({
           <button
             type="button"
             onClick={onBook}
-            className="cursor-pointer rounded-full bg-linear-[270deg,#366EE9_-95.36%,#F15CFA_212.48%] px-6 py-1 text-sm text-white active:opacity-90"
+            className="cursor-pointer rounded-[12px] bg-linear-[270deg,#366EE9_-95.36%,#F15CFA_212.48%] px-6 py-1.5 text-[13px] text-white active:opacity-90"
           >
             {buttonLabel}
           </button>
@@ -91,7 +91,7 @@ export default function ProviderCard({
             <Heart filled={isFavorite} />
           </button>
         )}
-        <span className="rounded-md bg-[#FCD467] px-2.5 py-1 text-sm font-medium text-black">
+        <span className="rounded-md bg-setl-gold/85 px-2.5 py-1 text-[13px] font-medium text-setl-navy">
           {provider.rating}
         </span>
       </div>

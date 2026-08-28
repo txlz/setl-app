@@ -31,9 +31,9 @@ function PayIcon({ id }) {
 // final invoice).
 export default function PaymentMethods({ method, onChange }) {
   return (
-    <div className="mt-2 rounded-xl bg-white p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+    <div className="mt-2 rounded-[11px] bg-white p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
       {PAYMENT_METHODS.map((m) => (
-        <label key={m.id} className="flex cursor-pointer items-center gap-4 rounded-lg px-3 py-2.5">
+        <label key={m.id} className="flex cursor-pointer items-center gap-4 rounded-[11px] px-3 py-2.5">
           <input
             type="radio"
             name="payment"

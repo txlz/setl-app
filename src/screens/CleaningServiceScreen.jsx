@@ -31,7 +31,7 @@ export default function CleaningServiceScreen({
       <div className="flex grow flex-col pt-1">
         {/* Your regular cleaner (retention loop) */}
         {favorite && (
-          <div className="mb-5 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
+          <div className="mb-5 rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
             <p className="text-xs font-medium text-setl-purple">Your regular cleaner</p>
             <div className="mt-2 flex items-center gap-3">
               <button
@@ -70,7 +70,7 @@ export default function CleaningServiceScreen({
           </div>
         )}
 
-        <div className="relative h-24 overflow-hidden rounded-2xl">
+        <div className="relative h-24 overflow-hidden rounded-[15px]">
           <img src={cleaningImg} alt="" className="h-full w-full object-cover" />
           <span
             aria-hidden
@@ -78,7 +78,7 @@ export default function CleaningServiceScreen({
           />
         </div>
 
-        <div className="mt-4 flex items-center justify-between rounded-lg border border-setl-line bg-white p-4">
+        <div className="mt-4 flex items-center justify-between rounded-[11px] border border-setl-line bg-white p-4">
           <p className="text-[15px] text-black">Hours of cleaning</p>
           <div className="flex items-center gap-1.5">
             <button

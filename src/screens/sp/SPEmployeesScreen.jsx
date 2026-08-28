@@ -47,7 +47,7 @@ export default function SPEmployeesScreen({ title, employees, onAdd, onUpdate, o
         <button
           type="button"
           onClick={openAdd}
-          className="flex w-full items-center gap-3 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+          className="flex w-full items-center gap-3 rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
         >
           <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[#F5A623] text-white">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M12 5v14M5 12h14" strokeLinecap="round" /></svg>
@@ -57,7 +57,7 @@ export default function SPEmployeesScreen({ title, employees, onAdd, onUpdate, o
 
         <div className="mt-4 flex flex-col gap-4">
           {employees.map((e) => (
-            <div key={e.id} className="overflow-hidden rounded-2xl bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+            <div key={e.id} className="overflow-hidden rounded-[15px] bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
               <div className="relative h-16 brand-header">
                 <div className="absolute -bottom-7 left-1/2 flex h-16 w-16 -translate-x-1/2 items-center justify-center rounded-full border-4 border-white text-xl font-bold text-white" style={{ background: e.color }}>
                   {e.name[0].toUpperCase()}
@@ -104,12 +104,12 @@ export default function SPEmployeesScreen({ title, employees, onAdd, onUpdate, o
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="Full name"
-              className="mb-3 w-full rounded-xl border border-setl-line p-3 text-sm text-black outline-none focus:border-setl-purple"
+              className="mb-3 w-full rounded-[11px] border border-setl-line p-3 text-sm text-black outline-none focus:border-setl-purple"
             />
             <select
               value={form.role}
               onChange={(e) => setForm({ ...form, role: e.target.value })}
-              className="mb-3 w-full rounded-xl border border-setl-line p-3 text-sm text-black outline-none focus:border-setl-purple"
+              className="mb-3 w-full rounded-[11px] border border-setl-line p-3 text-sm text-black outline-none focus:border-setl-purple"
             >
               {EMPLOYEE_ROLES.map((r) => <option key={r}>{r}</option>)}
             </select>
@@ -117,13 +117,13 @@ export default function SPEmployeesScreen({ title, employees, onAdd, onUpdate, o
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               placeholder="Email"
-              className="mb-3 w-full rounded-xl border border-setl-line p-3 text-sm text-black outline-none focus:border-setl-purple"
+              className="mb-3 w-full rounded-[11px] border border-setl-line p-3 text-sm text-black outline-none focus:border-setl-purple"
             />
             <input
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
               placeholder="Phone number"
-              className="mb-4 w-full rounded-xl border border-setl-line p-3 text-sm text-black outline-none focus:border-setl-purple"
+              className="mb-4 w-full rounded-[11px] border border-setl-line p-3 text-sm text-black outline-none focus:border-setl-purple"
             />
             <GradientButton disabled={!form.name.trim()} onClick={submit}>{editingId ? 'Save changes' : 'Add'}</GradientButton>
           </div>
@@ -133,21 +133,21 @@ export default function SPEmployeesScreen({ title, employees, onAdd, onUpdate, o
       {/* Delete confirmation */}
       {confirmRemove && (
         <div className="fixed inset-0 z-50 mx-auto flex w-full max-w-[375px] items-center justify-center bg-black/40 px-6" onClick={() => setConfirmRemove(null)}>
-          <div className="w-full rounded-2xl bg-white p-5 text-center" onClick={(ev) => ev.stopPropagation()}>
+          <div className="w-full rounded-[15px] bg-white p-5 text-center" onClick={(ev) => ev.stopPropagation()}>
             <h3 className="text-lg font-semibold text-black">Remove {confirmRemove.name}?</h3>
             <p className="mt-1 text-sm text-setl-muted">They&apos;ll be taken off your roster and can no longer be assigned jobs.</p>
             <div className="mt-5 flex gap-3">
               <button
                 type="button"
                 onClick={() => setConfirmRemove(null)}
-                className="h-11 flex-1 cursor-pointer rounded-xl border border-setl-line bg-white text-[15px] font-medium text-black active:scale-[0.98]"
+                className="h-11 flex-1 cursor-pointer rounded-[11px] border border-setl-line bg-white text-[15px] font-medium text-black active:scale-[0.98]"
               >
                 Cancel
               </button>
               <button
                 type="button"
                 onClick={() => { onRemove(confirmRemove.id); setConfirmRemove(null) }}
-                className="h-11 flex-1 cursor-pointer rounded-xl bg-red-500 text-[15px] font-medium text-white active:scale-[0.98]"
+                className="h-11 flex-1 cursor-pointer rounded-[11px] bg-red-500 text-[15px] font-medium text-white active:scale-[0.98]"
               >
                 Remove
               </button>

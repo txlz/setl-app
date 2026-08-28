@@ -3,7 +3,7 @@ import { CUSTOMER_ME } from '../data/providers.js'
 // Provider appointment summary card, shared by checkout and order tracking.
 export default function AppointmentCard({ booking, label, price, onChange }) {
   return (
-    <div className="rounded-xl bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+    <div className="rounded-[11px] bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
       <div className="flex items-start gap-2">
         <div
           className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"

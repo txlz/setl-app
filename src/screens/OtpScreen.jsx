@@ -60,7 +60,7 @@ export default function OtpScreen({ onVerify }) {
     <div className="font-poppins flex min-h-screen flex-col bg-white px-4 pt-14">
       {/* Illustration: phone with a check mark */}
       <div className="flex justify-center">
-        <div className="relative flex h-32 w-20 items-center justify-center rounded-2xl border-4 border-[#3F3D56]">
+        <div className="relative flex h-32 w-20 items-center justify-center rounded-[15px] border-4 border-[#3F3D56]">
           <div className="absolute -top-0 h-2 w-10 rounded-b-lg bg-[#3F3D56]" />
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#7C5CF0]">
             <svg width="24" height="18" viewBox="0 0 24 18" fill="none">
@@ -73,7 +73,7 @@ export default function OtpScreen({ onVerify }) {
       <h1 className="mt-8 text-center text-xl font-semibold text-black">Enter your OTP</h1>
       <p className="mt-2 text-center text-sm text-[#6B6B6B]">Enter OTP sent to your phone number</p>
 
-      <div className="mt-8 flex h-12 items-center justify-around rounded-xl border-[0.5px] border-[#2790C3] bg-white px-4">
+      <div className="mt-8 flex h-12 items-center justify-around rounded-[11px] border-[0.5px] border-[#2790C3] bg-white px-4">
         {digits.map((digit, i) => (
           <input
             key={i}

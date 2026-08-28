@@ -55,11 +55,11 @@ export default function CleanerProfileScreen({ cleaner, hours, isFavorite, onTog
 
         {/* Facts */}
         <div className="mt-5 grid grid-cols-2 gap-3">
-          <div className="rounded-xl bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+          <div className="rounded-[11px] bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             <p className="text-xs text-setl-muted">Experience</p>
             <p className="text-[15px] font-semibold text-black">{cleaner.years} years</p>
           </div>
-          <div className="rounded-xl bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+          <div className="rounded-[11px] bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             <p className="text-xs text-setl-muted">Speaks</p>
             <p className="text-[15px] font-semibold text-black">{cleaner.languages.join(', ')}</p>
           </div>

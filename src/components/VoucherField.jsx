@@ -17,7 +17,7 @@ export default function VoucherField({ onApplied }) {
 
   return (
     <>
-      <div className="mt-4 flex items-center rounded-xl bg-white p-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+      <div className="mt-4 flex items-center rounded-[11px] bg-white p-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         <input
           type="text"
           value={code}
@@ -33,7 +33,7 @@ export default function VoucherField({ onApplied }) {
           type="button"
           onClick={apply}
           disabled={!code.trim()}
-          className="shrink-0 cursor-pointer rounded-xl border border-setl-purple bg-white px-7 py-2.5 text-lg text-setl-purple disabled:cursor-not-allowed disabled:opacity-40"
+          className="shrink-0 cursor-pointer rounded-[11px] border border-setl-purple bg-white px-7 py-2.5 text-lg text-setl-purple disabled:cursor-not-allowed disabled:opacity-40"
         >
           Apply
         </button>

@@ -35,7 +35,7 @@ export default function DateTimeSheet({ provider, title, onConfirm, onClose }) {
               key={d.day}
               type="button"
               onClick={() => setDate(d)}
-              className={`shrink-0 cursor-pointer rounded-lg px-5 py-2 text-center shadow-sm ${
+              className={`shrink-0 cursor-pointer rounded-[11px] px-5 py-2 text-center shadow-sm ${
                 date.day === d.day ? 'bg-setl-purple text-white' : 'bg-white text-black'
               }`}
             >
@@ -52,7 +52,7 @@ export default function DateTimeSheet({ provider, title, onConfirm, onClose }) {
               key={t}
               type="button"
               onClick={() => setTime(t)}
-              className={`shrink-0 cursor-pointer rounded-lg px-4 py-1.5 text-[15px] shadow-sm ${
+              className={`shrink-0 cursor-pointer rounded-[11px] px-4 py-1.5 text-[15px] shadow-sm ${
                 time === t ? 'bg-setl-purple text-white' : 'bg-white text-black'
               }`}
             >
@@ -65,7 +65,7 @@ export default function DateTimeSheet({ provider, title, onConfirm, onClose }) {
           <button
             type="button"
             onClick={() => onConfirm({ date, time })}
-            className="h-11 w-44 cursor-pointer rounded-lg bg-linear-[270deg,#366EE9_-95.36%,#F15CFA_212.48%] text-base font-medium text-white active:opacity-90"
+            className="h-11 w-44 cursor-pointer rounded-[11px] bg-linear-[270deg,#366EE9_-95.36%,#F15CFA_212.48%] text-base font-medium text-white active:opacity-90"
           >
             Confirm
           </button>

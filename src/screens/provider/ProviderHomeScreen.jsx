@@ -36,7 +36,7 @@ function JobCard({ order, onOpen }) {
     <button
       type="button"
       onClick={() => onOpen(order)}
-      className="w-full rounded-2xl bg-white p-4 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-transform duration-100 active:scale-[0.99]"
+      className="w-full rounded-[15px] bg-white p-4 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-transform duration-100 active:scale-[0.99]"
     >
       <div className="flex items-center justify-between text-xs text-setl-muted">
         <span className="flex items-center gap-1.5">

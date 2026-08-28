@@ -13,7 +13,7 @@ export default function RejectReasonScreen({ onSubmit, onBack }) {
   return (
     <GradientHeader title="Reason for rejection" onBack={onBack} sheetClassName="bg-[#F5F4F7]">
       <div className="font-poppins flex grow flex-col px-3 pb-6">
-      <div className="mt-2 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+      <div className="mt-2 rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         {REJECT_REASONS.map((r) => (
           <label key={r} className="flex cursor-pointer items-center justify-between py-3.5">
             <span className="text-[15px] font-medium text-black">{r}</span>
@@ -44,7 +44,7 @@ export default function RejectReasonScreen({ onSubmit, onBack }) {
             onChange={(e) => setNote(e.target.value)}
             placeholder="Tell us what went wrong (optional)"
             rows={3}
-            className="screen-enter mt-2 w-full resize-none rounded-xl bg-[#F3F2F5] p-3 text-base text-black outline-none placeholder:text-setl-muted"
+            className="screen-enter mt-2 w-full resize-none rounded-[11px] bg-[#F3F2F5] p-3 text-base text-black outline-none placeholder:text-setl-muted"
           />
         )}
       </div>

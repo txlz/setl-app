@@ -42,7 +42,7 @@ export default function ProductCard({ product, selectable, selected, onToggle })
   return (
     <div
       onClick={selectable ? onToggle : undefined}
-      className={`flex items-center gap-3 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)] ${
+      className={`flex items-center gap-3 rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)] ${
         selectable ? 'cursor-pointer' : ''
       } ${selectable && !selected ? 'opacity-45' : ''}`}
     >
@@ -59,20 +59,20 @@ export default function ProductCard({ product, selectable, selected, onToggle })
           )}
         </span>
       )}
-      <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-[#F6F5F8]">
+      <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[11px] bg-[#F6F5F8]">
         <ProductIcon icon={product.icon} />
       </div>
       <div className="min-w-0 grow">
         <p className="font-semibold text-black">{product.name}</p>
         <div className="mt-1 flex items-center gap-2">
-          <span className="rounded-lg bg-[#F6F5F8] px-2.5 py-1 text-xs text-setl-muted">
+          <span className="rounded-[11px] bg-[#F6F5F8] px-2.5 py-1 text-xs text-setl-muted">
             Qt.{product.qty}
           </span>
           <span className="text-[15px] font-semibold text-black">{product.price} AED</span>
         </div>
       </div>
       <div className="w-[118px] shrink-0 text-right">
-        <span className={`inline-flex items-center gap-1.5 rounded-xl px-2.5 py-1 text-left text-[11px] leading-tight font-medium ${verdict.className}`}>
+        <span className={`inline-flex items-center gap-1.5 rounded-[11px] px-2.5 py-1 text-left text-[11px] leading-tight font-medium ${verdict.className}`}>
           {verdict.good ? (
             <svg width="10" height="8" viewBox="0 0 24 18" fill="none">
               <path d="m2 9 7 7L22 2" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />

@@ -43,7 +43,7 @@ export default function ProviderNotificationsScreen({ orders = [] }) {
           {items.map((n) => {
             const ic = ICON[n.icon]
             return (
-              <div key={n.id} className="flex items-center gap-3 rounded-2xl bg-white p-3.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+              <div key={n.id} className="flex items-center gap-3 rounded-[15px] bg-white p-3.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
                 <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${ic.bg}`}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={ic.fg} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d={ic.d} /></svg>
                 </span>

@@ -42,7 +42,7 @@ export default function PestControlScreen({ pests, setPests, onSearchProviders, 
     <ScreenHeader title="Add pest control" subtitle="How many infected rooms for each pest?" onBack={onBack}>
       <div className="flex grow flex-col pt-1">
         {/* Hero photo, as on the Figma board */}
-        <div className="relative h-28 overflow-hidden rounded-2xl">
+        <div className="relative h-28 overflow-hidden rounded-[15px]">
           <img src={pestImg} alt="" className="h-full w-full object-cover" />
           <span
             aria-hidden
@@ -58,7 +58,7 @@ export default function PestControlScreen({ pests, setPests, onSearchProviders, 
             <div className="flex min-w-0 grow items-center gap-2.5">
               <span
                 aria-hidden
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-setl-surface-3 text-base"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[11px] bg-setl-surface-3 text-base"
               >
                 {pest.icon}
               </span>
@@ -77,7 +77,7 @@ export default function PestControlScreen({ pests, setPests, onSearchProviders, 
         <div className="grow" />
 
         {!nothingSelected && (
-          <div className="shadow-card mt-5 flex items-center justify-between rounded-2xl bg-white px-4 py-3">
+          <div className="shadow-card mt-5 flex items-center justify-between rounded-[15px] bg-white px-4 py-3">
             <span className="text-sm text-setl-ink-3">
               {rooms} {rooms === 1 ? 'room' : 'rooms'}
             </span>

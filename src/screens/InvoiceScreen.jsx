@@ -44,7 +44,7 @@ export default function InvoiceScreen({ order, onPay, onBack }) {
       />
 
       {/* Itemized final invoice */}
-      <div className="mt-4 rounded-xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+      <div className="mt-4 rounded-[11px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         <h3 className="font-semibold text-black">Invoice</h3>
         {order.items.map((it) => (
           <div key={it.label} className="mt-1 flex justify-between text-xs text-setl-muted">

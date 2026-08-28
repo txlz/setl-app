@@ -30,7 +30,7 @@ export default function CarWashScreen({ wash, setWash, vehicles = [], onManageVe
   return (
     <ScreenHeader title="Take care of your car" subtitle="Pick a package for your vehicle" onBack={onBack}>
       <div className="flex grow flex-col pt-1">
-        <div className="relative h-28 overflow-hidden rounded-2xl">
+        <div className="relative h-28 overflow-hidden rounded-[15px]">
           <img src={carwashImg} alt="" className="h-full w-full object-cover" />
           <span
             aria-hidden
@@ -55,7 +55,7 @@ export default function CarWashScreen({ wash, setWash, vehicles = [], onManageVe
           <button
             type="button"
             onClick={onManageVehicles}
-            className="h-12 w-full cursor-pointer rounded-xl border border-dashed border-setl-line-3 text-sm text-setl-ink-3"
+            className="h-12 w-full cursor-pointer rounded-[11px] border border-dashed border-setl-line-3 text-sm text-setl-ink-3"
           >
             + Add a vehicle
           </button>
@@ -68,7 +68,7 @@ export default function CarWashScreen({ wash, setWash, vehicles = [], onManageVe
                 key={v.id}
                 type="button"
                 onClick={() => setWash({ ...wash, vehicle: v.id, size: v.size })}
-                className={`shadow-card-sm flex-1 cursor-pointer rounded-xl border p-3 text-left transition-colors ${
+                className={`shadow-card-sm flex-1 cursor-pointer rounded-[11px] border p-3 text-left transition-colors ${
                   on ? 'border-setl-purple bg-white' : 'border-setl-line bg-white'
                 }`}
               >
@@ -90,7 +90,7 @@ export default function CarWashScreen({ wash, setWash, vehicles = [], onManageVe
                 key={s.key}
                 type="button"
                 onClick={() => setWash({ ...wash, size: s.key })}
-                className={`flex-1 cursor-pointer rounded-xl border py-2.5 text-center transition-colors ${
+                className={`flex-1 cursor-pointer rounded-[11px] border py-2.5 text-center transition-colors ${
                   on
                     ? 'border-setl-purple bg-setl-purple/5 text-setl-navy'
                     : 'border-setl-line bg-white text-setl-ink-3'
@@ -114,7 +114,7 @@ export default function CarWashScreen({ wash, setWash, vehicles = [], onManageVe
               key={p.key}
               type="button"
               onClick={() => setWash({ ...wash, pkg: p.key })}
-              className={`shadow-card-sm mb-3 w-full cursor-pointer rounded-xl border p-4 text-left transition-colors ${
+              className={`shadow-card-sm mb-3 w-full cursor-pointer rounded-[11px] border p-4 text-left transition-colors ${
                 on ? 'border-setl-purple bg-white' : 'border-setl-line bg-white'
               }`}
             >
@@ -122,7 +122,7 @@ export default function CarWashScreen({ wash, setWash, vehicles = [], onManageVe
                 <img
                   src={PKG_IMG[p.key]}
                   alt=""
-                  className="h-14 w-14 shrink-0 rounded-xl object-cover"
+                  className="h-14 w-14 shrink-0 rounded-[11px] object-cover"
                 />
                 <div className="min-w-0 grow">
                   <p className="text-[15px] text-setl-ink">{p.label}</p>
@@ -165,7 +165,7 @@ export default function CarWashScreen({ wash, setWash, vehicles = [], onManageVe
 
         <div className="grow" />
 
-        <div className="shadow-card mt-5 mb-3 flex items-center justify-between rounded-2xl bg-white px-4 py-3">
+        <div className="shadow-card mt-5 mb-3 flex items-center justify-between rounded-[15px] bg-white px-4 py-3">
           <span className="text-sm text-setl-ink-3">Total</span>
           <span className="text-lg font-semibold text-setl-navy">AED {total}</span>
         </div>

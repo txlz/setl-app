@@ -20,7 +20,7 @@ export default function SPCoverageScreen({ employees, index, onSet, onApplyAll, 
       </div>
 
       <div className="relative">
-        <div className="absolute inset-x-3 top-3 z-10 flex h-11 items-center gap-3 rounded-xl bg-white px-4 shadow">
+        <div className="absolute inset-x-3 top-3 z-10 flex h-11 items-center gap-3 rounded-[11px] bg-white px-4 shadow">
           <svg width="16" height="16" viewBox="0 0 22 22" fill="none" stroke="#9C9AA5" strokeWidth="2"><circle cx="9" cy="9" r="6.5" /><path d="m14.5 14.5 5 5" strokeLinecap="round" /></svg>
           <span className="text-sm text-[#B9B7BF]">Search Location</span>
         </div>
@@ -29,7 +29,7 @@ export default function SPCoverageScreen({ employees, index, onSet, onApplyAll, 
 
       <div className="flex grow flex-col px-4 pt-4 pb-6">
         <h2 className="text-center text-lg font-semibold text-black">Location Details</h2>
-        <div className="mt-3 flex items-center justify-between rounded-xl border border-setl-line p-3">
+        <div className="mt-3 flex items-center justify-between rounded-[11px] border border-setl-line p-3">
           <span className="text-sm text-black">Service coverage range</span>
           <div className="flex items-center gap-2">
             <button type="button" onClick={() => setKm(Math.max(1, km - 1))} className="h-7 w-7 cursor-pointer rounded-md bg-setl-surface-3 text-setl-ink-3">−</button>
@@ -46,7 +46,7 @@ export default function SPCoverageScreen({ employees, index, onSet, onApplyAll, 
         <button
           type="button"
           onClick={() => onApplyAll(km)}
-          className="mb-3 h-12 w-full cursor-pointer rounded-xl border border-setl-purple bg-white text-[15px] font-medium text-setl-purple active:scale-[0.98]"
+          className="mb-3 h-12 w-full cursor-pointer rounded-[11px] border border-setl-purple bg-white text-[15px] font-medium text-setl-purple active:scale-[0.98]"
         >
           Apply range for all employees
         </button>

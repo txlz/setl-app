@@ -48,7 +48,7 @@ export default function OrdersScreen({ orders, onOpenOrder, onBook }) {
                 key={order.id}
                 type="button"
                 onClick={openable ? () => onOpenOrder(order, action) : undefined}
-                className={`flex items-center gap-3 rounded-xl bg-white p-3 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)] ${openable ? 'cursor-pointer' : 'cursor-default'}`}
+                className={`flex items-center gap-3 rounded-[11px] bg-white p-3 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)] ${openable ? 'cursor-pointer' : 'cursor-default'}`}
               >
                 <div
                   className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"

@@ -53,7 +53,7 @@ export default function SPServicesScreen({ company, onUpdatePricing, onBack }) {
     <GradientHeader title="Services & pricing" onBack={onBack} sheetClassName="bg-[#F5F4F7]">
       <div className="font-poppins flex grow flex-col px-4 pb-24">
         {services.length === 0 && (
-          <p className="mt-2 rounded-2xl bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+          <p className="mt-2 rounded-[15px] bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             No services yet.
           </p>
         )}
@@ -63,16 +63,16 @@ export default function SPServicesScreen({ company, onUpdatePricing, onBack }) {
           const draft = adding[service] ?? { label: '', price: '' }
           return (
             <section key={service} className="mt-3">
-              <div className="relative h-24 overflow-hidden rounded-2xl" style={{ background: GRADS[service] ?? 'linear-gradient(135deg,#8442FF,#C05CF7)' }}>
+              <div className="relative h-24 overflow-hidden rounded-[15px]" style={{ background: GRADS[service] ?? 'linear-gradient(135deg,#8442FF,#C05CF7)' }}>
                 <span className="absolute inset-x-0 bottom-0 bg-black/40 px-3 py-2 text-sm font-medium text-white">{service}</span>
               </div>
 
               <p className="mt-3 mb-1.5 px-1 text-xs font-semibold text-setl-ink-3">Job prices</p>
-              <div className="rounded-2xl bg-white p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+              <div className="rounded-[15px] bg-white p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
                 {tasks.map((t, i) => (
                   <div key={`${t.label}-${i}`} className="flex items-center gap-2 border-b border-gray-50 px-2 py-2 last:border-0">
                     <span className="grow text-sm text-black">{t.label}</span>
-                    <div className="flex items-center gap-1 rounded-lg bg-[#F5F4F7] px-2 py-1">
+                    <div className="flex items-center gap-1 rounded-[11px] bg-[#F5F4F7] px-2 py-1">
                       <input
                         value={t.price}
                         onChange={(e) => setPrice(service, i, e.target.value)}
@@ -94,7 +94,7 @@ export default function SPServicesScreen({ company, onUpdatePricing, onBack }) {
                 ))}
 
                 {/* Add a custom job */}
-                <div className="mt-1 flex items-center gap-2 rounded-xl bg-[#F5F4F7] px-2 py-2">
+                <div className="mt-1 flex items-center gap-2 rounded-[11px] bg-[#F5F4F7] px-2 py-2">
                   <input
                     value={draft.label}
                     onChange={(e) => setAdding((a) => ({ ...a, [service]: { ...draft, label: e.target.value } }))}

@@ -95,7 +95,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
       {isInspection && (
         <>
           {service.requiresInspection && (
-            <p className="mt-3 flex items-center gap-3 rounded-xl bg-white p-3 text-xs text-setl-ink-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+            <p className="mt-3 flex items-center gap-3 rounded-[11px] bg-white p-3 text-xs text-setl-ink-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-500 text-lg font-bold text-white">
                 !
               </span>
@@ -104,7 +104,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
             </p>
           )}
           <h2 className="mt-4 text-lg font-semibold text-black">Timing</h2>
-          <div className="mt-1 flex items-center justify-between rounded-xl bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+          <div className="mt-1 flex items-center justify-between rounded-[11px] bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             <div>
               <p className="text-[15px] text-black">
                 {booking.date.day} {booking.date.num}
@@ -120,7 +120,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
             </button>
           </div>
           <h2 className="mt-4 text-lg font-semibold text-black">Location</h2>
-          <div className="mt-1 rounded-xl bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+          <div className="mt-1 rounded-[11px] bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             <p className="text-[15px] text-black">
               {place?.nameNumber?.trim() ? place.nameNumber : CUSTOMER_ME.address}
             </p>
@@ -129,7 +129,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
               {['Indoor', 'Outdoor', 'Villa'].map((t) => (
                 <span
                   key={t}
-                  className={`rounded-lg border px-4 py-1.5 text-sm ${
+                  className={`rounded-[11px] border px-4 py-1.5 text-sm ${
                     (place?.type ?? 'Indoor') === t ? 'border-setl-purple text-setl-purple' : 'border-setl-line text-setl-muted'
                   }`}
                 >
@@ -177,13 +177,13 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
 
       {/* Pay after completion (decision B) */}
       {!isInspection && (
-        <div className="mt-4 rounded-xl bg-[#EDE4FD] p-3 text-center text-sm font-medium text-setl-purple">
+        <div className="mt-4 rounded-[11px] bg-[#EDE4FD] p-3 text-center text-sm font-medium text-setl-purple">
           AED 0 due now — pay when the work is done.
         </div>
       )}
 
       {/* Order summary */}
-      <div className="mt-4 rounded-xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+      <div className="mt-4 rounded-[11px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         <h3 className="font-semibold text-black">Order Summary</h3>
         {items.map((it) => (
           <div key={it.label} className="mt-1 flex justify-between text-xs text-setl-muted">

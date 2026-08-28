@@ -24,7 +24,7 @@ export default function VehiclesScreen({ vehicles, onSave, onRemove, onBack }) {
     <ScreenHeader title="My vehicles" onBack={onBack}>
       <div className="flex grow flex-col pt-1">
         {vehicles.length === 0 && !adding && (
-          <p className="shadow-card-sm mt-2 rounded-2xl bg-white p-5 text-center text-sm text-setl-muted">
+          <p className="shadow-card-sm mt-2 rounded-[15px] bg-white p-5 text-center text-sm text-setl-muted">
             No vehicles yet. Add one to book a car wash faster.
           </p>
         )}
@@ -56,7 +56,7 @@ export default function VehiclesScreen({ vehicles, onSave, onRemove, onBack }) {
         ))}
 
         {adding ? (
-          <div className="shadow-card mt-2 rounded-2xl bg-white p-4">
+          <div className="shadow-card mt-2 rounded-[15px] bg-white p-4">
             <p className="text-sm font-semibold text-setl-navy">Add a vehicle</p>
 
             <label className="mt-3 block text-xs text-setl-ink-3" htmlFor="veh-name">
@@ -67,7 +67,7 @@ export default function VehiclesScreen({ vehicles, onSave, onRemove, onBack }) {
               value={draft.name}
               onChange={(e) => setDraft({ ...draft, name: e.target.value })}
               placeholder="Nissan Patrol"
-              className="mt-1 h-11 w-full rounded-xl border border-setl-line-3 px-3 text-sm text-setl-ink outline-none placeholder:text-setl-muted-3 focus:border-setl-purple"
+              className="mt-1 h-11 w-full rounded-[11px] border border-setl-line-3 px-3 text-sm text-setl-ink outline-none placeholder:text-setl-muted-3 focus:border-setl-purple"
             />
 
             <label className="mt-3 block text-xs text-setl-ink-3" htmlFor="veh-plate">
@@ -78,7 +78,7 @@ export default function VehiclesScreen({ vehicles, onSave, onRemove, onBack }) {
               value={draft.plate}
               onChange={(e) => setDraft({ ...draft, plate: e.target.value })}
               placeholder="A 12345"
-              className="mt-1 h-11 w-full rounded-xl border border-setl-line-3 px-3 text-sm text-setl-ink outline-none placeholder:text-setl-muted-3 focus:border-setl-purple"
+              className="mt-1 h-11 w-full rounded-[11px] border border-setl-line-3 px-3 text-sm text-setl-ink outline-none placeholder:text-setl-muted-3 focus:border-setl-purple"
             />
 
             <p className="mt-3 text-xs text-setl-ink-3">Size</p>
@@ -88,7 +88,7 @@ export default function VehiclesScreen({ vehicles, onSave, onRemove, onBack }) {
                   key={s.key}
                   type="button"
                   onClick={() => setDraft({ ...draft, size: s.key })}
-                  className={`flex-1 cursor-pointer rounded-xl border py-2 text-sm transition-colors ${
+                  className={`flex-1 cursor-pointer rounded-[11px] border py-2 text-sm transition-colors ${
                     draft.size === s.key
                       ? 'border-setl-purple bg-setl-purple/5 text-setl-navy'
                       : 'border-setl-line text-setl-ink-3'
@@ -137,7 +137,7 @@ export default function VehiclesScreen({ vehicles, onSave, onRemove, onBack }) {
           <button
             type="button"
             onClick={() => setAdding(true)}
-            className="mt-2 h-12 w-full cursor-pointer rounded-xl border border-dashed border-setl-line-3 text-sm text-setl-ink-3"
+            className="mt-2 h-12 w-full cursor-pointer rounded-[11px] border border-dashed border-setl-line-3 text-sm text-setl-ink-3"
           >
             + Add a vehicle
           </button>

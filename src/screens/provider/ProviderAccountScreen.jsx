@@ -29,17 +29,17 @@ export default function ProviderAccountScreen({ orders = [], availableNow, onOpe
       </div>
 
       <div className="-mt-5 mx-3 grid grid-cols-2 gap-3">
-        <div className="rounded-2xl bg-white p-4 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+        <div className="rounded-[15px] bg-white p-4 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <p className="text-2xl font-bold text-black">{earnings} AED</p>
           <p className="text-xs text-setl-muted">Earnings</p>
         </div>
-        <div className="rounded-2xl bg-white p-4 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+        <div className="rounded-[15px] bg-white p-4 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <p className="text-2xl font-bold text-black">{jobsDone}</p>
           <p className="text-xs text-setl-muted">Jobs done</p>
         </div>
       </div>
 
-      <div className="mx-3 mt-4 rounded-2xl bg-white p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+      <div className="mx-3 mt-4 rounded-[15px] bg-white p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         {menu.map((item, i) => (
           <button key={item.id} type="button" onClick={item.onClick} className={`flex w-full cursor-pointer items-center justify-between px-4 py-3.5 text-left ${i < menu.length - 1 ? 'border-b border-setl-surface-3' : ''}`}>
             <span className="text-[15px] text-black">{item.label}</span>
@@ -51,12 +51,12 @@ export default function ProviderAccountScreen({ orders = [], availableNow, onOpe
         ))}
       </div>
 
-      <button type="button" onClick={onSwitchToCustomer} className="mx-3 mt-4 flex cursor-pointer items-center justify-between rounded-2xl bg-white px-4 py-3.5 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+      <button type="button" onClick={onSwitchToCustomer} className="mx-3 mt-4 flex cursor-pointer items-center justify-between rounded-[15px] bg-white px-4 py-3.5 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         <span className="text-[15px] font-medium text-setl-purple">Switch to customer app</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8442FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3 4 7l4 4M4 7h13M16 21l4-4-4-4M20 17H7" /></svg>
       </button>
 
-      <button type="button" onClick={onLogout} className="mx-3 mt-3 cursor-pointer rounded-2xl bg-white px-4 py-3.5 text-left text-[15px] text-red-500 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+      <button type="button" onClick={onLogout} className="mx-3 mt-3 cursor-pointer rounded-[15px] bg-white px-4 py-3.5 text-left text-[15px] text-red-500 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         Log out
       </button>
 

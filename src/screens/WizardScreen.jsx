@@ -42,7 +42,7 @@ export default function WizardScreen({ onRoute, onBack }) {
                     setSymptoms(new Set())
                     setStep(1)
                   }}
-                  className="flex cursor-pointer items-center justify-between rounded-xl border border-setl-line bg-white p-4 text-left text-[15px] text-black active:border-setl-purple"
+                  className="flex cursor-pointer items-center justify-between rounded-[11px] border border-setl-line bg-white p-4 text-left text-[15px] text-black active:border-setl-purple"
                 >
                   {a.label}
                   <svg width="8" height="14" viewBox="0 0 10 18" fill="none">
@@ -64,7 +64,7 @@ export default function WizardScreen({ onRoute, onBack }) {
               {service.symptoms.map((s) => (
                 <label
                   key={s}
-                  className="flex cursor-pointer items-center gap-3 rounded-xl border border-setl-line bg-white p-3.5 text-[15px] text-black has-[:checked]:border-setl-purple"
+                  className="flex cursor-pointer items-center gap-3 rounded-[11px] border border-setl-line bg-white p-3.5 text-[15px] text-black has-[:checked]:border-setl-purple"
                 >
                   <input
                     type="checkbox"
@@ -91,7 +91,7 @@ export default function WizardScreen({ onRoute, onBack }) {
               <button
                 type="button"
                 onClick={() => onRoute(area, true, [...symptoms])}
-                className="cursor-pointer rounded-xl border border-setl-purple bg-white p-4 text-left active:scale-[0.99]"
+                className="cursor-pointer rounded-[11px] border border-setl-purple bg-white p-4 text-left active:scale-[0.99]"
               >
                 <span className="block text-[16px] font-medium text-setl-purple">
                   Yes — choose the service
@@ -105,7 +105,7 @@ export default function WizardScreen({ onRoute, onBack }) {
               <button
                 type="button"
                 onClick={() => onRoute(area, false, [...symptoms])}
-                className="cursor-pointer rounded-xl border border-setl-line bg-white p-4 text-left active:scale-[0.99]"
+                className="cursor-pointer rounded-[11px] border border-setl-line bg-white p-4 text-left active:scale-[0.99]"
               >
                 <span className="block text-[16px] font-medium text-black">
                   {service.requiresInspection ? 'Not sure — book an inspection' : 'Not sure — send a pro a photo'}

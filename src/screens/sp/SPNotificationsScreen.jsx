@@ -33,13 +33,13 @@ export default function SPNotificationsScreen({ orders = [], onBack }) {
       </div>
 
       {items.length === 0 ? (
-        <p className="mx-4 mt-6 rounded-2xl bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">No notifications yet.</p>
+        <p className="mx-4 mt-6 rounded-[15px] bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">No notifications yet.</p>
       ) : (
         <div className="mx-4 mt-4 flex flex-col gap-2.5">
           {items.map((n) => {
             const ic = ICON[n.icon]
             return (
-              <div key={n.id} className="flex items-center gap-3 rounded-2xl bg-white p-3.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+              <div key={n.id} className="flex items-center gap-3 rounded-[15px] bg-white p-3.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
                 <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${ic.bg}`}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={ic.fg} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d={ic.d} /></svg>
                 </span>

@@ -35,12 +35,12 @@ export default function AcServiceScreen({ counts, setCounts, onSearchProviders, 
     <ScreenHeader title="AC cleaning & refilling" subtitle="Tell us how many units need work" onBack={onBack}>
       <div className="flex grow flex-col pt-1">
 
-        <div className="mt-4 flex items-center justify-between rounded-lg border border-setl-line bg-white p-4">
+        <div className="mt-4 flex items-center justify-between rounded-[11px] border border-setl-line bg-white p-4">
           <p className="text-[15px] text-black">How many AC&apos;s need refilling</p>
           <Counter value={counts.refill} onChange={(v) => setCounts({ ...counts, refill: v })} />
         </div>
 
-        <div className="mt-4 flex items-center justify-between rounded-lg border border-setl-line bg-white p-4">
+        <div className="mt-4 flex items-center justify-between rounded-[11px] border border-setl-line bg-white p-4">
           <p className="text-[15px] text-black">How many AC&apos;s need cleaning</p>
           <Counter value={counts.clean} onChange={(v) => setCounts({ ...counts, clean: v })} />
         </div>
@@ -59,7 +59,7 @@ export default function AcServiceScreen({ counts, setCounts, onSearchProviders, 
         <button
           type="button"
           onClick={onSendPhoto}
-          className="mt-4 w-full cursor-pointer rounded-xl border border-setl-purple bg-white py-3 text-center"
+          className="mt-4 w-full cursor-pointer rounded-[11px] border border-setl-purple bg-white py-3 text-center"
         >
           <span className="block text-sm text-[#2790C3]">Not sure what&apos;s wrong?</span>
           <span className="block text-lg font-medium text-setl-purple">Send a pro a photo</span>

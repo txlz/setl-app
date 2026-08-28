@@ -20,7 +20,7 @@ export default function ProfileScreen({ phone, onSwitchMode, onLogout }) {
         </div>
       </div>
 
-      <div className="-mt-5 mx-3 rounded-2xl bg-white p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+      <div className="-mt-5 mx-3 rounded-[15px] bg-white p-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         {MENU.map((item, i) => (
           <button
             key={item.id}
@@ -44,7 +44,7 @@ export default function ProfileScreen({ phone, onSwitchMode, onLogout }) {
         <button
           type="button"
           onClick={onSwitchMode}
-          className="mx-3 mt-4 flex cursor-pointer items-center justify-between rounded-2xl bg-white px-4 py-3.5 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+          className="mx-3 mt-4 flex cursor-pointer items-center justify-between rounded-[15px] bg-white px-4 py-3.5 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
         >
           <span className="text-[15px] font-medium text-setl-purple">Switch to service provider app</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8442FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -56,7 +56,7 @@ export default function ProfileScreen({ phone, onSwitchMode, onLogout }) {
       <button
         type="button"
         onClick={onLogout}
-        className="mx-3 mt-3 cursor-pointer rounded-2xl bg-white px-4 py-3.5 text-left text-[15px] text-red-500 shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+        className="mx-3 mt-3 cursor-pointer rounded-[15px] bg-white px-4 py-3.5 text-left text-[15px] text-red-500 shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
       >
         Log out
       </button>

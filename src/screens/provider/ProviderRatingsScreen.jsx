@@ -30,7 +30,7 @@ export default function ProviderRatingsScreen() {
         <h1 className="text-center text-lg font-semibold">Ratings</h1>
       </div>
 
-      <div className="-mt-3 mx-3 rounded-2xl bg-white p-5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+      <div className="-mt-3 mx-3 rounded-[15px] bg-white p-5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         <div className="flex items-center gap-5">
           <div className="text-center">
             <p className="text-4xl font-bold text-black">{PROVIDER_ME.rating}</p>
@@ -53,7 +53,7 @@ export default function ProviderRatingsScreen() {
 
       <div className="mx-3 mt-4 flex flex-col gap-3">
         {REVIEWS.map((r) => (
-          <div key={r.name} className="rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+          <div key={r.name} className="rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             <div className="flex items-center justify-between">
               <p className="font-semibold text-black">{r.name}</p>
               <Stars n={r.stars} />

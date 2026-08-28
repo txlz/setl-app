@@ -30,7 +30,7 @@ export default function ServiceOptionsScreen({ serviceKey, onSearchProviders, on
           {service.options.map((o) => (
             <label
               key={o.label}
-              className="flex cursor-pointer items-center gap-3 rounded-xl border border-setl-line bg-white p-3.5 text-[15px] text-black has-[:checked]:border-setl-purple"
+              className="flex cursor-pointer items-center gap-3 rounded-[11px] border border-setl-line bg-white p-3.5 text-[15px] text-black has-[:checked]:border-setl-purple"
             >
               <input
                 type="checkbox"
@@ -67,7 +67,7 @@ export default function ServiceOptionsScreen({ serviceKey, onSearchProviders, on
           <button
             type="button"
             onClick={onSendPhoto}
-            className="mt-4 w-full cursor-pointer rounded-xl border border-setl-purple bg-white py-3 text-center"
+            className="mt-4 w-full cursor-pointer rounded-[11px] border border-setl-purple bg-white py-3 text-center"
           >
             <span className="block text-sm text-[#2790C3]">Not sure what&apos;s wrong?</span>
             <span className="block text-lg font-medium text-setl-purple">Send a pro a photo</span>

@@ -36,7 +36,7 @@ export default function SPRequestsScreen({ title, heading, orders, onOpen, onBac
           {heading} <span className="text-setl-purple">({orders.length})</span>
         </h2>
         {orders.length === 0 ? (
-          <p className="rounded-2xl bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">Nothing here yet.</p>
+          <p className="rounded-[15px] bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">Nothing here yet.</p>
         ) : (
           <div className="flex flex-col gap-3">
             {orders.map((o) => {
@@ -46,7 +46,7 @@ export default function SPRequestsScreen({ title, heading, orders, onOpen, onBac
                   key={o.id}
                   type="button"
                   onClick={() => onOpen(o)}
-                  className="w-full rounded-2xl bg-white p-4 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)] active:bg-gray-50"
+                  className="w-full rounded-[15px] bg-white p-4 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)] active:bg-gray-50"
                 >
                   <div className="flex items-center justify-between text-xs text-setl-muted">
                     <span>{o.time}</span>

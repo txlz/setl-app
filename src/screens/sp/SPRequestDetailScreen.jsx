@@ -44,7 +44,7 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
     <GradientHeader title={orderNo(order)} onBack={onBack} sheetClassName="bg-[#F5F4F7]">
       <div className="font-poppins flex grow flex-col px-4 pb-24">
         {/* Job summary */}
-        <div className="mt-1 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+        <div className="mt-1 rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="font-semibold text-black">{order.service}</p>
@@ -75,7 +75,7 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
 
         {/* Customer */}
         <h2 className="mt-5 mb-2 px-1 text-sm font-semibold text-setl-ink-3">Customer</h2>
-        <div className="rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+        <div className="rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-full bg-setl-purple text-lg font-semibold text-white">
               {CUSTOMER_ME.name[0]}
@@ -117,7 +117,7 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
         </h2>
 
         {order.assignedName && !reassigning && (
-          <div className="mb-3 flex items-center gap-3 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+          <div className="mb-3 flex items-center gap-3 rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0FA3A3] text-sm font-bold text-white">
               {order.assignedName[0].toUpperCase()}
             </div>
@@ -149,7 +149,7 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
 
         {showPicker &&
           (employees.length === 0 ? (
-            <p className="rounded-2xl bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+            <p className="rounded-[15px] bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
               Add employees before you can assign this job.
             </p>
           ) : (
@@ -159,7 +159,7 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
                   key={e.id}
                   type="button"
                   onClick={() => assign(e)}
-                  className={`flex w-full cursor-pointer items-center gap-3 rounded-2xl border bg-white p-3 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)] active:bg-gray-50 ${
+                  className={`flex w-full cursor-pointer items-center gap-3 rounded-[15px] border bg-white p-3 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)] active:bg-gray-50 ${
                     e.name === order.assignedName ? 'border-[#0FA3A3]' : e.inRange && e.available ? 'border-[#D9CBF7]' : 'border-transparent'
                   }`}
                 >
@@ -198,7 +198,7 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
           ))}
 
         {!unassigned && !order.assignedName && (
-          <p className="rounded-2xl bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+          <p className="rounded-[15px] bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             This request was handled without a worker assignment.
           </p>
         )}

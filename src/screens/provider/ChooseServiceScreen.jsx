@@ -30,7 +30,7 @@ export default function ChooseServiceScreen({ onConfirm, onBack }) {
     <GradientHeader title="Choose Service" onBack={onBack}>
       <div className="flex grow flex-col px-4 pb-8">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 grow items-center gap-3 rounded-xl bg-[#F3F2F5] px-4">
+          <div className="flex h-11 grow items-center gap-3 rounded-[11px] bg-[#F3F2F5] px-4">
             <svg width="16" height="16" viewBox="0 0 22 22" fill="none" stroke="#9C9AA5" strokeWidth="2">
               <circle cx="9" cy="9" r="6.5" />
               <path d="m14.5 14.5 5 5" strokeLinecap="round" />
@@ -58,7 +58,7 @@ export default function ChooseServiceScreen({ onConfirm, onBack }) {
                 key={name}
                 type="button"
                 onClick={() => toggle(name)}
-                className={`relative h-36 cursor-pointer overflow-hidden rounded-xl text-left transition-transform duration-100 active:scale-[0.98] ${
+                className={`relative h-36 cursor-pointer overflow-hidden rounded-[11px] text-left transition-transform duration-100 active:scale-[0.98] ${
                   active ? 'ring-3 ring-setl-purple' : ''
                 }`}
                 style={{ background: TILE_GRADIENTS[PROVIDER_SERVICES.indexOf(name) % TILE_GRADIENTS.length] }}

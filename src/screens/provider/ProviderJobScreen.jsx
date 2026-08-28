@@ -70,7 +70,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
   return (
     <div className="font-poppins flex min-h-screen flex-col bg-[#F5F4F7] px-3 pt-4 pb-6">
       {/* Job header */}
-      <div className="rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+      <div className="rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         <button type="button" onClick={onBack} aria-label="Go back" className="mb-1 -ml-1 cursor-pointer p-1 text-black">
           <svg width="9" height="16" viewBox="0 0 10 18" fill="none">
             <path d="M9 1 2 9l7 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
@@ -91,7 +91,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
 
         {/* Quick actions — the job is completed via the primary button below
             ("Send estimate" for inspections, "Mark as done" for direct work). */}
-        <div className="mt-3 flex overflow-hidden rounded-lg border border-setl-surface-3">
+        <div className="mt-3 flex overflow-hidden rounded-[11px] border border-setl-surface-3">
           <button type="button" onClick={() => setReporting(true)} className="flex-1 cursor-pointer bg-setl-surface-3 py-2.5 text-sm font-medium text-setl-ink-3 active:opacity-80">
             Report
           </button>
@@ -107,7 +107,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
 
           {/* Custom line + catalog grid */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-2xl bg-white p-3 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+            <div className="rounded-[15px] bg-white p-3 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
               <p className="text-xs text-setl-muted">Pricing</p>
               <Stepper value={customPrice} suffix=" AED" onDec={() => setCustomPrice(Math.max(5, customPrice - 5))} onInc={() => setCustomPrice(customPrice + 5)} />
               <p className="mt-2 text-xs text-setl-muted">Quantity</p>
@@ -127,7 +127,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
             </div>
 
             {catalog.map((part) => (
-              <div key={part.name} className="relative rounded-2xl bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+              <div key={part.name} className="relative rounded-[15px] bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
                 <button
                   type="button"
                   onClick={() => addPart(part)}
@@ -150,7 +150,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
 
           {/* Cart / estimate so far */}
           {lines.length > 0 && (
-            <div className="mt-5 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+            <div className="mt-5 rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
               <p className="mb-2 text-sm font-semibold text-black">Estimate</p>
               {lines.map((l, i) => (
                 <div key={`${l.name}-${i}`} className="flex items-center justify-between border-b border-gray-50 py-2 last:border-0">
@@ -179,7 +179,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
           <button
             type="button"
             onClick={() => send([])}
-            className="mt-3 h-12 w-full cursor-pointer rounded-xl border border-setl-line bg-white text-[15px] font-medium text-setl-ink-3 active:scale-[0.98]"
+            className="mt-3 h-12 w-full cursor-pointer rounded-[11px] border border-setl-line bg-white text-[15px] font-medium text-setl-ink-3 active:scale-[0.98]"
           >
             No products needed
           </button>
@@ -187,7 +187,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
       ) : (
         <>
           {order.products?.length > 0 && (
-            <div className="mt-5 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+            <div className="mt-5 rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
               <p className="mb-2 text-sm font-semibold text-black">Approved work</p>
               {order.products.map((p) => (
                 <div key={p.name} className="flex justify-between py-1 text-sm">
@@ -221,7 +221,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
                     setReporting(false)
                     onReport(order, r.state, r.label)
                   }}
-                  className="w-full cursor-pointer rounded-xl border border-setl-line px-4 py-3 text-left text-sm text-black active:bg-gray-50"
+                  className="w-full cursor-pointer rounded-[11px] border border-setl-line px-4 py-3 text-left text-sm text-black active:bg-gray-50"
                 >
                   {r.label}
                 </button>

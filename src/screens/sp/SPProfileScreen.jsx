@@ -26,7 +26,7 @@ export default function SPProfileScreen({ profile, onDone, onBack }) {
         <label className="text-xs text-setl-muted">Customer service (support number)</label>
         <input value={customerService} onChange={(e) => setCustomerService(e.target.value)} placeholder="Support number" className="mt-1 w-full border-b border-setl-line pb-2 text-sm text-black outline-none focus:border-setl-purple" />
 
-        <p className="mt-4 rounded-xl bg-[#EDE4FD] p-3 text-xs text-setl-purple">
+        <p className="mt-4 rounded-[11px] bg-[#EDE4FD] p-3 text-xs text-setl-purple">
           Your job prices are set up from the standard list for your trade — adjust them any time on the Services screen.
         </p>
 

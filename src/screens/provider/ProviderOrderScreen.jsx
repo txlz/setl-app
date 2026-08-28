@@ -46,7 +46,7 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
       </div>
 
       <h2 className="mt-2 mb-2 px-1 text-lg font-semibold text-black">Customer data</h2>
-      <div className="rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+      <div className="rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
         <Row label="Name" value={CUSTOMER_ME.name} />
         <Row label="Phone number" value={CUSTOMER_ME.phone} />
         <Row label="Address" value={CUSTOMER_ME.address} />
@@ -58,7 +58,7 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
       {symptoms?.length > 0 && (
         <>
           <h2 className="mt-5 mb-2 px-1 text-lg font-semibold text-black">What the customer reported</h2>
-          <div className="flex flex-wrap gap-2 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+          <div className="flex flex-wrap gap-2 rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
             {symptoms.map((s) => (
               <span key={s} className="rounded-full bg-[#F1ECFB] px-3 py-1 text-xs text-setl-purple">
                 {s}
@@ -69,7 +69,7 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
       )}
 
       <h2 className="mt-5 mb-2 px-1 text-lg font-semibold text-black">Location</h2>
-      <div className="flex items-center justify-between rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+      <div className="flex items-center justify-between rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
         <span className="text-sm text-setl-muted">{CUSTOMER_ME.area}</span>
         <span className="flex items-center gap-1 text-sm font-medium text-setl-purple">
           Maps
@@ -81,7 +81,7 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
       </div>
 
       <h2 className="mt-5 mb-2 px-1 text-lg font-semibold text-black">Price</h2>
-      <div className="rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+      <div className="rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
         {order.flowType === 'inspection' ? (
           <>
             <Row label="Inspection fee (prepaid)" value={`${order.total ?? 0} AED`} />
@@ -104,7 +104,7 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
           <button
             type="button"
             onClick={() => onDecline(order)}
-            className="mt-3 h-12 w-full cursor-pointer rounded-xl border border-setl-line bg-white text-[15px] font-medium text-setl-ink-3 transition-transform duration-100 active:scale-[0.98]"
+            className="mt-3 h-12 w-full cursor-pointer rounded-[11px] border border-setl-line bg-white text-[15px] font-medium text-setl-ink-3 transition-transform duration-100 active:scale-[0.98]"
           >
             Decline
           </button>
