@@ -30,9 +30,11 @@ export default function CleaningServiceScreen({
     <ScreenHeader title="House cleaning" subtitle="How many hours do you need?" onBack={onBack}>
       <div className="flex grow flex-col pt-1">
         {/* Your regular cleaner (retention loop) */}
+        {/* No artboard counterpart (app-only retention card) — uses house card
+            geometry: 1.html:1602 white card, radius 16, shadow-card-sm. */}
         {favorite && (
-          <div className="mb-5 rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
-            <p className="text-xs font-medium text-setl-purple">Your regular cleaner</p>
+          <div className="mb-5 rounded-[16px] bg-white p-4 shadow-card-sm">
+            <p className="text-[11px] font-medium text-setl-violet">Your regular cleaner</p>
             <div className="mt-2 flex items-center gap-3">
               <button
                 type="button"
@@ -46,8 +48,9 @@ export default function CleaningServiceScreen({
                   {favorite.name[0].toUpperCase()}
                 </div>
                 <div className="min-w-0 grow">
-                  <p className="truncate font-semibold text-black">{favorite.name}</p>
-                  <p className="text-xs text-setl-muted">
+                  {/* 1.html:1596 — provider name 14px/500 #0D0000; meta 11px/400 */}
+                  <p className="truncate text-sm font-medium text-setl-ink">{favorite.name}</p>
+                  <p className="text-[11px] text-setl-muted">
                     ★ {favorite.rating} · {favorite.bookingFee} AED/hr · View profile
                   </p>
                 </div>
@@ -55,22 +58,24 @@ export default function CleaningServiceScreen({
               <button
                 type="button"
                 onClick={onClearFavorite}
-                className="shrink-0 cursor-pointer text-xs text-setl-muted underline"
+                className="shrink-0 cursor-pointer text-[11px] text-setl-muted underline"
               >
                 Remove
               </button>
             </div>
+            {/* 1.html:1583 — in-card CTA is radius 12, ~44px tall, label 14px/500 white */}
             <button
               type="button"
               onClick={() => setRebooking(true)}
-              className="mt-3 h-11 w-full cursor-pointer rounded-full bg-linear-[270deg,#366EE9_-95.36%,#F15CFA_212.48%] text-sm font-medium text-white active:opacity-90"
+              className="brand-cta mt-3 h-11 w-full cursor-pointer rounded-[12px] text-sm font-medium text-white active:opacity-90"
             >
               Book {favorite.name.split(' ')[0]} again · {hours} {hours === 1 ? 'hr' : 'hrs'}
             </button>
           </div>
         )}
 
-        <div className="relative h-24 overflow-hidden rounded-[15px]">
+        {/* 1.html:1343 — hero banner is 321.73x111 at radius 15 */}
+        <div className="relative h-[111px] overflow-hidden rounded-[15px]">
           <img src={cleaningImg} alt="" className="h-full w-full object-cover" />
           <span
             aria-hidden
@@ -78,32 +83,35 @@ export default function CleaningServiceScreen({
           />
         </div>
 
+        {/* 4.js:598 — "how many hours do you need your professional to stay ?" 14px/500 #0D0000 */}
         <div className="mt-4 flex items-center justify-between rounded-[11px] border border-setl-line bg-white p-4">
-          <p className="text-[15px] text-black">Hours of cleaning</p>
+          <p className="text-sm font-medium text-setl-ink">Hours of cleaning</p>
           <div className="flex items-center gap-1.5">
+            {/* 5.js:81 — #F3F3F3 plate, radius 9; 4.js:605 — numerals 15px/400 */}
             <button
               type="button"
               aria-label="decrease"
               onClick={() => setHours(Math.max(MIN_HOURS, hours - 1))}
-              className="h-10 w-10 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 transition-transform duration-100 active:scale-95"
+              className="h-10 w-10 cursor-pointer rounded-[9px] bg-setl-surface-3 text-[15px] text-setl-ink-3 transition-transform duration-100 active:scale-95"
             >
               −
             </button>
-            <span className="flex h-10 w-10 items-center justify-center rounded-md border border-setl-purple text-[15px] text-black">
+            <span className="flex h-10 w-10 items-center justify-center rounded-[9px] border border-setl-violet text-[15px] text-setl-ink">
               {hours}
             </span>
             <button
               type="button"
               aria-label="increase"
               onClick={() => setHours(Math.min(MAX_HOURS, hours + 1))}
-              className="h-10 w-10 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 transition-transform duration-100 active:scale-95"
+              className="h-10 w-10 cursor-pointer rounded-[9px] bg-setl-surface-3 text-[15px] text-setl-ink-3 transition-transform duration-100 active:scale-95"
             >
               +
             </button>
           </div>
         </div>
 
-        <p className="mt-3 text-xs text-setl-muted">
+        {/* 5.js:269 — descriptive copy is 11px/400 on the boards */}
+        <p className="mt-3 text-[11px] leading-[15.4px] text-setl-muted">
           Most 1-bedroom homes take 2–3 hours; villas usually need 4+. You pay the provider&apos;s
           hourly rate × hours, after the work is done.
         </p>
@@ -111,14 +119,16 @@ export default function CleaningServiceScreen({
         {/* Specific jobs on top of the hourly rate (from the Figma boards) */}
         {setExtras && (
           <section className="mt-6">
-            <h3 className="text-[15px] font-semibold text-setl-navy">Add specific jobs</h3>
-            <p className="mt-0.5 text-xs text-setl-muted">
+            {/* 1.html:1555 "best home cleaning shops" — section heads are 15px/500 black */}
+            <h3 className="text-[15px] font-medium text-setl-ink">Add specific jobs</h3>
+            <p className="mt-0.5 text-[11px] text-setl-muted">
               Optional — added to the hourly rate at checkout.
             </p>
 
             {CLEANING_GROUPS.map((group) => (
               <div key={group.key} className="mt-4">
-                <p className="mb-2 text-xs font-semibold text-setl-ink-3">{group.title}</p>
+                {/* 5.js:265 — group/tab labels are 13px/500 on the boards */}
+                <p className="mb-2 text-[13px] font-medium text-setl-ink-3">{group.title}</p>
                 {group.items.map((item) => {
                   const qty = extras[item.key] ?? 0
                   return (
@@ -126,9 +136,12 @@ export default function CleaningServiceScreen({
                       key={item.key}
                       className="row-card mb-2 flex items-center justify-between gap-2 px-3 py-2.5"
                     >
+                      {/* 1.html:1596 — row title 14px/500 #0D0000; :1600 meta 11px/400 */}
                       <div className="min-w-0 pr-2">
-                        <p className="text-sm leading-tight text-setl-ink">{item.label}</p>
-                        <p className="text-xs text-setl-muted">
+                        <p className="text-sm leading-tight font-medium text-setl-ink">
+                          {item.label}
+                        </p>
+                        <p className="text-[11px] text-setl-muted">
                           AED {item.price} / {item.unit}
                         </p>
                       </div>
@@ -139,18 +152,18 @@ export default function CleaningServiceScreen({
                           onClick={() =>
                             setExtras({ ...extras, [item.key]: Math.max(0, qty - 1) })
                           }
-                          className="h-9 w-9 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 active:scale-95"
+                          className="h-9 w-9 cursor-pointer rounded-[9px] bg-setl-surface-3 text-[15px] text-setl-ink-3 active:scale-95"
                         >
                           −
                         </button>
-                        <span className="flex h-9 w-9 items-center justify-center rounded-md border border-setl-purple text-sm text-setl-ink">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-[9px] border border-setl-violet text-[15px] text-setl-ink">
                           {qty}
                         </span>
                         <button
                           type="button"
                           aria-label={`increase ${item.label}`}
                           onClick={() => setExtras({ ...extras, [item.key]: Math.min(20, qty + 1) })}
-                          className="h-9 w-9 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 active:scale-95"
+                          className="h-9 w-9 cursor-pointer rounded-[9px] bg-setl-surface-3 text-[15px] text-setl-ink-3 active:scale-95"
                         >
                           +
                         </button>
