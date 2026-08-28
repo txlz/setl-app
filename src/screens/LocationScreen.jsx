@@ -31,7 +31,8 @@ export default function LocationScreen({ onConfirm }) {
       </div>
 
       <div className="flex grow flex-col px-4 pt-5 pb-6">
-        <h1 className="text-center text-[17px] font-semibold text-black">Location Details</h1>
+        {/* "Location Details" on the export (1.html:805) is 14px/500 #0D0000 (setl-ink). */}
+        <h1 className="text-center text-[14px] font-medium text-setl-ink">Location Details</h1>
 
         <div className="mt-4 flex items-center justify-between rounded-[11px] bg-[#F3EDFE] px-4 py-3.5">
           <span className="text-[15px] text-black">Abu Dhabi</span>
@@ -47,8 +48,10 @@ export default function LocationScreen({ onConfirm }) {
               key={t}
               type="button"
               onClick={() => setType(t)}
-              className={`cursor-pointer rounded-[11px] border px-5 py-2 text-[15px] shadow-sm transition-colors ${
-                type === t ? 'border-setl-purple bg-white text-setl-purple' : 'border-transparent bg-white text-setl-muted'
+              // Chips on the export (1.html:809-814) are 66x27, 0.5px border, no shadow;
+              // label 12px/400 — #7E43FF on a violet border when picked, else #A8A3A3.
+              className={`h-[27px] w-[66px] cursor-pointer rounded-[11px] border-[0.5px] bg-white text-[12px] transition-colors ${
+                type === t ? 'border-setl-violet text-setl-violet' : 'border-setl-line-2 text-setl-muted-2'
               }`}
             >
               {t}
