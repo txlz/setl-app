@@ -69,7 +69,7 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
           </div>
           <div className="mt-3 flex items-center justify-between border-t border-setl-surface-3 pt-3">
             <span className="text-sm text-setl-muted">{order.flowType === 'inspection' ? 'Inspection fee' : 'Job total'}</span>
-            <span className="text-lg font-bold text-black">{money} AED</span>
+            <span className="text-[15px] font-bold text-black">{money} AED</span>
           </div>
         </div>
 
@@ -77,7 +77,7 @@ export default function SPRequestDetailScreen({ order, employees = [], onAssign,
         <h2 className="mt-5 mb-2 px-1 text-sm font-semibold text-setl-ink-3">Customer</h2>
         <div className="rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-setl-purple text-lg font-semibold text-white">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-setl-purple text-[15px] font-semibold text-white">
               {CUSTOMER_ME.name[0]}
             </div>
             <div>

@@ -21,7 +21,7 @@ export default function LocationScreen({ onConfirm }) {
           <input
             type="search"
             placeholder="Search Location"
-            className="w-full bg-transparent text-base text-black outline-none placeholder:text-[#B9B7BF]"
+            className="w-full bg-transparent text-[14px] text-black outline-none placeholder:text-[#B9B7BF]"
           />
         </div>
         <div className="absolute top-20 left-4 flex overflow-hidden rounded-[11px] bg-white text-sm shadow">
@@ -31,7 +31,7 @@ export default function LocationScreen({ onConfirm }) {
       </div>
 
       <div className="flex grow flex-col px-4 pt-5 pb-6">
-        <h1 className="text-center text-xl font-semibold text-black">Location Details</h1>
+        <h1 className="text-center text-[17px] font-semibold text-black">Location Details</h1>
 
         <div className="mt-4 flex items-center justify-between rounded-[11px] bg-[#F3EDFE] px-4 py-3.5">
           <span className="text-[15px] text-black">Abu Dhabi</span>
@@ -61,7 +61,7 @@ export default function LocationScreen({ onConfirm }) {
           value={nameNumber}
           onChange={(e) => setNameNumber(e.target.value)}
           placeholder="Building name or number"
-          className="mt-4 rounded-[11px] bg-[#F3F2F5] px-4 py-3.5 text-base text-black outline-none placeholder:text-[#B9B7BF]"
+          className="mt-4 rounded-[11px] bg-[#F3F2F5] px-4 py-3.5 text-[14px] text-black outline-none placeholder:text-[#B9B7BF]"
         />
 
         <div className="grow" />

@@ -18,7 +18,7 @@ const STATUS_STYLES = {
 export default function OrdersScreen({ orders, onOpenOrder, onBook }) {
   return (
     <div className="font-poppins flex min-h-screen flex-col bg-[#F5F4F7] px-3 pt-5 pb-24">
-      <h1 className="text-center text-2xl font-semibold text-black">My Orders</h1>
+      <h1 className="text-center text-[17px] font-semibold text-black">My Orders</h1>
 
       {orders.length === 0 ? (
         <div className="flex grow flex-col items-center justify-center pb-16">

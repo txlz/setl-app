@@ -29,7 +29,7 @@ export default function SPNotificationsScreen({ orders = [], onBack }) {
             <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><path d="M9 1 2 9l7 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /></svg>
           </button>
         )}
-        <h1 className="text-center text-lg font-semibold text-white">Notifications</h1>
+        <h1 className="text-center text-[15px] font-semibold text-white">Notifications</h1>
       </div>
 
       {items.length === 0 ? (

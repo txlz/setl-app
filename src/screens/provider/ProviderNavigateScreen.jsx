@@ -18,7 +18,7 @@ export default function ProviderNavigateScreen({ order, onArrived, onBack }) {
             <path d="M9 1 2 9l7 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
           </svg>
         </button>
-        <h1 className="text-center text-lg font-semibold text-white">Location</h1>
+        <h1 className="text-center text-[15px] font-semibold text-white">Location</h1>
       </div>
 
       <div className="-mt-6 flex grow flex-col rounded-t-[30px] bg-white px-4 pt-4">

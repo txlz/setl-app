@@ -31,7 +31,7 @@ export default function WizardScreen({ onRoute, onBack }) {
       <div className="flex grow flex-col px-4 pt-5 pb-6">
         {step === 0 && (
           <>
-            <h2 className="text-2xl font-semibold text-black">Where&apos;s the problem?</h2>
+            <h2 className="text-[17px] font-semibold text-black">Where&apos;s the problem?</h2>
             <div className="mt-4 flex flex-col gap-3">
               {AREAS.map((a) => (
                 <button
@@ -56,7 +56,7 @@ export default function WizardScreen({ onRoute, onBack }) {
 
         {step === 1 && (
           <>
-            <h2 className="text-2xl font-semibold text-black">What&apos;s happening?</h2>
+            <h2 className="text-[17px] font-semibold text-black">What&apos;s happening?</h2>
             <p className="mt-1 text-sm text-setl-muted">
               Pick everything that applies — it helps your provider come prepared.
             </p>
@@ -84,7 +84,7 @@ export default function WizardScreen({ onRoute, onBack }) {
         {step === 2 && (
           <>
             {/* Canonical diagnosis question (PLAN.md copy standards) */}
-            <h2 className="text-2xl font-semibold text-black">
+            <h2 className="text-[17px] font-semibold text-black">
               Do you already know the service you need?
             </h2>
             <div className="mt-5 flex flex-col gap-3">

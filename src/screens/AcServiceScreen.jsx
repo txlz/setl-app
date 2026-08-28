@@ -10,7 +10,7 @@ function Counter({ value, onChange }) {
         type="button"
         aria-label="decrease"
         onClick={() => onChange(Math.max(0, value - 1))}
-        className="h-10 w-10 cursor-pointer rounded-md bg-setl-surface-3 text-lg text-setl-ink-3 transition-transform duration-100 active:scale-95"
+        className="h-10 w-10 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 transition-transform duration-100 active:scale-95"
       >
         −
       </button>
@@ -21,7 +21,7 @@ function Counter({ value, onChange }) {
         type="button"
         aria-label="increase"
         onClick={() => onChange(Math.min(MAX_UNITS, value + 1))}
-        className="h-10 w-10 cursor-pointer rounded-md bg-setl-surface-3 text-lg text-setl-ink-3 transition-transform duration-100 active:scale-95"
+        className="h-10 w-10 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 transition-transform duration-100 active:scale-95"
       >
         +
       </button>
@@ -62,7 +62,7 @@ export default function AcServiceScreen({ counts, setCounts, onSearchProviders, 
           className="mt-4 w-full cursor-pointer rounded-[11px] border border-setl-purple bg-white py-3 text-center"
         >
           <span className="block text-sm text-[#2790C3]">Not sure what&apos;s wrong?</span>
-          <span className="block text-lg font-medium text-setl-purple">Send a pro a photo</span>
+          <span className="block text-[15px] font-medium text-setl-purple">Send a pro a photo</span>
           <span className="block text-xs text-setl-muted">Get a ballpark — no visit needed to start</span>
         </button>
       </div>

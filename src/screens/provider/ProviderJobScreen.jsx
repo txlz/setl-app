@@ -5,9 +5,9 @@ import GradientButton from '../../components/GradientButton.jsx'
 function Stepper({ value, onDec, onInc, suffix }) {
   return (
     <div className="flex items-center gap-1.5">
-      <button type="button" onClick={onDec} className="h-8 w-8 cursor-pointer rounded-md bg-setl-surface-3 text-lg text-setl-ink-3 active:scale-95">−</button>
+      <button type="button" onClick={onDec} className="h-8 w-8 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 active:scale-95">−</button>
       <span className="min-w-14 text-center text-sm font-medium text-black">{value}{suffix}</span>
-      <button type="button" onClick={onInc} className="h-8 w-8 cursor-pointer rounded-md bg-setl-surface-3 text-lg text-setl-ink-3 active:scale-95">+</button>
+      <button type="button" onClick={onInc} className="h-8 w-8 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 active:scale-95">+</button>
     </div>
   )
 }
@@ -78,7 +78,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
         </button>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <h1 className="text-xl font-semibold text-black">
+            <h1 className="text-[17px] font-semibold text-black">
               {inspecting ? 'Inspection' : order.service}
             </h1>
             <span className="rounded-full bg-[#FBEED0] px-2.5 py-0.5 text-[11px] font-medium text-[#B5820E]">
@@ -103,7 +103,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
 
       {inspecting ? (
         <>
-          <h2 className="mt-5 mb-2 px-1 text-lg font-semibold text-black">Add products</h2>
+          <h2 className="mt-5 mb-2 px-1 text-[15px] font-semibold text-black">Add products</h2>
 
           {/* Custom line + catalog grid */}
           <div className="grid grid-cols-2 gap-3">
@@ -211,7 +211,7 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
       {reporting && (
         <div className="fixed inset-0 z-20 mx-auto flex w-full max-w-[375px] items-end bg-black/40" onClick={() => setReporting(false)}>
           <div className="w-full rounded-t-3xl bg-white p-5 pb-8" onClick={(e) => e.stopPropagation()}>
-            <h3 className="text-lg font-semibold text-black">Report an issue</h3>
+            <h3 className="text-[15px] font-semibold text-black">Report an issue</h3>
             <div className="mt-3 flex flex-col gap-2">
               {REPORT_REASONS.map((r) => (
                 <button

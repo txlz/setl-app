@@ -1,0 +1,17 @@
+<!doctype html><meta charset="utf-8">
+<style>body{margin:0}iframe{width:375px;height:1100px;border:0;display:block}</style>
+<iframe id="f" src="/setl-app/"></iframe>
+<script>
+const f=document.getElementById('f');const D=()=>f.contentDocument;
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+function click(t){const e=[...D().querySelectorAll('button')].find(x=>(x.textContent||'').trim().toLowerCase().includes(t.toLowerCase()));if(e)e.click()}
+function fill(el,v){const s=Object.getOwnPropertyDescriptor(el.constructor.prototype,'value').set;s.call(el,v);el.dispatchEvent(new f.contentWindow.Event('input',{bubbles:true}))}
+const T=new URLSearchParams(location.search).get('s');
+f.onload=async()=>{
+  await wait(3200); fill(D().querySelector('input'),'501234567'); await wait(300);
+  click('Continue'); await wait(900);
+  for(const b of [...D().querySelectorAll('input')]){fill(b,'1');await wait(200)}
+  await wait(1600); click('Villa'); await wait(300); click('Confirm'); await wait(1400);
+  if(T){click(T); await wait(1100);}
+};
+</script>

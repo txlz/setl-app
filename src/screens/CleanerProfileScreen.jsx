@@ -26,14 +26,14 @@ export default function CleanerProfileScreen({ cleaner, hours, isFavorite, onTog
         {/* Header */}
         <div className="flex items-center gap-4">
           <div
-            className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full text-2xl font-bold text-white"
+            className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full text-[17px] font-bold text-white"
             style={{ background: cleaner.color }}
           >
             {cleaner.name[0].toUpperCase()}
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-2">
-              <h2 className="text-xl font-semibold text-black">{cleaner.name}</h2>
+              <h2 className="text-[17px] font-semibold text-black">{cleaner.name}</h2>
               {cleaner.verified && <VerifiedBadge />}
             </div>
             <p className="mt-1 text-sm text-setl-ink-3">

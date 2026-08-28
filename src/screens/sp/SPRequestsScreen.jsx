@@ -28,11 +28,11 @@ export default function SPRequestsScreen({ title, heading, orders, onOpen, onBac
         <button type="button" onClick={onBack} aria-label="Go back" className="absolute top-4 left-2 cursor-pointer p-2 text-white">
           <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><path d="M9 1 2 9l7 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /></svg>
         </button>
-        <h1 className="text-center text-lg font-semibold text-white">{title}</h1>
+        <h1 className="text-center text-[15px] font-semibold text-white">{title}</h1>
       </div>
 
       <div className="px-4 pt-5">
-        <h2 className="mb-3 text-lg font-semibold text-black">
+        <h2 className="mb-3 text-[15px] font-semibold text-black">
           {heading} <span className="text-setl-purple">({orders.length})</span>
         </h2>
         {orders.length === 0 ? (
@@ -56,7 +56,7 @@ export default function SPRequestsScreen({ title, heading, orders, onOpen, onBac
                     <div>
                       <p className="text-xs text-setl-muted">Order no : {orderNo(o)}</p>
                       <p className="font-semibold text-black">{o.service}</p>
-                      <p className="text-lg font-bold text-black">{money(o)} AED</p>
+                      <p className="text-[15px] font-bold text-black">{money(o)} AED</p>
                       {o.assignedName && <p className="mt-0.5 text-xs text-setl-muted">Worker: {o.assignedName}</p>}
                     </div>
                     <div className="flex flex-col items-end gap-1.5">

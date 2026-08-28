@@ -18,11 +18,11 @@ export default function ProviderAccountScreen({ orders = [], availableNow, onOpe
     <div className="font-poppins flex min-h-screen flex-col bg-[#F5F4F7] pb-24">
       <div className="brand-header px-4 pt-8 pb-10 text-center text-white">
         <div className="flex flex-col items-center gap-2">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/25 text-2xl font-semibold" style={{ background: PROVIDER_ME.color }}>
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/25 text-[17px] font-semibold" style={{ background: PROVIDER_ME.color }}>
             {PROVIDER_ME.name[0]}
           </div>
           <div>
-            <p className="text-lg font-semibold">{PROVIDER_ME.name}</p>
+            <p className="text-[15px] font-semibold">{PROVIDER_ME.name}</p>
             <p className="text-sm text-white/85">{PROVIDER_ME.trade} · ★ {PROVIDER_ME.rating}</p>
           </div>
         </div>
@@ -30,11 +30,11 @@ export default function ProviderAccountScreen({ orders = [], availableNow, onOpe
 
       <div className="-mt-5 mx-3 grid grid-cols-2 gap-3">
         <div className="rounded-[15px] bg-white p-4 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-          <p className="text-2xl font-bold text-black">{earnings} AED</p>
+          <p className="text-[17px] font-bold text-black">{earnings} AED</p>
           <p className="text-xs text-setl-muted">Earnings</p>
         </div>
         <div className="rounded-[15px] bg-white p-4 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-          <p className="text-2xl font-bold text-black">{jobsDone}</p>
+          <p className="text-[17px] font-bold text-black">{jobsDone}</p>
           <p className="text-xs text-setl-muted">Jobs done</p>
         </div>
       </div>

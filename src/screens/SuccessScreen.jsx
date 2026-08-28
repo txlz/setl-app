@@ -49,7 +49,7 @@ export default function SuccessScreen({ variant, total, credit, onDone, onTrack 
         </svg>
       </div>
       <SetlLogo className="mt-6 h-[43px] w-[30px]" />
-      <h1 className="mt-6 text-2xl font-semibold">{title}</h1>
+      <h1 className="mt-6 text-[17px] font-semibold">{title}</h1>
       <p className="mt-2 text-white/90">{body}</p>
       {track ? (
         <>

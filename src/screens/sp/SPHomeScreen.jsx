@@ -22,7 +22,7 @@ export default function SPHomeScreen({ company, counts, onOpen }) {
     <div className="font-poppins min-h-screen bg-[#F5F4F7] pb-24">
       <div className="brand-header px-4 pt-8 pb-8 text-center text-white">
         <p className="text-xs text-white/80">Service Provider</p>
-        <p className="text-xl font-semibold">{company.profile?.name || 'Your company'}</p>
+        <p className="text-[17px] font-semibold">{company.profile?.name || 'Your company'}</p>
         <p className="mt-0.5 text-sm text-white/85">
           {(company.employees ?? []).length} employees · {(company.services ?? []).length} services
         </p>

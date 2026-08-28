@@ -27,7 +27,7 @@ export default function ProvidersScreen({ service: serviceId, variant, onConfirm
       <GradientHeader title={title} onBack={onBack} sheetClassName="bg-[#F5F4F7]">
         {isInspection && service.requiresInspection && (
           <p className="mx-4 flex items-center gap-3 text-xs text-setl-ink-3">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-red-500 text-lg font-bold text-white">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-red-500 text-[15px] font-bold text-white">
               !
             </span>
             An inspection visit comes first so you get a clear, itemized quote. The inspection fee
@@ -50,12 +50,12 @@ export default function ProvidersScreen({ service: serviceId, variant, onConfirm
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search providers"
-              className="w-full bg-transparent text-base text-black outline-none placeholder:text-[#C2C0C9]"
+              className="w-full bg-transparent text-[14px] text-black outline-none placeholder:text-[#C2C0C9]"
             />
           </div>
         )}
 
-        {isInspection && <h2 className="px-4 pt-4 text-lg font-semibold text-black">Providers</h2>}
+        {isInspection && <h2 className="px-4 pt-4 text-[15px] font-semibold text-black">Providers</h2>}
 
         <div className="flex flex-col gap-3 px-3 pt-4 pb-4">
           {providers.map((p, i) => (

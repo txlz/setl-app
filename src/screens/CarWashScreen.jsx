@@ -167,7 +167,7 @@ export default function CarWashScreen({ wash, setWash, vehicles = [], onManageVe
 
         <div className="shadow-card mt-5 mb-3 flex items-center justify-between rounded-[15px] bg-white px-4 py-3">
           <span className="text-sm text-setl-ink-3">Total</span>
-          <span className="text-lg font-semibold text-setl-navy">AED {total}</span>
+          <span className="text-[15px] font-semibold text-setl-navy">AED {total}</span>
         </div>
 
         <GradientButton onClick={onSearchProviders} disabled={!pkg}>

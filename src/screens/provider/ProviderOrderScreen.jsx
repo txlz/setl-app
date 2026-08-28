@@ -45,7 +45,7 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
         </span>
       </div>
 
-      <h2 className="mt-2 mb-2 px-1 text-lg font-semibold text-black">Customer data</h2>
+      <h2 className="mt-2 mb-2 px-1 text-[15px] font-semibold text-black">Customer data</h2>
       <div className="rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
         <Row label="Name" value={CUSTOMER_ME.name} />
         <Row label="Phone number" value={CUSTOMER_ME.phone} />
@@ -57,7 +57,7 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
 
       {symptoms?.length > 0 && (
         <>
-          <h2 className="mt-5 mb-2 px-1 text-lg font-semibold text-black">What the customer reported</h2>
+          <h2 className="mt-5 mb-2 px-1 text-[15px] font-semibold text-black">What the customer reported</h2>
           <div className="flex flex-wrap gap-2 rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
             {symptoms.map((s) => (
               <span key={s} className="rounded-full bg-[#F1ECFB] px-3 py-1 text-xs text-setl-purple">
@@ -68,7 +68,7 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
         </>
       )}
 
-      <h2 className="mt-5 mb-2 px-1 text-lg font-semibold text-black">Location</h2>
+      <h2 className="mt-5 mb-2 px-1 text-[15px] font-semibold text-black">Location</h2>
       <div className="flex items-center justify-between rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
         <span className="text-sm text-setl-muted">{CUSTOMER_ME.area}</span>
         <span className="flex items-center gap-1 text-sm font-medium text-setl-purple">
@@ -80,7 +80,7 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
         </span>
       </div>
 
-      <h2 className="mt-5 mb-2 px-1 text-lg font-semibold text-black">Price</h2>
+      <h2 className="mt-5 mb-2 px-1 text-[15px] font-semibold text-black">Price</h2>
       <div className="rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
         {order.flowType === 'inspection' ? (
           <>

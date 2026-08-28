@@ -61,7 +61,7 @@ function JobCard({ order, onOpen }) {
             Order no : <span className="text-setl-ink-3">{orderNo(order)}</span>
           </p>
           <p className="mt-1 truncate text-[15px] font-semibold text-black">{order.service}</p>
-          <p className="mt-0.5 text-lg font-bold text-black">{money(order)} AED</p>
+          <p className="mt-0.5 text-[15px] font-bold text-black">{money(order)} AED</p>
         </div>
         <div className="flex shrink-0 flex-col items-end gap-1.5">
           {order.flowType === 'inspection' && (
@@ -104,12 +104,12 @@ export default function ProviderHomeScreen({ orders, onOpenOrder, employee, comp
       <div className="relative brand-header pb-10">
         <div className="flex flex-col items-center pt-10">
           <div
-            className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-white/40 text-2xl font-bold text-white shadow-lg"
+            className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-white/40 text-[17px] font-bold text-white shadow-lg"
             style={{ background: PROVIDER_ME.color }}
           >
             {PROVIDER_ME.name[0]}
           </div>
-          <p className="mt-3 text-lg font-semibold text-white">{PROVIDER_ME.name}</p>
+          <p className="mt-3 text-[15px] font-semibold text-white">{PROVIDER_ME.name}</p>
           <p className="text-sm text-white/85">{subtitle}</p>
         </div>
       </div>
@@ -130,7 +130,7 @@ export default function ProviderHomeScreen({ orders, onOpenOrder, employee, comp
             .filter((g) => g.items.length > 0)
             .map((g) => (
               <div key={g.key} className="mb-6">
-                <h2 className="mb-3 text-lg font-semibold text-black">
+                <h2 className="mb-3 text-[15px] font-semibold text-black">
                   {g.title}
                   {g.key === 'new' && (
                     <span className="text-setl-purple">({g.items.length})</span>

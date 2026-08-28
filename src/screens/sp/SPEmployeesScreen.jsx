@@ -59,7 +59,7 @@ export default function SPEmployeesScreen({ title, employees, onAdd, onUpdate, o
           {employees.map((e) => (
             <div key={e.id} className="overflow-hidden rounded-[15px] bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
               <div className="relative h-16 brand-header">
-                <div className="absolute -bottom-7 left-1/2 flex h-16 w-16 -translate-x-1/2 items-center justify-center rounded-full border-4 border-white text-xl font-bold text-white" style={{ background: e.color }}>
+                <div className="absolute -bottom-7 left-1/2 flex h-16 w-16 -translate-x-1/2 items-center justify-center rounded-full border-4 border-white text-[17px] font-bold text-white" style={{ background: e.color }}>
                   {e.name[0].toUpperCase()}
                 </div>
                 <button type="button" onClick={() => openEdit(e)} aria-label={`Edit ${e.name}`} className="absolute top-2 left-2 cursor-pointer rounded-full bg-white/25 p-1.5 text-white active:bg-white/40">
@@ -99,7 +99,7 @@ export default function SPEmployeesScreen({ title, employees, onAdd, onUpdate, o
       {sheetOpen && (
         <div className="fixed inset-0 z-40 mx-auto flex w-full max-w-[375px] items-end bg-black/40" onClick={() => setSheetOpen(false)}>
           <div className="w-full rounded-t-3xl bg-white p-5 pb-8" onClick={(ev) => ev.stopPropagation()}>
-            <h3 className="mb-3 text-lg font-semibold text-black">{editingId ? 'Edit employee' : 'Add employee'}</h3>
+            <h3 className="mb-3 text-[15px] font-semibold text-black">{editingId ? 'Edit employee' : 'Add employee'}</h3>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -134,7 +134,7 @@ export default function SPEmployeesScreen({ title, employees, onAdd, onUpdate, o
       {confirmRemove && (
         <div className="fixed inset-0 z-50 mx-auto flex w-full max-w-[375px] items-center justify-center bg-black/40 px-6" onClick={() => setConfirmRemove(null)}>
           <div className="w-full rounded-[15px] bg-white p-5 text-center" onClick={(ev) => ev.stopPropagation()}>
-            <h3 className="text-lg font-semibold text-black">Remove {confirmRemove.name}?</h3>
+            <h3 className="text-[15px] font-semibold text-black">Remove {confirmRemove.name}?</h3>
             <p className="mt-1 text-sm text-setl-muted">They&apos;ll be taken off your roster and can no longer be assigned jobs.</p>
             <div className="mt-5 flex gap-3">
               <button

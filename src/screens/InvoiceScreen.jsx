@@ -34,7 +34,7 @@ export default function InvoiceScreen({ order, onPay, onBack }) {
         </div>
       )}
 
-      <h2 className="mt-4 text-xl font-semibold text-black">Payment method</h2>
+      <h2 className="mt-4 text-[17px] font-semibold text-black">Payment method</h2>
       <PaymentMethods method={method} onChange={setMethod} />
       <VoucherField
         onApplied={(rate, code) => {
@@ -87,7 +87,7 @@ export default function InvoiceScreen({ order, onPay, onBack }) {
         )}
         <div className="mt-2 flex justify-between border-t border-setl-surface-3 pt-2">
           <span className="text-xs text-setl-muted">(VAT included)</span>
-          <span className="text-lg font-semibold text-black">{due} AED</span>
+          <span className="text-[15px] font-semibold text-black">{due} AED</span>
         </div>
       </div>
 

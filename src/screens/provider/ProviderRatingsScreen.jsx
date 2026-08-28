@@ -27,7 +27,7 @@ export default function ProviderRatingsScreen() {
   return (
     <div className="font-poppins min-h-screen bg-[#F5F4F7] pb-24">
       <div className="brand-header px-4 pt-8 pb-6 text-white">
-        <h1 className="text-center text-lg font-semibold">Ratings</h1>
+        <h1 className="text-center text-[15px] font-semibold">Ratings</h1>
       </div>
 
       <div className="-mt-3 mx-3 rounded-[15px] bg-white p-5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">

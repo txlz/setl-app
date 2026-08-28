@@ -9,9 +9,9 @@ export default function SPAccountScreen({ company, orders = [], onOpenEmployees,
     <div className="font-poppins min-h-screen bg-[#F5F4F7] pb-24">
       <div className="brand-header px-4 pt-8 pb-10 text-center text-white">
         <div className="flex flex-col items-center gap-2">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/25 text-2xl font-semibold">{name[0]?.toUpperCase()}</div>
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/25 text-[17px] font-semibold">{name[0]?.toUpperCase()}</div>
           <div>
-            <p className="text-lg font-semibold">{name}</p>
+            <p className="text-[15px] font-semibold">{name}</p>
             <p className="text-sm text-white/85">Service Provider · {(company.employees ?? []).length} staff</p>
           </div>
         </div>
@@ -19,11 +19,11 @@ export default function SPAccountScreen({ company, orders = [], onOpenEmployees,
 
       <div className="-mt-5 mx-3 grid grid-cols-2 gap-3">
         <div className="rounded-[15px] bg-white p-4 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-          <p className="text-2xl font-bold text-black">{earnings} AED</p>
+          <p className="text-[17px] font-bold text-black">{earnings} AED</p>
           <p className="text-xs text-setl-muted">Earnings</p>
         </div>
         <div className="rounded-[15px] bg-white p-4 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-          <p className="text-2xl font-bold text-black">{paid.length}</p>
+          <p className="text-[17px] font-bold text-black">{paid.length}</p>
           <p className="text-xs text-setl-muted">Jobs completed</p>
         </div>
       </div>

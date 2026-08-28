@@ -113,7 +113,7 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
         </>
       ) : (
         <>
-          <h2 className="mt-5 text-lg font-semibold text-black">Products</h2>
+          <h2 className="mt-5 text-[15px] font-semibold text-black">Products</h2>
           <p className="mb-2 text-xs text-setl-muted">
             Each price is compared with the typical range from recent Setl jobs, so you know it&apos;s fair.
           </p>
@@ -200,7 +200,7 @@ export default function OrderTrackingScreen({ booking, order, counts, onProceedT
             className="w-full rounded-t-3xl bg-white p-5 pb-8"
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 className="text-lg font-semibold text-black">Ask your inspector</h3>
+            <h3 className="text-[15px] font-semibold text-black">Ask your inspector</h3>
             <textarea
               value={question}
               onChange={(e) => setQuestion(e.target.value)}

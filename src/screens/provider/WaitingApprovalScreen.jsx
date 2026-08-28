@@ -20,7 +20,7 @@ export default function WaitingApprovalScreen({ order, onStartWork, onBack }) {
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#5B5B66" strokeWidth="3" strokeLinecap="round"><path d="M6 6l12 12M18 6 6 18" /></svg>
           )}
         </div>
-        <h1 className="mt-6 text-2xl font-semibold">{approved ? 'Customer approved!' : 'Estimate declined'}</h1>
+        <h1 className="mt-6 text-[17px] font-semibold">{approved ? 'Customer approved!' : 'Estimate declined'}</h1>
         <p className="mt-2 text-white/90">
           {approved
             ? 'They approved your estimate. Start the work whenever you’re ready.'

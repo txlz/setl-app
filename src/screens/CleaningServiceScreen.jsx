@@ -40,7 +40,7 @@ export default function CleaningServiceScreen({
                 className="flex min-w-0 grow cursor-pointer items-center gap-3 text-left"
               >
                 <div
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-lg font-bold text-white"
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-[15px] font-bold text-white"
                   style={{ background: favorite.color }}
                 >
                   {favorite.name[0].toUpperCase()}
@@ -85,7 +85,7 @@ export default function CleaningServiceScreen({
               type="button"
               aria-label="decrease"
               onClick={() => setHours(Math.max(MIN_HOURS, hours - 1))}
-              className="h-10 w-10 cursor-pointer rounded-md bg-setl-surface-3 text-lg text-setl-ink-3 transition-transform duration-100 active:scale-95"
+              className="h-10 w-10 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 transition-transform duration-100 active:scale-95"
             >
               −
             </button>
@@ -96,7 +96,7 @@ export default function CleaningServiceScreen({
               type="button"
               aria-label="increase"
               onClick={() => setHours(Math.min(MAX_HOURS, hours + 1))}
-              className="h-10 w-10 cursor-pointer rounded-md bg-setl-surface-3 text-lg text-setl-ink-3 transition-transform duration-100 active:scale-95"
+              className="h-10 w-10 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 transition-transform duration-100 active:scale-95"
             >
               +
             </button>
@@ -111,7 +111,7 @@ export default function CleaningServiceScreen({
         {/* Specific jobs on top of the hourly rate (from the Figma boards) */}
         {setExtras && (
           <section className="mt-6">
-            <h3 className="text-lg font-semibold text-setl-navy">Add specific jobs</h3>
+            <h3 className="text-[15px] font-semibold text-setl-navy">Add specific jobs</h3>
             <p className="mt-0.5 text-xs text-setl-muted">
               Optional — added to the hourly rate at checkout.
             </p>
@@ -139,7 +139,7 @@ export default function CleaningServiceScreen({
                           onClick={() =>
                             setExtras({ ...extras, [item.key]: Math.max(0, qty - 1) })
                           }
-                          className="h-9 w-9 cursor-pointer rounded-md bg-setl-surface-3 text-lg text-setl-ink-3 active:scale-95"
+                          className="h-9 w-9 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 active:scale-95"
                         >
                           −
                         </button>
@@ -150,7 +150,7 @@ export default function CleaningServiceScreen({
                           type="button"
                           aria-label={`increase ${item.label}`}
                           onClick={() => setExtras({ ...extras, [item.key]: Math.min(20, qty + 1) })}
-                          className="h-9 w-9 cursor-pointer rounded-md bg-setl-surface-3 text-lg text-setl-ink-3 active:scale-95"
+                          className="h-9 w-9 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 active:scale-95"
                         >
                           +
                         </button>

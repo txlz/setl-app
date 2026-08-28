@@ -139,7 +139,7 @@ export default function PhotoTriageScreen({ serviceKey, onChoosePro, onBookInspe
           </>
         ) : status !== 'replied' ? (
           <>
-            <h2 className="text-2xl font-semibold text-black">Show us the problem</h2>
+            <h2 className="text-[17px] font-semibold text-black">Show us the problem</h2>
             <p className="mt-1 text-sm text-setl-muted">
               Add a photo or two and a quick note. We&apos;ll send it to Setl{' '}
               {service.label.toLowerCase()} pros — they reply with a ballpark and you pick who
@@ -218,7 +218,7 @@ export default function PhotoTriageScreen({ serviceKey, onChoosePro, onBookInspe
           </>
         ) : (
           <>
-            <h2 className="text-2xl font-semibold text-black">{quotes.length} pros replied</h2>
+            <h2 className="text-[17px] font-semibold text-black">{quotes.length} pros replied</h2>
             <p className="mt-1 text-sm text-setl-muted">
               Tap a pro to chat, then book whoever you like. The exact price is confirmed on site —
               you pay after the work is done.

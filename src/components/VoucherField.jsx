@@ -27,13 +27,13 @@ export default function VoucherField({ onApplied }) {
             onApplied(0, '')
           }}
           placeholder="Voucher code"
-          className="w-full bg-transparent px-3 text-base text-black outline-none placeholder:text-setl-muted"
+          className="w-full bg-transparent px-3 text-[14px] text-black outline-none placeholder:text-setl-muted"
         />
         <button
           type="button"
           onClick={apply}
           disabled={!code.trim()}
-          className="shrink-0 cursor-pointer rounded-[11px] border border-setl-purple bg-white px-7 py-2.5 text-lg text-setl-purple disabled:cursor-not-allowed disabled:opacity-40"
+          className="shrink-0 cursor-pointer rounded-[11px] border border-setl-purple bg-white px-7 py-2.5 text-[15px] text-setl-purple disabled:cursor-not-allowed disabled:opacity-40"
         >
           Apply
         </button>

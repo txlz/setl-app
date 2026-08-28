@@ -29,7 +29,7 @@ export default function ProviderCard({
   return (
     <div className="flex items-center gap-3 rounded-[11px] bg-white p-3 shadow-card-sm">
       <div
-        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-lg font-bold text-white"
+        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[15px] font-bold text-white"
         style={{ background: provider.color }}
       >
         {initials}

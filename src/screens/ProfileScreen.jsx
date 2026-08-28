@@ -10,11 +10,11 @@ export default function ProfileScreen({ phone, onSwitchMode, onLogout }) {
     <div className="font-poppins flex min-h-screen flex-col bg-[#F5F4F7] pb-24">
       <div className="brand-header px-4 pt-8 pb-10 text-center text-white">
         <div className="flex flex-col items-center gap-2">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/25 text-2xl font-semibold">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/25 text-[17px] font-semibold">
             A
           </div>
           <div>
-            <p className="text-lg font-semibold">Ahmed Alshamsi</p>
+            <p className="text-[15px] font-semibold">Ahmed Alshamsi</p>
             <p className="text-sm text-white/85">+971 {phone || '501234567'}</p>
           </div>
         </div>

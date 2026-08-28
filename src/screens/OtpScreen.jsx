@@ -70,7 +70,7 @@ export default function OtpScreen({ onVerify }) {
         </div>
       </div>
 
-      <h1 className="mt-8 text-center text-xl font-semibold text-black">Enter your OTP</h1>
+      <h1 className="mt-8 text-center text-[17px] font-semibold text-black">Enter your OTP</h1>
       <p className="mt-2 text-center text-sm text-[#6B6B6B]">Enter OTP sent to your phone number</p>
 
       <div className="mt-8 flex h-12 items-center justify-around rounded-[11px] border-[0.5px] border-[#2790C3] bg-white px-4">
@@ -86,7 +86,7 @@ export default function OtpScreen({ onVerify }) {
             onChange={(e) => handleChange(i, e.target.value)}
             onKeyDown={(e) => handleKeyDown(i, e)}
             aria-label={`OTP digit ${i + 1}`}
-            className="w-8 border-b border-setl-muted pb-0.5 text-center text-lg text-black outline-none focus:border-setl-purple"
+            className="w-8 border-b border-setl-muted pb-0.5 text-center text-[15px] text-black outline-none focus:border-setl-purple"
           />
         ))}
       </div>

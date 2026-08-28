@@ -14,7 +14,7 @@ function Counter({ value, onChange }) {
         type="button"
         aria-label="decrease"
         onClick={() => onChange(Math.max(0, value - 1))}
-        className="h-9 w-9 cursor-pointer rounded-md bg-setl-surface-3 text-lg text-setl-ink-3 transition-transform duration-100 active:scale-95"
+        className="h-9 w-9 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 transition-transform duration-100 active:scale-95"
       >
         −
       </button>
@@ -25,7 +25,7 @@ function Counter({ value, onChange }) {
         type="button"
         aria-label="increase"
         onClick={() => onChange(Math.min(MAX_ROOMS, value + 1))}
-        className="h-9 w-9 cursor-pointer rounded-md bg-setl-surface-3 text-lg text-setl-ink-3 transition-transform duration-100 active:scale-95"
+        className="h-9 w-9 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 transition-transform duration-100 active:scale-95"
       >
         +
       </button>
@@ -58,7 +58,7 @@ export default function PestControlScreen({ pests, setPests, onSearchProviders, 
             <div className="flex min-w-0 grow items-center gap-2.5">
               <span
                 aria-hidden
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[11px] bg-setl-surface-3 text-base"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[11px] bg-setl-surface-3 text-[14px]"
               >
                 {pest.icon}
               </span>
@@ -81,7 +81,7 @@ export default function PestControlScreen({ pests, setPests, onSearchProviders, 
             <span className="text-sm text-setl-ink-3">
               {rooms} {rooms === 1 ? 'room' : 'rooms'}
             </span>
-            <span className="text-lg font-semibold text-setl-navy">AED {total}</span>
+            <span className="text-[15px] font-semibold text-setl-navy">AED {total}</span>
           </div>
         )}
 

@@ -25,7 +25,7 @@ export default function DateTimeSheet({ provider, title, onConfirm, onClose }) {
           >
             {provider.name[0].toUpperCase()}
           </div>
-          <h2 className="text-lg font-medium text-black">{title}</h2>
+          <h2 className="text-[15px] font-medium text-black">{title}</h2>
         </div>
 
         <p className="mt-4 text-sm font-semibold tracking-wide text-setl-purple">DATE</p>
@@ -65,7 +65,7 @@ export default function DateTimeSheet({ provider, title, onConfirm, onClose }) {
           <button
             type="button"
             onClick={() => onConfirm({ date, time })}
-            className="h-11 w-44 cursor-pointer rounded-[11px] bg-linear-[270deg,#366EE9_-95.36%,#F15CFA_212.48%] text-base font-medium text-white active:opacity-90"
+            className="h-11 w-44 cursor-pointer rounded-[11px] bg-linear-[270deg,#366EE9_-95.36%,#F15CFA_212.48%] text-[14px] font-medium text-white active:opacity-90"
           >
             Confirm
           </button>

@@ -46,7 +46,7 @@ export default function CustomerLogin({ onContinue, asProvider = false, onSwitch
         </div>
       </header>
 
-      <h1 className="mt-4 text-center text-xl font-semibold tracking-[0.025em] text-black">
+      <h1 className="mt-4 text-center text-[17px] font-semibold tracking-[0.025em] text-black">
         Welcome Back
       </h1>
 
@@ -75,7 +75,7 @@ export default function CustomerLogin({ onContinue, asProvider = false, onSwitch
               setError('')
             }}
             maxLength={9}
-            className="font-inter w-full bg-transparent text-base text-black outline-none placeholder:text-[#817777]/70"
+            className="font-inter w-full bg-transparent text-[14px] text-black outline-none placeholder:text-[#817777]/70"
           />
         </div>
         {error && <p className="mt-2 text-xs text-red-500">{error}</p>}

@@ -24,7 +24,7 @@ export default function ServiceOptionsScreen({ serviceKey, onSearchProviders, on
   return (
     <ScreenHeader title={service.label} onBack={onBack}>
       <div className="flex grow flex-col pt-1">
-        <h2 className="text-2xl font-semibold text-black">What do you need done?</h2>
+        <h2 className="text-[17px] font-semibold text-black">What do you need done?</h2>
 
         <div className="mt-4 flex flex-col gap-2.5">
           {service.options.map((o) => (
@@ -70,7 +70,7 @@ export default function ServiceOptionsScreen({ serviceKey, onSearchProviders, on
             className="mt-4 w-full cursor-pointer rounded-[11px] border border-setl-purple bg-white py-3 text-center"
           >
             <span className="block text-sm text-[#2790C3]">Not sure what&apos;s wrong?</span>
-            <span className="block text-lg font-medium text-setl-purple">Send a pro a photo</span>
+            <span className="block text-[15px] font-medium text-setl-purple">Send a pro a photo</span>
             <span className="block text-xs text-setl-muted">
               Get a ballpark — no visit needed to start
             </span>

@@ -27,7 +27,7 @@ export default function ProviderNotificationsScreen({ orders = [] }) {
   return (
     <div className="font-poppins min-h-screen bg-[#F5F4F7] pb-24">
       <div className="brand-header px-4 pt-8 pb-6 text-white">
-        <h1 className="text-center text-lg font-semibold">Notifications</h1>
+        <h1 className="text-center text-[15px] font-semibold">Notifications</h1>
       </div>
 
       {items.length === 0 ? (

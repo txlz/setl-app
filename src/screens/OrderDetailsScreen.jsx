@@ -96,14 +96,14 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
         <>
           {service.requiresInspection && (
             <p className="mt-3 flex items-center gap-3 rounded-[11px] bg-white p-3 text-xs text-setl-ink-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-500 text-lg font-bold text-white">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-500 text-[15px] font-bold text-white">
                 !
               </span>
               An inspection visit comes first so you get a clear, itemized quote. The inspection
               fee is credited toward your repair if you proceed.
             </p>
           )}
-          <h2 className="mt-4 text-lg font-semibold text-black">Timing</h2>
+          <h2 className="mt-4 text-[15px] font-semibold text-black">Timing</h2>
           <div className="mt-1 flex items-center justify-between rounded-[11px] bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             <div>
               <p className="text-[15px] text-black">
@@ -119,7 +119,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
               Change
             </button>
           </div>
-          <h2 className="mt-4 text-lg font-semibold text-black">Location</h2>
+          <h2 className="mt-4 text-[15px] font-semibold text-black">Location</h2>
           <div className="mt-1 rounded-[11px] bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             <p className="text-[15px] text-black">
               {place?.nameNumber?.trim() ? place.nameNumber : CUSTOMER_ME.address}
@@ -138,7 +138,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
               ))}
             </div>
           </div>
-          <h2 className="mt-4 text-lg font-semibold text-black">Service</h2>
+          <h2 className="mt-4 text-[15px] font-semibold text-black">Service</h2>
         </>
       )}
 
@@ -169,7 +169,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
       {/* Payment method + voucher only where money moves now (inspection fee) */}
       {isInspection && (
         <>
-          <h2 className="mt-4 text-xl font-semibold text-black">Payment method</h2>
+          <h2 className="mt-4 text-[17px] font-semibold text-black">Payment method</h2>
           <PaymentMethods method={method} onChange={setMethod} />
           <VoucherField onApplied={(rate) => setVoucherRate(rate)} />
         </>
@@ -226,7 +226,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
           <span className="text-xs text-setl-muted">
             {isInspection ? '(VAT included)' : 'Due after completion'}
           </span>
-          <span className="text-lg font-semibold text-black">{total} AED</span>
+          <span className="text-[15px] font-semibold text-black">{total} AED</span>
         </div>
       </div>
 

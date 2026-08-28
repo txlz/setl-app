@@ -16,7 +16,7 @@ export default function SPCoverageScreen({ employees, index, onSet, onApplyAll, 
         <button type="button" onClick={onBack} aria-label="Go back" className="absolute top-3 left-2 cursor-pointer p-2 text-white">
           <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><path d="M9 1 2 9l7 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /></svg>
         </button>
-        <h1 className="text-center text-lg font-semibold text-white">{emp.name} range of availability</h1>
+        <h1 className="text-center text-[15px] font-semibold text-white">{emp.name} range of availability</h1>
       </div>
 
       <div className="relative">
@@ -28,7 +28,7 @@ export default function SPCoverageScreen({ employees, index, onSet, onApplyAll, 
       </div>
 
       <div className="flex grow flex-col px-4 pt-4 pb-6">
-        <h2 className="text-center text-lg font-semibold text-black">Location Details</h2>
+        <h2 className="text-center text-[15px] font-semibold text-black">Location Details</h2>
         <div className="mt-3 flex items-center justify-between rounded-[11px] border border-setl-line p-3">
           <span className="text-sm text-black">Service coverage range</span>
           <div className="flex items-center gap-2">
