@@ -41,3 +41,28 @@ Hard-won during the customer-app fidelity pass. The `desing_html/` export is
   is a *different* violet→magenta gradient — swapping between them is a visual
   change, not a tokenisation.
 - Cite the export line you derived a value from, as `HomeScreen`/`OtpScreen` do.
+
+## Shared-component mismatches (deferred — need one coordinated decision)
+
+These affect many screens at once, so per-screen tasks flag them rather than
+changing them. Settle them in a dedicated pass.
+
+- **`ScreenHeader` horizontal inset.** Uses `px-7` (28px); the boards put cards
+  at **left 20, width 336** — 14 such cards in `1.html`, and **zero** at left 28.
+  Rows on `ScreenHeader` screens therefore measure 319px instead of 336px.
+  Changing it touches 6 screens.
+- **`ScreenHeader` back button.** Its comment claims "left:28 / top:48", but the
+  boards' back arrows sit at **left 16, top 47-48**. The 44px ringed disc it
+  draws appears **nowhere in the export** (checked all four files) — an app
+  invention, so restyling it is a design decision, not a fidelity fix.
+- **`ScreenHeader` title.** Renders `text-[22px]`; board screen titles are
+  17px/500 (gradient variant) or 14px/500 centred (e.g. the cleaning board's).
+- **`GradientButton`.** `h-[52px]`; the pest board's CTA is 261x43.74 at
+  radius 12, while the export's `Primary Normal` component is 311x52 — the
+  export disagrees with itself, so this needs a judgement call, not a match.
+
+## Data gaps noticed (not fixed — `providers.js` is out of scope for style tasks)
+
+- `PEST_TYPES` has no `color` field, so pest medallions render grey with an
+  emoji. The board gives each a solid fill: `#D142FA` cockroach, `#EB4D4B`
+  mice, `#10D830` ant, `#1AAAE9` mosquito, `#FFA800` lizards, `#751AE9` anti.
