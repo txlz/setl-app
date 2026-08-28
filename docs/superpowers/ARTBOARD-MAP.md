@@ -42,6 +42,21 @@ Hard-won during the customer-app fidelity pass. The `desing_html/` export is
   change, not a tokenisation.
 - Cite the export line you derived a value from, as `HomeScreen`/`OtpScreen` do.
 
+## Settled decisions
+
+- **Indoor/Outdoor/Villa chips (SETTLED, task 15).** `LocationScreen` and
+  `OrderDetailsScreen` now spell these identically: `h-[27px] w-[66px]`,
+  `text-[12px]`, `border-[0.5px]`, selected `border-setl-violet
+  text-setl-violet`, unselected `border-setl-line-2 text-setl-muted-2`, and
+  `rounded-[11px]` — deliberately **not** the board's `borderRadius: 2`
+  (`1.html:809`), because 11px is documented house geometry and the two screens
+  must agree. Not extracted into a shared component (that's a refactor); a
+  future component pass could hoist them.
+- **Order-details board iteration.** Use `1.html:684-894`, the English "Review
+  Summary" frame — it is the only complete one (Total block `:889-891` + CTA
+  `:892`). `1.html:1001`/`:1048` and the `4.js` copies are the Arabic
+  "تاكيد الطلب" variant.
+
 ## Shared-component mismatches (deferred — need one coordinated decision)
 
 These affect many screens at once, so per-screen tasks flag them rather than
@@ -60,6 +75,21 @@ changing them. Settle them in a dedicated pass.
 - **`GradientButton`.** `h-[52px]`; the pest board's CTA is 261x43.74 at
   radius 12, while the export's `Primary Normal` component is 311x52 — the
   export disagrees with itself, so this needs a judgement call, not a match.
+  (The order-details board agrees with 311x52 r12, `1.html:892`.)
+- **`VoucherField`.** Shared by `OrderDetailsScreen` and `InvoiceScreen`, so
+  task 15 left it alone. The board's voucher row (`1.html:743-752`) is much
+  tighter than the app's: card 343x57 r**5** `0 4px 4px rgba(0,0,0,.03)`, an
+  81x25 r2 `rgba(234.3,234.3,234.3,.61)` input with a 12px/400 `#C2C2C2`
+  placeholder, and a 45x25 r2 `#7E43FF` Apply button with an **11px/500 white**
+  label (`:751`, the board's "Applye" typo — app copy keeps "Apply"). The app
+  renders r11, a 15px violet outline button and a full-width input.
+- **`PaymentMethods`.** Rows on the board are 13px/500 `#202020` with a 32px
+  `#FFF7F7` medallion (`1.html:825-827`) and an 18px violet check
+  (`1.html:818-821`); the label is 13px/500 `#202020` (`1.html:824`). The app
+  uses 16px black labels and a native radio. Shared with `InvoiceScreen`.
+- **`AppointmentCard`.** Shared with order tracking. The board's equivalent
+  detail rows are 12px — label 12px/500, value 12px/400 `#A8A3A3`
+  (`1.html:807-808`) — against the app's `text-sm`/`font-semibold` mix.
 
 ## Data gaps noticed (not fixed — `providers.js` is out of scope for style tasks)
 

@@ -95,7 +95,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
       {isInspection && (
         <>
           {service.requiresInspection && (
-            <p className="mt-3 flex items-center gap-3 rounded-[11px] bg-white p-3 text-xs text-setl-ink-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+            <p className="mt-3 flex items-center gap-3 rounded-[5px] bg-white p-3 text-[12px] text-setl-ink-3 shadow-[0_4px_4px_rgba(0,0,0,0.03)]">
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-500 text-[15px] font-bold text-white">
                 !
               </span>
@@ -103,34 +103,45 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
               fee is credited toward your repair if you proceed.
             </p>
           )}
-          <h2 className="mt-4 text-[15px] font-semibold text-black">Timing</h2>
-          <div className="mt-1 flex items-center justify-between rounded-[11px] bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+          {/* Section headings on the board are 14px/500 black (1.html:742 "Timing",
+              1.html:733 "Service"); the ones over a details card are #0D0000
+              (1.html:805 "Location Details"). Cards are radius 5 with a tight
+              0 4px 4px rgba(0,0,0,.03) shadow (1.html:795). */}
+          <h2 className="mt-4 text-[14px] font-medium text-black">Timing</h2>
+          <div className="mt-1 flex items-center justify-between rounded-[5px] bg-white p-3 shadow-[0_4px_4px_rgba(0,0,0,0.03)]">
             <div>
-              <p className="text-[15px] text-black">
+              {/* Board's date/time rows are 12px — #313131 date (1.html:755), 10px
+                  violet time (1.html:756); "change" is underlined violet (1.html:757). */}
+              <p className="text-[12px] text-[#313131]">
                 {booking.date.day} {booking.date.num}
               </p>
-              <p className="text-sm text-setl-muted">{booking.time}</p>
+              <p className="text-[12px] text-setl-violet">{booking.time}</p>
             </div>
             <button
               type="button"
               onClick={() => setRescheduling(true)}
-              className="cursor-pointer text-[15px] text-setl-purple"
+              className="cursor-pointer text-[12px] text-setl-violet underline"
             >
               Change
             </button>
           </div>
-          <h2 className="mt-4 text-[15px] font-semibold text-black">Location</h2>
-          <div className="mt-1 rounded-[11px] bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-            <p className="text-[15px] text-black">
+          <h2 className="mt-4 text-[14px] font-medium text-setl-ink">Location</h2>
+          <div className="mt-1 rounded-[5px] bg-white p-3 shadow-[0_4px_4px_rgba(0,0,0,0.03)]">
+            {/* Address label 12px/500 (1.html:807); its value 12px/400 #A8A3A3 (1.html:808). */}
+            <p className="text-[12px] font-medium text-black/80">
               {place?.nameNumber?.trim() ? place.nameNumber : CUSTOMER_ME.address}
             </p>
-            <p className="text-xs text-setl-muted">{CUSTOMER_ME.area}</p>
-            <div className="mt-2 flex gap-2">
+            <p className="text-[12px] text-setl-muted-2">{CUSTOMER_ME.area}</p>
+            <div className="mt-2 flex gap-3">
               {['Indoor', 'Outdoor', 'Villa'].map((t) => (
+                // Chips on the export (1.html:809-814) are 66x27, 0.5px border, no shadow;
+                // label 12px/400 — #7E43FF on a violet border when picked, else #A8A3A3.
                 <span
                   key={t}
-                  className={`rounded-[11px] border px-4 py-1.5 text-sm ${
-                    (place?.type ?? 'Indoor') === t ? 'border-setl-purple text-setl-purple' : 'border-setl-line text-setl-muted'
+                  className={`flex h-[27px] w-[66px] items-center justify-center rounded-[11px] border-[0.5px] bg-white text-[12px] ${
+                    (place?.type ?? 'Indoor') === t
+                      ? 'border-setl-violet text-setl-violet'
+                      : 'border-setl-line-2 text-setl-muted-2'
                   }`}
                 >
                   {t}
@@ -138,7 +149,7 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
               ))}
             </div>
           </div>
-          <h2 className="mt-4 text-[15px] font-semibold text-black">Service</h2>
+          <h2 className="mt-4 text-[14px] font-medium text-black">Service</h2>
         </>
       )}
 
@@ -152,8 +163,10 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
         />
       </div>
 
+      {/* App-only caption (no board counterpart); typed to the board's 10px
+          helper size, cf. "Additional Instruction" 10px/500 at 1.html:798. */}
       {isInspection && (
-        <p className="mt-1 px-2 text-[11px] text-setl-muted">
+        <p className="mt-1 px-2 text-[10px] text-setl-muted-2">
           After the inspection you approve or decline the repair. The fee is credited toward the
           repair if you proceed — non-refundable otherwise.
         </p>
@@ -169,64 +182,72 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
       {/* Payment method + voucher only where money moves now (inspection fee) */}
       {isInspection && (
         <>
-          <h2 className="mt-4 text-[17px] font-semibold text-black">Payment method</h2>
+          {/* "payment methods" on the board is 14px/500 #0D0000 (1.html:806). */}
+          <h2 className="mt-4 text-[14px] font-medium text-setl-ink">Payment method</h2>
           <PaymentMethods method={method} onChange={setMethod} />
           <VoucherField onApplied={(rate) => setVoucherRate(rate)} />
         </>
       )}
 
-      {/* Pay after completion (decision B) */}
+      {/* Pay after completion (decision B). App-only notice with no board
+          counterpart; radius 5 and 12px/500 to sit in the board's card + type
+          ramp (1.html:795, :744). */}
       {!isInspection && (
-        <div className="mt-4 rounded-[11px] bg-[#EDE4FD] p-3 text-center text-sm font-medium text-setl-purple">
+        <div className="mt-4 rounded-[5px] bg-[#EDE4FD] p-3 text-center text-[12px] font-medium text-setl-violet">
           AED 0 due now — pay when the work is done.
         </div>
       )}
 
       {/* Order summary */}
-      <div className="mt-4 rounded-[11px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-        <h3 className="font-semibold text-black">Order Summary</h3>
+      {/* Summary card matches the board's detail cards: radius 5, 0 4px 4px
+          rgba(0,0,0,.03) (1.html:795). Its heading is a 14px/500 section title
+          (1.html:753 "Discount"); the rows are 12px (1.html:807-808). */}
+      <div className="mt-4 rounded-[5px] bg-white p-4 shadow-[0_4px_4px_rgba(0,0,0,0.03)]">
+        <h3 className="text-[14px] font-medium text-black">Order Summary</h3>
         {items.map((it) => (
-          <div key={it.label} className="mt-1 flex justify-between text-xs text-setl-muted">
+          <div key={it.label} className="mt-1 flex justify-between text-[12px] text-setl-muted-2">
             <span>
               {it.qty}x {it.label}
             </span>
             <span>{it.price} AED</span>
           </div>
         ))}
-        <div className="mt-1 flex justify-between text-sm">
-          <span className="text-black">
-            Subtotal <span className="text-xs text-setl-muted">({items.length} {items.length === 1 ? 'item' : 'items'})</span>
+        <div className="mt-1 flex justify-between text-[12px]">
+          <span className="font-medium text-black/80">
+            Subtotal <span className="text-setl-muted-2">({items.length} {items.length === 1 ? 'item' : 'items'})</span>
           </span>
-          <span className="text-black">{subtotal}.00 AED</span>
+          <span className="font-medium text-black/80">{subtotal}.00 AED</span>
         </div>
         {baseDiscount > 0 && (
-          <div className="flex items-baseline justify-between gap-2 text-sm">
-            <span className="text-black">
+          <div className="flex items-baseline justify-between gap-2 text-[12px]">
+            <span className="font-medium text-black/80">
               Saving &amp; Discounts{' '}
-              <span className="text-xs text-setl-purple">(Discount applied {baseRate * 100}%)</span>
+              <span className="text-setl-violet">(Discount applied {baseRate * 100}%)</span>
             </span>
-            <span className="shrink-0 whitespace-nowrap text-setl-purple">- {baseDiscount} AED</span>
+            <span className="shrink-0 whitespace-nowrap text-setl-violet">- {baseDiscount} AED</span>
           </div>
         )}
         {credit > 0 && (
-          <div className="flex items-baseline justify-between gap-2 text-sm">
-            <span className="text-black">
-              Inspection fee credit <span className="text-xs text-setl-purple">(paid at booking)</span>
+          <div className="flex items-baseline justify-between gap-2 text-[12px]">
+            <span className="font-medium text-black/80">
+              Inspection fee credit <span className="text-setl-violet">(paid at booking)</span>
             </span>
-            <span className="shrink-0 whitespace-nowrap text-setl-purple">- {credit} AED</span>
+            <span className="shrink-0 whitespace-nowrap text-setl-violet">- {credit} AED</span>
           </div>
         )}
         {voucherDiscount > 0 && (
-          <div className="flex items-baseline justify-between gap-2 text-sm">
-            <span className="text-black">Voucher</span>
-            <span className="shrink-0 whitespace-nowrap text-setl-purple">- {voucherDiscount} AED</span>
+          <div className="flex items-baseline justify-between gap-2 text-[12px]">
+            <span className="font-medium text-black/80">Voucher</span>
+            <span className="shrink-0 whitespace-nowrap text-setl-violet">- {voucherDiscount} AED</span>
           </div>
         )}
-        <div className="mt-2 flex justify-between border-t border-setl-surface-3 pt-2">
-          <span className="text-xs text-setl-muted">
+        {/* Board's total bar: "Total" 15px/500 black (1.html:890), the amount
+            15px/700 #7E43FF (1.html:891). */}
+        <div className="mt-2 flex items-center justify-between border-t border-setl-surface-3 pt-2">
+          <span className="text-[12px] text-setl-muted-2">
             {isInspection ? '(VAT included)' : 'Due after completion'}
           </span>
-          <span className="text-[15px] font-semibold text-black">{total} AED</span>
+          <span className="text-[15px] font-bold text-setl-violet">{total} AED</span>
         </div>
       </div>
 
