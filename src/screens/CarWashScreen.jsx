@@ -156,9 +156,12 @@ export default function CarWashScreen({ wash, setWash, vehicles = [], onManageVe
                 >
                   {on ? '✓' : ''}
                 </span>
-                <span className="text-sm text-setl-ink">{e.label}</span>
+                {/* 1.html:1602 — row title 14px / weight 500 on the shared
+                    336x55 r11 `.row-card` (1.html:1587). */}
+                <span className="text-[14px] font-medium text-setl-ink">{e.label}</span>
               </span>
-              <span className="text-sm text-setl-ink-3">+ AED {e.price}</span>
+              {/* 1.html:1594 — row meta 11px / weight 400, dim ink. */}
+              <span className="text-[11px] font-normal text-setl-ink-3">+ AED {e.price}</span>
             </button>
           )
         })}
