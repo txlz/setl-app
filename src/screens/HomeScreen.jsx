@@ -45,12 +45,15 @@ function ServiceCard({ service, onClick }) {
       {service.img && (
         <img src={service.img} alt="" className="h-full w-full object-contain p-3 pb-8" />
       )}
-      {/* Scrim keeps the label readable over the artwork */}
+      {/* Label plate: 1.html:1370 — "Rectangle 944", 146x26.9, flat
+          rgba(0,0,0,0.11) with a 1.5px backdrop blur and a 5px bottom radius.
+          The board uses a frosted bar here, not a gradient scrim. */}
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-linear-to-t from-black/75 to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[27px] rounded-b-[5px] bg-black/11 backdrop-blur-[1.5px]"
       />
-      <span className="absolute inset-x-0 bottom-0 truncate px-2.5 py-1.5 text-[12px] text-white">
+      {/* 1.html:1371 — 9px / weight 500 / white, inset 12px from the tile edge. */}
+      <span className="absolute inset-x-0 bottom-2 truncate px-3 text-[9px] font-medium text-white">
         {service.name}
       </span>
     </button>
@@ -136,23 +139,30 @@ export default function HomeScreen({ onOpenService }) {
           </svg>
         </button>
 
-        {/* Promo banner */}
-        <div className="mt-4 rounded-[15px] bg-linear-[110deg,#9E7BD9,#6C4BB8] p-4 text-white">
-          <p className="max-w-[280px] text-[13px] leading-snug">
+        {/* Promo banner: 1.html:1343-1345 — 320x111 at left 27, radius 15, a
+            violet wash (rgba(126,67,255,.39)) over rgba(108,99,255,.58).
+            Copy sits 10px in / 15px down from the banner's top-left. */}
+        <div className="mt-4 h-[111px] rounded-[15px] bg-linear-[240deg,rgba(126,67,255,0.39)_0%,rgba(108,99,255,0.58)_100%] bg-setl-violet px-2.5 pt-[15px] text-white">
+          {/* 1.html:1363 — 254px wide, 12px, weight 400. */}
+          <p className="w-[254px] text-[12px] leading-snug">
             Earn 10 dirhams for every friend who orders a favor with your code
           </p>
-          <p className="mt-3 text-[12px]">View all</p>
-          <div className="mt-2 flex items-center justify-center gap-1.5">
-            <span className="h-1.5 w-6 rounded-full bg-white" />
-            <span className="h-1.5 w-1.5 rounded-full bg-white/50" />
-            <span className="h-1.5 w-1.5 rounded-full bg-white/50" />
-            <span className="h-1.5 w-1.5 rounded-full bg-white/50" />
+          {/* 1.html:1362 — "view All", 12px, weight 500, 45px below the copy. */}
+          <p className="mt-3 text-[12px] font-medium">View all</p>
+          {/* 1.html:1346-1360 — a 15x3 white pill then three 3px dots on a 9px pitch. */}
+          <div className="mt-2.5 flex items-center justify-center gap-1.5">
+            <span className="h-[3px] w-[15px] rounded-full bg-white" />
+            <span className="h-[3px] w-[3px] rounded-full bg-white/50" />
+            <span className="h-[3px] w-[3px] rounded-full bg-white/50" />
+            <span className="h-[3px] w-[3px] rounded-full bg-white/50" />
           </div>
         </div>
 
-        {/* Home services */}
-        <section className="mt-5 rounded-[7px] bg-white px-3 py-4 shadow-card-sm">
-          <h2 className="text-[16px] font-medium text-setl-navy">Home services</h2>
+        {/* Home services: 1.html:1364-1365 — white, radius 7, shadow
+            0 4px 33px rgba(0,0,0,.05) (= .shadow-card), title 16px/500 in
+            black, inset 12px from the card edge. */}
+        <section className="mt-5 rounded-[7px] bg-white px-3 py-4 shadow-card">
+          <h2 className="text-[16px] font-medium text-setl-ink">Home services</h2>
           <ScrollRow className="mt-3">
             {HOME_SERVICES.map((s) => (
               <ServiceCard
@@ -164,9 +174,9 @@ export default function HomeScreen({ onOpenService }) {
           </ScrollRow>
         </section>
 
-        {/* Car services */}
-        <section className="mt-5 rounded-[7px] bg-white px-3 py-4 shadow-card-sm">
-          <h2 className="text-[16px] font-medium text-setl-navy">Car services</h2>
+        {/* Car services: 1.html:1375-1376 — same card treatment as above. */}
+        <section className="mt-5 rounded-[7px] bg-white px-3 py-4 shadow-card">
+          <h2 className="text-[16px] font-medium text-setl-ink">Car services</h2>
           <ScrollRow className="mt-3">
             {CAR_SERVICES.map((s) => (
               <ServiceCard
