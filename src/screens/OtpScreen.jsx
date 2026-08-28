@@ -70,6 +70,9 @@ export default function OtpScreen({ onVerify }) {
         </div>
       </div>
 
+      {/* Vertical rhythm measured off the export: title y=222, subtitle y=262,
+          OTP box y=333 (h48), Verify y=415 (h54), resend y=478. The margins
+          below are the gaps between those bands. */}
       <h1 className="mt-[18px] text-center text-[20px] leading-[30px] font-semibold tracking-[0.5px] text-black">
         Enter your OTP
       </h1>
