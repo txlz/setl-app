@@ -4,10 +4,10 @@ import GradientButton from '../../components/GradientButton.jsx'
 
 function Stepper({ value, onDec, onInc, suffix }) {
   return (
-    <div className="flex items-center gap-1.5">
-      <button type="button" onClick={onDec} className="h-8 w-8 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 active:scale-95">−</button>
-      <span className="min-w-14 text-center text-sm font-medium text-black">{value}{suffix}</span>
-      <button type="button" onClick={onInc} className="h-8 w-8 cursor-pointer rounded-md bg-setl-surface-3 text-[15px] text-setl-ink-3 active:scale-95">+</button>
+    <div className="flex items-center justify-center gap-1.5">
+      <button type="button" onClick={onDec} className="h-6 w-6 cursor-pointer rounded-full border border-[#DADADA] bg-white text-[14px] font-medium text-black active:scale-95">−</button>
+      <span className="min-w-14 text-center text-[11px] font-medium text-black">{value}{suffix}</span>
+      <button type="button" onClick={onInc} className="h-6 w-6 cursor-pointer rounded-full border border-[#DADADA] bg-white text-[14px] font-medium text-black active:scale-95">+</button>
     </div>
   )
 }
@@ -78,24 +78,24 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
         </button>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <h1 className="text-[17px] font-semibold text-black">
+            <h1 className="text-[20px] font-medium text-setl-ink-2">
               {inspecting ? 'Inspection' : order.service}
             </h1>
-            <span className="rounded-full bg-[#FBEED0] px-2.5 py-0.5 text-[11px] font-medium text-[#B5820E]">
+            <span className="flex h-5 min-w-[42px] items-center justify-center rounded-[10px] bg-[rgba(255,168,0,0.31)] px-2 text-[9px] font-medium text-setl-deep">
               {order.hours ? `${order.hours} hrs` : '30 min'}
             </span>
           </div>
-          <span className="text-sm font-bold text-black">{order.amountDue ?? order.total ?? 0} AED</span>
+          <span className="text-[12px] text-setl-muted">{order.amountDue ?? order.total ?? 0} AED</span>
         </div>
-        <p className="mt-0.5 text-sm text-setl-muted">{CUSTOMER_ME.name}</p>
+        <p className="mt-0.5 text-[12px] text-setl-muted">{CUSTOMER_ME.name}</p>
 
         {/* Quick actions — the job is completed via the primary button below
             ("Send estimate" for inspections, "Mark as done" for direct work). */}
-        <div className="mt-3 flex overflow-hidden rounded-[11px] border border-setl-surface-3">
-          <button type="button" onClick={() => setReporting(true)} className="flex-1 cursor-pointer bg-setl-surface-3 py-2.5 text-sm font-medium text-setl-ink-3 active:opacity-80">
+        <div className="mt-3 flex h-9 overflow-hidden rounded-[11px]">
+          <button type="button" onClick={() => setReporting(true)} className="flex-1 cursor-pointer bg-[#D9D9D9] text-[12px] font-medium text-setl-muted active:opacity-80">
             Report
           </button>
-          <button type="button" onClick={onDial} className="flex-1 cursor-pointer bg-[#BFD3F5] py-2.5 text-sm font-medium text-[#2657B0] active:opacity-80">
+          <button type="button" onClick={onDial} className="flex-1 cursor-pointer bg-[rgba(54,110,233,0.48)] text-[12px] font-medium text-setl-blue active:opacity-80">
             Dial
           </button>
         </div>
@@ -103,14 +103,14 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
 
       {inspecting ? (
         <>
-          <h2 className="mt-5 mb-2 px-1 text-[15px] font-semibold text-black">Add products</h2>
+          <h2 className="mt-5 mb-2 px-1 text-[20px] font-medium text-setl-ink-2">Add products</h2>
 
           {/* Custom line + catalog grid */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-[15px] bg-white p-3 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-              <p className="text-xs text-setl-muted">Pricing</p>
+            <div className="flex h-[172px] flex-col justify-center rounded-[24px] bg-[#F1F1F1] p-3 text-center">
+              <p className="text-[12px] font-medium text-setl-ink-2">Pricing</p>
               <Stepper value={customPrice} suffix=" AED" onDec={() => setCustomPrice(Math.max(5, customPrice - 5))} onInc={() => setCustomPrice(customPrice + 5)} />
-              <p className="mt-2 text-xs text-setl-muted">Quantity</p>
+              <p className="mt-2 text-[12px] font-medium text-setl-ink-2">Quantity</p>
               <Stepper value={customQty} onDec={() => setCustomQty(Math.max(1, customQty - 1))} onInc={() => setCustomQty(customQty + 1)} />
               <button
                 type="button"
@@ -120,30 +120,32 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
                     { name: 'Custom part', icon: 'tool', market: [Math.max(0, customPrice - 10), customPrice + 10], unitPrice: customPrice, qty: customQty },
                   ])
                 }
-                className="mt-2 h-8 w-full cursor-pointer rounded-full bg-setl-purple text-sm font-medium text-white active:opacity-90"
+                className="mt-2 h-[22px] w-[89px] cursor-pointer rounded-[12px] brand-hero text-[10px] font-medium text-white active:opacity-90"
               >
                 Add
               </button>
             </div>
 
             {catalog.map((part) => (
-              <div key={part.name} className="relative rounded-[15px] bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+              <div key={part.name} className="relative flex h-[172px] flex-col overflow-hidden rounded-[24px] bg-[#F1F1F1] pt-3">
                 <button
                   type="button"
                   onClick={() => addPart(part)}
                   aria-label={`Add ${part.name}`}
-                  className="absolute top-2 right-2 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-setl-purple text-white active:opacity-90"
+                  className="absolute top-2 right-2 z-10 flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full bg-[#9869FE] text-white active:opacity-90"
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M12 5v14M5 12h14" strokeLinecap="round" /></svg>
                 </button>
-                <div className="flex h-16 items-center justify-center">
+                <div className="flex grow items-center justify-center">
                   <svg width="40" height="40" viewBox="0 0 52 52" fill="none" stroke="#8A8894" strokeWidth="2.5" strokeLinecap="round">
                     <path d="M14 44V26c0-8 5-13 12-13s12 5 12 13" />
                     <path d="M38 26v6M33 32h10M10 44h8" />
                   </svg>
                 </div>
-                <p className="truncate text-center text-[13px] text-black">{part.name}</p>
-                <p className="text-center text-xs text-setl-muted">{part.price} AED</p>
+                <div className="bg-[#E2E0E1] px-2 py-1.5 text-center">
+                  <p className="truncate text-[11px] text-black">{part.name}</p>
+                  <p className="text-[11px] text-setl-ink-3">{part.price} AED</p>
+                </div>
               </div>
             ))}
           </div>
@@ -155,8 +157,8 @@ export default function ProviderJobScreen({ order, catalog = [], onSendEstimate,
               {lines.map((l, i) => (
                 <div key={`${l.name}-${i}`} className="flex items-center justify-between border-b border-gray-50 py-2 last:border-0">
                   <div className="min-w-0">
-                    <p className="truncate text-sm text-black">{l.name}</p>
-                    <p className="text-xs text-setl-muted">{l.unitPrice} AED each</p>
+                    <p className="truncate text-[11px] text-black">{l.name}</p>
+                    <p className="text-[11px] text-setl-ink-3">{l.unitPrice} AED each</p>
                   </div>
                   <div className="flex items-center gap-3">
                     <Stepper value={l.qty} onDec={() => setQty(i, -1)} onInc={() => setQty(i, 1)} />

@@ -18,28 +18,28 @@ export default function ProviderNavigateScreen({ order, onArrived, onBack }) {
             <path d="M9 1 2 9l7 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
           </svg>
         </button>
-        <h1 className="text-center text-[15px] font-semibold text-white">Location</h1>
+        <h1 className="text-center text-[16px] font-bold text-white">Location</h1>
       </div>
 
       <div className="-mt-6 flex grow flex-col rounded-t-[30px] bg-white px-4 pt-4">
         <div className="relative overflow-hidden rounded-[15px]">
           <FakeMap className="h-72 w-full" />
-          <div className="absolute top-3 left-3 rounded-[11px] bg-white/95 px-3 py-1.5 text-xs font-medium text-black shadow">
-            Maps <span className="ml-1 text-setl-muted">Satellite</span>
+          <div className="absolute top-3 left-3 flex h-[33px] w-[124px] items-center gap-2 bg-white px-1.5 text-[15px] text-setl-ink-2 shadow-[0_2px_5px_rgba(0,0,0,0.20)]">
+            Maps <span className="text-[13px] text-[#999494]">Satellite</span>
           </div>
           <div className="absolute top-24 left-6 rounded-[11px] bg-[#2563EB] px-2.5 py-1.5 text-xs font-semibold text-white shadow">
             🚗 {etaMin} min · {distanceKm} KM
           </div>
         </div>
 
-        <div className="mt-5 flex items-center justify-between rounded-[11px] bg-[#F1ECFB] px-4 py-3">
-          <span className="text-sm font-medium text-setl-purple">{distanceKm} KM</span>
-          <span className="text-sm font-medium text-setl-purple">≈ {etaMin} min</span>
+        <div className="mt-5 flex h-[47px] items-center justify-between rounded-[5px] bg-[rgba(126,67,255,0.07)] px-6">
+          <span className="text-[14px] font-medium text-setl-violet">{distanceKm} KM</span>
+          <span className="text-[14px] font-medium text-setl-violet">≈ {etaMin} min</span>
         </div>
 
         <div className="mt-4 rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-          <p className="text-sm font-semibold text-black">{CUSTOMER_ME.name}</p>
-          <p className="mt-0.5 text-xs text-setl-muted">{CUSTOMER_ME.address}</p>
+          <p className="text-[17px] font-medium text-setl-ink">{CUSTOMER_ME.name}</p>
+          <p className="mt-0.5 text-[12px] text-setl-muted-2">{CUSTOMER_ME.address}</p>
         </div>
 
         <div className="grow" />

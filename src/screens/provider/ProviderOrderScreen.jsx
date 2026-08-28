@@ -2,11 +2,13 @@ import { CUSTOMER_ME } from '../../data/providers.js'
 import { statusLabel } from '../../data/orders.js'
 import GradientButton from '../../components/GradientButton.jsx'
 
+// Board detail rows (3.js:558-569): label 12px/500 rgba(0,0,0,.80) -> setl-ink-2,
+// value 12px/400 #A8A3A3 -> setl-muted-2.
 function Row({ label, value }) {
   return (
     <div className="flex items-start justify-between gap-4 py-2">
-      <span className="shrink-0 text-sm text-black">{label}</span>
-      <span className="text-right text-sm text-setl-muted">{value}</span>
+      <span className="shrink-0 text-[12px] font-medium text-setl-ink-2">{label}</span>
+      <span className="text-right text-[12px] text-setl-muted-2">{value}</span>
     </div>
   )
 }
@@ -45,8 +47,8 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
         </span>
       </div>
 
-      <h2 className="mt-2 mb-2 px-1 text-[15px] font-semibold text-black">Customer data</h2>
-      <div className="rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+      <h2 className="mt-2 mb-2 px-1 text-[15px] font-medium text-black">Customer data</h2>
+      <div className="rounded-[20px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
         <Row label="Name" value={CUSTOMER_ME.name} />
         <Row label="Phone number" value={CUSTOMER_ME.phone} />
         <Row label="Address" value={CUSTOMER_ME.address} />
@@ -57,8 +59,8 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
 
       {symptoms?.length > 0 && (
         <>
-          <h2 className="mt-5 mb-2 px-1 text-[15px] font-semibold text-black">What the customer reported</h2>
-          <div className="flex flex-wrap gap-2 rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+          <h2 className="mt-5 mb-2 px-1 text-[15px] font-medium text-black">What the customer reported</h2>
+          <div className="flex flex-wrap gap-2 rounded-[20px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
             {symptoms.map((s) => (
               <span key={s} className="rounded-full bg-[#F1ECFB] px-3 py-1 text-xs text-setl-purple">
                 {s}
@@ -68,24 +70,25 @@ export default function ProviderOrderScreen({ order, onAccept, onDecline, onCont
         </>
       )}
 
-      <h2 className="mt-5 mb-2 px-1 text-[15px] font-semibold text-black">Location</h2>
-      <div className="flex items-center justify-between rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
-        <span className="text-sm text-setl-muted">{CUSTOMER_ME.area}</span>
-        <span className="flex items-center gap-1 text-sm font-medium text-setl-purple">
+      <h2 className="mt-5 mb-2 px-1 text-[15px] font-medium text-black">Location</h2>
+      <div className="flex items-center justify-between rounded-[20px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+        <span className="text-[12px] font-medium text-setl-ink-3">{CUSTOMER_ME.area}</span>
+        <span className="flex items-center gap-1 text-[9px] font-medium text-setl-violet underline">
           Maps
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          {/* Board's location glyph beside "Maps" is 15x15 (3.js:548-549). */}
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11Z" strokeLinejoin="round" />
             <circle cx="12" cy="10" r="2.5" />
           </svg>
         </span>
       </div>
 
-      <h2 className="mt-5 mb-2 px-1 text-[15px] font-semibold text-black">Price</h2>
-      <div className="rounded-[15px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+      <h2 className="mt-5 mb-2 px-1 text-[15px] font-medium text-black">Price</h2>
+      <div className="rounded-[20px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
         {order.flowType === 'inspection' ? (
           <>
             <Row label="Inspection fee (prepaid)" value={`${order.total ?? 0} AED`} />
-            <p className="pt-1 text-xs text-setl-muted">
+            <p className="pt-1 text-[12px] text-setl-muted-2">
               Repair price is set from your on-site estimate, credited by the inspection fee.
             </p>
           </>

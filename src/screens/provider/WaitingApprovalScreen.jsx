@@ -14,7 +14,7 @@ export default function WaitingApprovalScreen({ order, onStartWork, onBack }) {
         <div className="pop-enter flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-lg">
           {approved ? (
             <svg width="46" height="36" viewBox="0 0 24 18" fill="none">
-              <path className="draw-check" d="m2 9 7 7L22 2" stroke="#8442FF" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path className="draw-check" d="m2 9 7 7L22 2" stroke="#7E43FF" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           ) : (
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#5B5B66" strokeWidth="3" strokeLinecap="round"><path d="M6 6l12 12M18 6 6 18" /></svg>
@@ -41,12 +41,12 @@ export default function WaitingApprovalScreen({ order, onStartWork, onBack }) {
 
   return (
     <div className="font-poppins flex min-h-screen flex-col items-center justify-center brand-splash px-8 text-center">
-      <h1 className="text-4xl leading-tight font-bold text-white">
-        Waiting for<br />Customer<br />approval
+      <h1 className="font-league-spartan max-w-[315px] text-[64px] leading-none font-semibold text-white">
+        Waiting for Customer approval
       </h1>
-      <div className="mt-8 flex gap-2">
+      <div className="mt-10 flex gap-3">
         {[0, 1, 2, 3].map((i) => (
-          <span key={i} className="h-2.5 w-2.5 animate-bounce rounded-full bg-white/90" style={{ animationDelay: `${i * 0.15}s` }} />
+          <span key={i} className="h-3.5 w-3.5 animate-bounce rounded-full bg-white" style={{ animationDelay: `${i * 0.15}s` }} />
         ))}
       </div>
       <button type="button" onClick={onBack} className="mt-12 cursor-pointer text-sm text-white/80 underline">
