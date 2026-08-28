@@ -8,6 +8,7 @@ import AcServiceScreen from './screens/AcServiceScreen.jsx'
 import CleaningServiceScreen from './screens/CleaningServiceScreen.jsx'
 import PestControlScreen from './screens/PestControlScreen.jsx'
 import CarWashScreen from './screens/CarWashScreen.jsx'
+import VehiclesScreen from './screens/VehiclesScreen.jsx'
 import ServiceOptionsScreen from './screens/ServiceOptionsScreen.jsx'
 import PhotoTriageScreen from './screens/PhotoTriageScreen.jsx'
 import CleanerProfileScreen from './screens/CleanerProfileScreen.jsx'
@@ -42,7 +43,7 @@ import SPAccountScreen from './screens/sp/SPAccountScreen.jsx'
 import TabBar from './components/TabBar.jsx'
 import ProviderTabBar from './components/ProviderTabBar.jsx'
 import SPTabBar from './components/SPTabBar.jsx'
-import { SERVICES, PEST_TYPES, WASH_PACKAGES, WASH_EXTRAS, CLEANING_GROUPS, PROVIDER_ME, emptyCompany, seedServicePricing, defaultAvailability, estimateCatalog } from './data/providers.js'
+import { SERVICES, PEST_TYPES, WASH_PACKAGES, WASH_EXTRAS, CLEANING_GROUPS, MY_VEHICLES, PROVIDER_ME, emptyCompany, seedServicePricing, defaultAvailability, estimateCatalog } from './data/providers.js'
 import WizardScreen from './screens/WizardScreen.jsx'
 import { advance, createOrder, isActive, recordEvent, seedOrderIds, transition } from './data/orders.js'
 
@@ -97,6 +98,7 @@ function App() {
   const [pests, setPests] = useState({}) // pest control: { [pestKey]: infected rooms }
   const [cleanExtras, setCleanExtras] = useState({}) // cleaning add-ons: { [itemKey]: qty }
   const [wash, setWash] = useState({ vehicle: 'v1', size: 'large', pkg: 'basic', extras: [] })
+  const [vehicles, setVehicles] = useState(MY_VEHICLES)
   const [serviceOptions, setServiceOptions] = useState([]) // jobs picked on the options screen
   // The customer's regular cleaner — persisted so "default" actually sticks
   const [favoriteCleaner, setFavoriteCleaner] = useState(() => {
@@ -630,10 +632,26 @@ function App() {
         onBack={() => setScreen('home')}
       />
     ),
+    vehicles: (
+      <VehiclesScreen
+        vehicles={vehicles}
+        onSave={(v) =>
+          setVehicles((list) => [...list, { ...v, id: `v${list.length + 1}${list.length}` }])
+        }
+        onRemove={(id) => {
+          setVehicles((list) => list.filter((v) => v.id !== id))
+          // keep the wash builder pointing at a vehicle that still exists
+          setWash((w) => (w.vehicle === id ? { ...w, vehicle: null } : w))
+        }}
+        onBack={() => setScreen('carWash')}
+      />
+    ),
     carWash: (
       <CarWashScreen
         wash={wash}
         setWash={setWash}
+        vehicles={vehicles}
+        onManageVehicles={() => setScreen('vehicles')}
         onSearchProviders={() => openProviders('carwash', 'booking')}
         onBack={() => setScreen('home')}
       />

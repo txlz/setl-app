@@ -1,6 +1,6 @@
 import GradientHeader from '../components/GradientHeader.jsx'
 import GradientButton from '../components/GradientButton.jsx'
-import { CAR_SIZES, WASH_PACKAGES, WASH_EXTRAS, MY_VEHICLES } from '../data/providers.js'
+import { CAR_SIZES, WASH_PACKAGES, WASH_EXTRAS } from '../data/providers.js'
 import carwashImg from '../assets/services/carwash.png'
 import carpolishImg from '../assets/services/carpolish.png'
 
@@ -9,7 +9,7 @@ const PKG_IMG = { basic: carwashImg, premium: carpolishImg }
 
 // Car wash builder from the Figma boards: pick the vehicle (which sets the
 // size), a wash package priced by that size, then optional extras.
-export default function CarWashScreen({ wash, setWash, onSearchProviders, onBack }) {
+export default function CarWashScreen({ wash, setWash, vehicles = [], onManageVehicles, onSearchProviders, onBack }) {
   const pkg = WASH_PACKAGES.find((p) => p.key === wash.pkg)
   const base = pkg ? pkg.price[wash.size] : 0
   const extrasTotal = WASH_EXTRAS.filter((e) => wash.extras.includes(e.key)).reduce(
@@ -44,9 +44,29 @@ export default function CarWashScreen({ wash, setWash, onSearchProviders, onBack
         <h2 className="mt-4 text-2xl font-semibold text-setl-navy">Choose a wash</h2>
 
         {/* Saved vehicles — picking one sets the size */}
-        <p className="mt-5 mb-2 text-xs font-semibold text-setl-ink-3">Your vehicle</p>
-        <div className="flex gap-3">
-          {MY_VEHICLES.map((v) => {
+        <div className="mt-5 mb-2 flex items-center justify-between">
+          <p className="text-xs font-semibold text-setl-ink-3">Your vehicle</p>
+          {onManageVehicles && (
+            <button
+              type="button"
+              onClick={onManageVehicles}
+              className="cursor-pointer text-xs text-setl-purple underline"
+            >
+              Manage
+            </button>
+          )}
+        </div>
+        {vehicles.length === 0 && (
+          <button
+            type="button"
+            onClick={onManageVehicles}
+            className="h-12 w-full cursor-pointer rounded-xl border border-dashed border-setl-line-3 text-sm text-setl-ink-3"
+          >
+            + Add a vehicle
+          </button>
+        )}
+        <div className="flex gap-3 overflow-x-auto no-scrollbar">
+          {vehicles.map((v) => {
             const on = wash.vehicle === v.id
             return (
               <button
