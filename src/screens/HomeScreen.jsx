@@ -32,6 +32,11 @@ const CAR_SERVICES = [
 ]
 
 function ServiceCard({ service, onClick }) {
+  // Only photography and gradients darken the tile. Anything else — a product
+  // cut-out, or artwork we haven't got yet — leaves the pale #F3F3F3 tile
+  // showing, so the label has to flip to dark ink to stay readable.
+  const isLightTile = !service.photo && !service.gradient
+
   return (
     <button
       type="button"
@@ -47,21 +52,19 @@ function ServiceCard({ service, onClick }) {
       )}
       {/* Label plate: 1.html:1370 — "Rectangle 944", 146x26.9, flat
           rgba(0,0,0,0.11) with a 1.5px backdrop blur and a 5px bottom radius.
-          The board uses a frosted bar here, not a gradient scrim.
-          Every tile on the board is dark photography, so an 11%-black plate
-          carries white text fine. Our product cut-outs (`img`) sit on a pale
-          #F3F3F3 tile instead, where that plate leaves white text at ~1.2:1 —
-          so those keep the plate's geometry but take dark ink. */}
+          The board uses a frosted bar here, not a gradient scrim. Every tile
+          on the board is dark photography, so the plate only ever carries
+          white text there; light tiles keep its geometry and invert. */}
       <span
         aria-hidden
         className={`pointer-events-none absolute inset-x-0 bottom-0 h-[27px] rounded-b-[5px] backdrop-blur-[1.5px] ${
-          service.img ? 'bg-white/55' : 'bg-black/11'
+          isLightTile ? 'bg-white/55' : 'bg-black/11'
         }`}
       />
       {/* 1.html:1371 — 9px / weight 500 / white, inset 12px from the tile edge. */}
       <span
         className={`absolute inset-x-0 bottom-2 truncate px-3 text-[9px] font-medium ${
-          service.img ? 'text-setl-ink' : 'text-white'
+          isLightTile ? 'text-setl-ink' : 'text-white'
         }`}
       >
         {service.name}
