@@ -36,27 +36,21 @@ function ServiceCard({ service, onClick }) {
     <button
       type="button"
       onClick={onClick}
-      className={`relative h-40 w-52 shrink-0 overflow-hidden rounded-lg bg-[#EEF0F4] text-left ${onClick ? 'cursor-pointer' : 'cursor-default'}`}
+      className={`relative h-[115px] w-[146px] shrink-0 overflow-hidden rounded-[5px] bg-setl-surface-3 text-left ${onClick ? 'cursor-pointer' : 'cursor-default'}`}
       style={service.gradient ? { background: service.gradient } : undefined}
     >
       {service.photo && (
         <img src={service.photo} alt="" className="h-full w-full object-cover" />
       )}
       {service.img && (
-        <img src={service.img} alt="" className="h-full w-full object-contain p-4 pb-10" />
+        <img src={service.img} alt="" className="h-full w-full object-contain p-3 pb-8" />
       )}
-      {/* Scrim keeps the label readable over photography */}
-      {service.photo && (
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-black/70 to-transparent"
-        />
-      )}
+      {/* Scrim keeps the label readable over the artwork */}
       <span
-        className={`absolute inset-x-0 bottom-0 px-3 py-2 text-[15px] text-white ${
-          service.photo ? '' : 'bg-black/40'
-        }`}
-      >
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-linear-to-t from-black/75 to-transparent"
+      />
+      <span className="absolute inset-x-0 bottom-0 truncate px-2.5 py-1.5 text-[12px] text-white">
         {service.name}
       </span>
     </button>
@@ -65,37 +59,58 @@ function ServiceCard({ service, onClick }) {
 
 export default function HomeScreen({ onOpenService }) {
   return (
-    <div className="font-poppins flex min-h-screen flex-col bg-[#F2F1F4]">
-      {/* Purple gradient header */}
-      <div className="relative shrink-0 brand-header pt-5 pb-16">
-        <div className="flex items-center justify-between px-4">
-          <button type="button" aria-label="Menu" className="cursor-pointer p-1">
-            <svg width="26" height="20" viewBox="0 0 26 20" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round">
-              <path d="M1 2h16M1 10h16M1 18h16" />
-              <path d="M23 2h.01M23 10h.01M23 18h.01" />
-            </svg>
-          </button>
-          <button type="button" className="flex cursor-pointer items-center gap-1.5 text-xl font-medium text-white">
-            <svg width="18" height="22" viewBox="0 0 18 22" fill="none" stroke="#E4C9FF" strokeWidth="1.8">
-              <path d="M9 1a7 7 0 0 1 7 7c0 5-7 12.5-7 12.5S2 13 2 8a7 7 0 0 1 7-7Z" />
-              <circle cx="9" cy="8" r="2.5" />
-            </svg>
-            {CUSTOMER_ME.area}
-            <svg width="12" height="8" viewBox="0 0 12 8" fill="#fff"><path d="M6 8 0 0h12L6 8Z" /></svg>
-          </button>
-          <button type="button" aria-label="Notifications" className="relative cursor-pointer p-1">
-            <svg width="22" height="24" viewBox="0 0 22 24" fill="none" stroke="#fff" strokeWidth="1.8">
-              <path d="M11 3a6 6 0 0 1 6 6c0 5 2 6.5 2 6.5H3S5 14 5 9a6 6 0 0 1 6-6ZM9 19.5a2.2 2.2 0 0 0 4 0" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span className="absolute top-0 right-0 h-2.5 w-2.5 rounded-full bg-red-500" />
-          </button>
-        </div>
+    <div className="font-poppins relative flex min-h-screen flex-col bg-setl-surface-2">
+      {/* Header block: 375x245, radius 30, solid #7E43FF (from the export). */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-[245px] rounded-b-[30px] bg-setl-violet"
+      />
+
+      {/* Header row — the export puts the menu at x=28/y=63, the pin at x=82,
+          the label at x=110 (17px, regular) and the bell at x=324/y=66. */}
+      <div className="relative shrink-0" style={{ height: 118 }}>
+        <button
+          type="button"
+          aria-label="Menu"
+          className="absolute cursor-pointer"
+          style={{ left: 28, top: 63 }}
+        >
+          <svg width="27" height="25" viewBox="0 0 27 25" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round">
+            <path d="M1 3h17M1 12.5h17M1 22h17" />
+            <path d="M24 3h.01M24 12.5h.01M24 22h.01" />
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          className="absolute flex cursor-pointer items-center gap-2 text-[17px] font-normal text-white"
+          style={{ left: 82, top: 60 }}
+        >
+          <svg width="19" height="19" viewBox="0 0 18 22" fill="none" stroke="#E4C9FF" strokeWidth="1.8">
+            <path d="M9 1a7 7 0 0 1 7 7c0 5-7 12.5-7 12.5S2 13 2 8a7 7 0 0 1 7-7Z" />
+            <circle cx="9" cy="8" r="2.5" />
+          </svg>
+          {CUSTOMER_ME.area}
+          <svg width="11" height="7" viewBox="0 0 12 8" fill="#fff"><path d="M6 8 0 0h12L6 8Z" /></svg>
+        </button>
+
+        <button
+          type="button"
+          aria-label="Notifications"
+          className="absolute cursor-pointer"
+          style={{ left: 324, top: 66 }}
+        >
+          <svg width="24" height="24" viewBox="0 0 22 24" fill="none" stroke="#fff" strokeWidth="1.8">
+            <path d="M11 3a6 6 0 0 1 6 6c0 5 2 6.5 2 6.5H3S5 14 5 9a6 6 0 0 1 6-6ZM9 19.5a2.2 2.2 0 0 0 4 0" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span className="absolute top-0 right-0 h-2.5 w-2.5 rounded-full bg-setl-red" />
+        </button>
       </div>
 
-      {/* Content sheet */}
-      <div className="-mt-10 grow rounded-t-[30px] bg-[#F2F1F4] px-4 pt-14 pb-24">
+      {/* Content sheet: starts at y=118, radius 48, #F8F8F8 (from the export). */}
+      <div className="relative grow rounded-t-[48px] bg-setl-surface-2 px-6 pt-7 pb-28">
         {/* Search */}
-        <div className="flex h-14 items-center gap-3 rounded-2xl bg-white px-4 shadow-[0_4px_14px_rgba(0,0,0,0.08)]">
+        <div className="flex h-[55px] items-center gap-3 rounded-[11px] bg-white px-4 shadow-card-sm">
           <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke="#9C9AA5" strokeWidth="2">
             <circle cx="9" cy="9" r="6.5" />
             <path d="m14.5 14.5 5 5" strokeLinecap="round" />
@@ -103,7 +118,7 @@ export default function HomeScreen({ onOpenService }) {
           <input
             type="search"
             placeholder="Smart home installation"
-            className="w-full bg-transparent text-[16px] text-black outline-none placeholder:text-setl-muted-3"
+            className="w-full bg-transparent text-[13px] text-setl-ink outline-none placeholder:text-setl-muted-3"
           />
         </div>
 
@@ -111,11 +126,11 @@ export default function HomeScreen({ onOpenService }) {
         <button
           type="button"
           onClick={() => onOpenService('wizard')}
-          className="mt-4 flex w-full cursor-pointer items-center justify-between rounded-2xl bg-linear-[110deg,#8442FF,#C05CF7] p-4 text-left text-white shadow-[0_4px_14px_rgba(132,66,255,0.35)] active:scale-[0.99]"
+          className="brand-cta mt-4 flex w-full cursor-pointer items-center justify-between rounded-[15px] p-4 text-left text-white shadow-[0_4px_14px_rgba(132,66,255,0.30)] active:scale-[0.99]"
         >
           <span>
-            <span className="block text-lg font-semibold">Something broken?</span>
-            <span className="mt-0.5 block text-sm text-white/85">
+            <span className="block text-[15px] font-medium">Something broken?</span>
+            <span className="mt-0.5 block text-[12px] text-white/85">
               Get it fixed — answer 2 quick questions
             </span>
           </span>
@@ -125,11 +140,11 @@ export default function HomeScreen({ onOpenService }) {
         </button>
 
         {/* Promo banner */}
-        <div className="mt-4 rounded-2xl bg-linear-[110deg,#9E7BD9,#6C4BB8] p-4 text-white">
-          <p className="max-w-[280px] text-[16px] leading-snug">
+        <div className="mt-4 rounded-[15px] bg-linear-[110deg,#9E7BD9,#6C4BB8] p-4 text-white">
+          <p className="max-w-[280px] text-[13px] leading-snug">
             Earn 10 dirhams for every friend who orders a favor with your code
           </p>
-          <p className="mt-3 text-sm">View all</p>
+          <p className="mt-3 text-[12px]">View all</p>
           <div className="mt-2 flex items-center justify-center gap-1.5">
             <span className="h-1.5 w-6 rounded-full bg-white" />
             <span className="h-1.5 w-1.5 rounded-full bg-white/50" />
@@ -139,8 +154,8 @@ export default function HomeScreen({ onOpenService }) {
         </div>
 
         {/* Home services */}
-        <section className="mt-5 rounded-2xl bg-white p-4">
-          <h2 className="text-xl font-semibold text-black">Home services</h2>
+        <section className="mt-5 rounded-[7px] bg-white px-3 py-4 shadow-card-sm">
+          <h2 className="text-[16px] font-medium text-setl-navy">Home services</h2>
           <ScrollRow className="mt-3">
             {HOME_SERVICES.map((s) => (
               <ServiceCard
@@ -153,8 +168,8 @@ export default function HomeScreen({ onOpenService }) {
         </section>
 
         {/* Car services */}
-        <section className="mt-5 rounded-2xl bg-white p-4">
-          <h2 className="text-xl font-semibold text-black">Car services</h2>
+        <section className="mt-5 rounded-[7px] bg-white px-3 py-4 shadow-card-sm">
+          <h2 className="text-[16px] font-medium text-setl-navy">Car services</h2>
           <ScrollRow className="mt-3">
             {CAR_SERVICES.map((s) => (
               <ServiceCard
