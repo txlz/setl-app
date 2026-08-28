@@ -47,13 +47,23 @@ function ServiceCard({ service, onClick }) {
       )}
       {/* Label plate: 1.html:1370 — "Rectangle 944", 146x26.9, flat
           rgba(0,0,0,0.11) with a 1.5px backdrop blur and a 5px bottom radius.
-          The board uses a frosted bar here, not a gradient scrim. */}
+          The board uses a frosted bar here, not a gradient scrim.
+          Every tile on the board is dark photography, so an 11%-black plate
+          carries white text fine. Our product cut-outs (`img`) sit on a pale
+          #F3F3F3 tile instead, where that plate leaves white text at ~1.2:1 —
+          so those keep the plate's geometry but take dark ink. */}
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[27px] rounded-b-[5px] bg-black/11 backdrop-blur-[1.5px]"
+        className={`pointer-events-none absolute inset-x-0 bottom-0 h-[27px] rounded-b-[5px] backdrop-blur-[1.5px] ${
+          service.img ? 'bg-white/55' : 'bg-black/11'
+        }`}
       />
       {/* 1.html:1371 — 9px / weight 500 / white, inset 12px from the tile edge. */}
-      <span className="absolute inset-x-0 bottom-2 truncate px-3 text-[9px] font-medium text-white">
+      <span
+        className={`absolute inset-x-0 bottom-2 truncate px-3 text-[9px] font-medium ${
+          service.img ? 'text-setl-ink' : 'text-white'
+        }`}
+      >
         {service.name}
       </span>
     </button>
@@ -139,8 +149,9 @@ export default function HomeScreen({ onOpenService }) {
           </svg>
         </button>
 
-        {/* Promo banner: 1.html:1343-1345 — 320x111 at left 27, radius 15, a
-            violet wash (rgba(126,67,255,.39)) over rgba(108,99,255,.58).
+        {/* Promo banner: 1.html:1343-1345 — 320x111 at left 27, radius 15.
+            The board stacks two translucent washes (1344, 1345) over the
+            violet fill; they're flattened into the single gradient below.
             Copy sits 10px in / 15px down from the banner's top-left. */}
         <div className="mt-4 h-[111px] rounded-[15px] bg-linear-[240deg,rgba(126,67,255,0.39)_0%,rgba(108,99,255,0.58)_100%] bg-setl-violet px-2.5 pt-[15px] text-white">
           {/* 1.html:1363 — 254px wide, 12px, weight 400. */}
