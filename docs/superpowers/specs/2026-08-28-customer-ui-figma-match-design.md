@@ -9,6 +9,14 @@ no backend, no admin panel. `desing_html/` holds the raw Figma export
 (`1.html` / `2.jsx`, ~16MB each, plus `3.js`/`4.js`/`5.js`) — a flat,
 duplicated dump of every artboard iteration, not a clean per-screen source.
 
+**The four export files (`1.html`, `3.js`, `4.js`, `5.js`; `2.jsx` is a
+duplicate of `1.html`) are NOT split by app or role** — each one mixes
+customer, provider, and admin-adjacent artboards. Confirmed by spot check:
+`1.html` has no login/OTP artboards at all (those are in `3.js`, alongside
+provider dispatch screens like "Employee" and "Google Address"); `4.js` has
+booking/checkout screens mixed with others. So "search `1.html`" is not
+sufficient — matching must search **all four files**.
+
 An earlier pass already started nudging some screens toward the Figma
 sizing (uncommitted diff across 41 files, including a few provider/SP
 screens — mostly `text-lg` → `text-[15px]` and radius tweaks). That work
@@ -32,7 +40,8 @@ screens are a follow-up round.
 
 Bring every customer-facing screen's visual details (color, spacing, type
 scale, corner radii, layout proportions) in line with the corresponding
-Figma artboard(s) in `desing_html/1.html`, without discarding the current
+Figma artboard(s) in `desing_html/` (across all four export files), without
+discarding the current
 app's clean, semantic, data-driven component structure. Also verify the
 customer screen sequence matches the intended flow (`APPS_AND_WORKFLOW.md`
 §4, WF-1/2/3/4/5) and `App.jsx`'s routing, fixing any ordering/transition
@@ -51,13 +60,15 @@ mismatches found along the way.
 ## Approach
 
 **Matching method, per screen:**
-1. Identify the screen's corresponding artboard(s) in `desing_html/1.html`
-   by searching for its visible text/labels (`data-layer` / literal
-   strings), since the file has no clean per-screen boundaries and repeats
-   near-duplicate iterations. When multiple near-duplicate iterations match,
-   prefer the one with the most complete/polished layer names and content
-   (fewer placeholder-looking labels, fuller set of expected fields) over
-   earlier, sparser duplicates.
+1. Identify the screen's corresponding artboard(s) by grepping for its
+   visible text/labels (`data-layer="..."` or literal strings) across
+   **all four** `desing_html/` export files (`1.html`, `3.js`, `4.js`,
+   `5.js` — skip `2.jsx`, a duplicate of `1.html`), since no single file
+   is scoped to one app/role and none has clean per-screen boundaries or
+   avoids near-duplicate iterations. When multiple near-duplicate
+   iterations match, prefer the one with the most complete/polished layer
+   names and content (fewer placeholder-looking labels, fuller set of
+   expected fields) over earlier, sparser duplicates.
 2. Compare the current `cloned/src/screens/*.jsx` implementation against
    that artboard for: colors (vs. `theme.css`/Tailwind config tokens),
    spacing/padding, font sizes/weights, corner radii, icon usage, and
