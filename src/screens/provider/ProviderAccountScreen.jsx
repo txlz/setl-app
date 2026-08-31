@@ -2,13 +2,15 @@ import { PROVIDER_ME } from '../../data/providers.js'
 
 // Worker account: identity, earnings, availability, and the switch back to
 // the customer app (so the two-sided flow is demoable on one device).
-export default function ProviderAccountScreen({ orders = [], availableNow, onOpenAvailability, onSwitchToCustomer, onLogout }) {
+export default function ProviderAccountScreen({ orders = [], availableNow, onOpenAvailability, onOpenSchedule, onOpenWallet, onSwitchToCustomer, onLogout }) {
   const paid = orders.filter((o) => o.state === 'paid' || o.state === 'closed')
   const earnings = paid.reduce((s, o) => s + (o.total ?? 0), 0)
   const jobsDone = PROVIDER_ME.jobsDone + paid.length
 
   const menu = [
     { id: 'availability', label: 'My availability', value: availableNow ? 'Available now' : 'Off', accent: availableNow, onClick: onOpenAvailability },
+    { id: 'schedule', label: 'My schedule', onClick: onOpenSchedule },
+    { id: 'earnings', label: 'Earnings', onClick: onOpenWallet },
     { id: 'services', label: 'My services' },
     { id: 'payout', label: 'Payout method' },
     { id: 'help', label: 'Help & support' },

@@ -765,6 +765,11 @@ export function defaultAvailability() {
 }
 
 // A fresh, empty SP company profile the onboarding fills in.
+// What the platform keeps from a settled job before crediting the provider
+// (WF-6, "payout (- platform fee)"). 20% matches the commission the
+// competitor research records for the comparable managed marketplaces.
+export const PLATFORM_FEE_RATE = 0.2
+
 export function emptyCompany() {
   return {
     services: [],

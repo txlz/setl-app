@@ -2,7 +2,7 @@ import { useState } from 'react'
 import SetlLogo from '../components/SetlLogo.jsx'
 import UAEFlag from '../components/UAEFlag.jsx'
 
-export default function CustomerLogin({ onContinue, asProvider = false, onSwitchMode }) {
+export default function CustomerLogin({ onContinue, asProvider = false, onSwitchMode, onSignUp, onForgot }) {
   const [phone, setPhone] = useState('')
   const [error, setError] = useState('')
   const [sending, setSending] = useState(false)
@@ -94,6 +94,22 @@ export default function CustomerLogin({ onContinue, asProvider = false, onSwitch
             'Continue'
           )}
         </button>
+
+        {(onSignUp || onForgot) && (
+          <div className="mt-5 flex items-center justify-center gap-4 text-sm">
+            {onSignUp && (
+              <button type="button" onClick={onSignUp} className="cursor-pointer text-setl-violet underline underline-offset-2">
+                Create an account
+              </button>
+            )}
+            {onSignUp && onForgot && <span className="text-setl-line-3">|</span>}
+            {onForgot && (
+              <button type="button" onClick={onForgot} className="cursor-pointer text-setl-ink-3 underline underline-offset-2">
+                Forgot access?
+              </button>
+            )}
+          </div>
+        )}
 
         <button
           type="button"

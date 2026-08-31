@@ -51,6 +51,16 @@ import TabBar from './components/TabBar.jsx'
 import ProviderTabBar from './components/ProviderTabBar.jsx'
 import SPTabBar from './components/SPTabBar.jsx'
 import { SERVICES, WASH_PACKAGES, WASH_EXTRAS, CLEANING_GROUPS, MY_VEHICLES, PROVIDER_ME, emptyCompany, seedServicePricing, defaultAvailability, estimateCatalog, pestLineItems } from './data/providers.js'
+import SignUpScreen from './screens/SignUpScreen.jsx'
+import ForgotPasswordScreen from './screens/ForgotPasswordScreen.jsx'
+import ProblemScreen from './screens/ProblemScreen.jsx'
+import CarTintScreen from './screens/CarTintScreen.jsx'
+import ProviderCompleteScreen from './screens/provider/ProviderCompleteScreen.jsx'
+import ProviderScheduleScreen from './screens/provider/ProviderScheduleScreen.jsx'
+import ProviderWalletScreen from './screens/provider/ProviderWalletScreen.jsx'
+import SPAddServiceScreen from './screens/sp/SPAddServiceScreen.jsx'
+import SPProductsScreen from './screens/sp/SPProductsScreen.jsx'
+import SPWalletScreen from './screens/sp/SPWalletScreen.jsx'
 import WizardScreen from './screens/WizardScreen.jsx'
 import { advance, createOrder, isActive, recordEvent, seedOrderIds, transition } from './data/orders.js'
 import { STARTING_TRANSACTIONS, topUpTransaction, walletBalance } from './data/wallet.js'
@@ -200,6 +210,7 @@ function App() {
   const [spDetailId, setSpDetailId] = useState(null) // SP request open on the detail screen
   const [spDetailBack, setSpDetailBack] = useState('spExistingRequests') // list to return to
   const [successInfo, setSuccessInfo] = useState(null) // { variant, total, credit } for SuccessScreen
+  const [problemOrderId, setProblemOrderId] = useState(null) // order a problem is being reported on
   const [payingOrderId, setPayingOrderId] = useState(null) // order open on the invoice screen
   const [onboarded, setOnboarded] = useState(loadOnboarded) // first-run intro seen?
   const [profile, setProfile] = useState(loadProfile) // the customer's own details
@@ -437,6 +448,7 @@ function App() {
       ),
     )
     setPayingOrderId(null)
+    setProblemOrderId(null)
     setSuccessInfo({ variant: 'paid', total: amount })
     setScreen('success')
   }
@@ -669,6 +681,8 @@ function App() {
           setPhone(p)
           setScreen('otp')
         }}
+        onSignUp={() => setScreen('signup')}
+        onForgot={() => setScreen('forgot')}
       />
     ),
     otp: (
@@ -731,6 +745,10 @@ function App() {
             })
             setScreen('tracking')
           }
+        }}
+        onReportProblem={(order) => {
+          setProblemOrderId(order.id)
+          setScreen('problem')
         }}
         onBook={() => setScreen('home')}
       />
@@ -1017,6 +1035,8 @@ function App() {
         orders={workerOrders}
         availableNow={workerEmployee?.availableNow ?? true}
         onOpenAvailability={() => setScreen('providerAvailability')}
+        onOpenSchedule={() => setScreen('providerSchedule')}
+        onOpenWallet={() => setScreen('providerWallet')}
         onSwitchToCustomer={switchToCustomer}
         onLogout={logout}
       />
@@ -1112,12 +1132,115 @@ function App() {
         onBack={() => setScreen(spDetailBack)}
       />
     ),
+    signup: (
+      <SignUpScreen
+        onContinue={({ name, phone: p }) => {
+          setPhone(p)
+          try { localStorage.setItem('setl_profile', JSON.stringify({ name })) } catch { /* private mode */ }
+          setScreen('otp')
+        }}
+        onHaveAccount={() => setScreen('login')}
+      />
+    ),
+    forgot: (
+      <ForgotPasswordScreen
+        onSendCode={(p) => {
+          setPhone(p)
+          setScreen('otp')
+        }}
+        onBack={() => setScreen('login')}
+      />
+    ),
+    problem: (
+      <ProblemScreen
+        order={orders.find((o) => o.id === problemOrderId) ?? null}
+        onSubmit={(reason, note) => {
+          setOrders((os) =>
+            os.map((o) => (o.id === problemOrderId ? recordEvent(o, 'problem_reported', { reason, note }) : o)),
+          )
+          setProblemOrderId(null)
+          notify('Report sent — Setl will follow up')
+          setScreen('orders')
+        }}
+        onBack={() => {
+          setProblemOrderId(null)
+          setScreen('orders')
+        }}
+      />
+    ),
+    carTint: (
+      <CarTintScreen
+        vehicles={vehicles}
+        onSearchProviders={(cfg) => {
+          setWash((w) => ({ ...w, tint: cfg }))
+          openProviders('carwash', 'booking')
+        }}
+        onBack={() => setScreen('home')}
+      />
+    ),
+    providerComplete: (
+      <ProviderCompleteScreen
+        order={workerOrder}
+        onComplete={(order, proof) => {
+          updateOrder(order.id, (o) => recordEvent(o, 'proof_added', proof))
+          completeJob(order)
+        }}
+        onBack={() => setScreen('providerJob')}
+      />
+    ),
+    providerSchedule: (
+      <ProviderScheduleScreen
+        orders={workerOrders}
+        onOpenOrder={(order) => {
+          setWorkerOrderId(order.id)
+          setScreen('providerOrder')
+        }}
+        onBack={() => setScreen('providerHome')}
+      />
+    ),
+    providerWallet: (
+      <ProviderWalletScreen
+        orders={workerOrders}
+        employee={workerEmployee}
+        onBack={() => setScreen('providerAccount')}
+      />
+    ),
+    spAddService: (
+      <SPAddServiceScreen
+        services={company.services}
+        onAdd={(service, job) => {
+          setCompany((c) => ({
+            ...c,
+            servicePricing: {
+              ...(c.servicePricing ?? {}),
+              [service]: [...(c.servicePricing?.[service] ?? []), job],
+            },
+          }))
+          notify(`${job.label} added to ${service}`)
+          setScreen('spServices')
+        }}
+        onBack={() => setScreen('spServices')}
+      />
+    ),
+    spProducts: (
+      <SPProductsScreen
+        products={company.products ?? []}
+        onAdd={(prod) => setCompany((c) => ({ ...c, products: [...(c.products ?? []), prod] }))}
+        onRemove={(id) =>
+          setCompany((c) => ({ ...c, products: (c.products ?? []).filter((p) => p.id !== id) }))
+        }
+        onBack={() => setScreen('spServices')}
+      />
+    ),
+    spWallet: <SPWalletScreen orders={orders} onBack={() => setScreen('spAccount')} />,
     spServices: (
       <SPServicesScreen
         company={company}
         onUpdatePricing={(service, tasks) =>
           setCompany((c) => ({ ...c, servicePricing: { ...(c.servicePricing ?? {}), [service]: tasks } }))
         }
+        onAddService={() => setScreen('spAddService')}
+        onOpenProducts={() => setScreen('spProducts')}
         onBack={() => setScreen('spHome')}
       />
     ),
@@ -1149,6 +1272,7 @@ function App() {
         company={company}
         orders={orders}
         onOpenEmployees={() => setScreen('spEmployeesManage')}
+        onOpenWallet={() => setScreen('spWallet')}
         onSwitchCustomer={switchToCustomer}
         onSwitchWorker={switchToWorker}
         onLogout={logout}

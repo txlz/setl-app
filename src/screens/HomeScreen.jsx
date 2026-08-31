@@ -28,7 +28,7 @@ const HOME_SERVICES = [
 const CAR_SERVICES = [
   { name: 'car wash', photo: carwashImg, target: 'carWash' },
   { name: 'car polish', photo: carpolishImg, target: 'carWash' },
-  { name: 'glass & windows', photo: carglassImg, target: 'carWash' },
+  { name: 'glass & windows', photo: carglassImg, target: 'carTint' },
 ]
 
 function ServiceCard({ service, onClick }) {

@@ -14,7 +14,7 @@ const GRADS = {
 // The services the company offers and the price of each real job it does.
 // Pricing is per trade (the actual jobs), not abstract difficulty tiers: the
 // SP tweaks the seeded defaults, adds/removes jobs, and it saves as they go.
-export default function SPServicesScreen({ company, onUpdatePricing, onBack }) {
+export default function SPServicesScreen({ company, onUpdatePricing, onAddService, onOpenProducts, onBack }) {
   const services = company.services ?? []
   const pricing = company.servicePricing ?? {}
   const [adding, setAdding] = useState({}) // { [service]: { label, price } }
@@ -52,6 +52,31 @@ export default function SPServicesScreen({ company, onUpdatePricing, onBack }) {
   return (
     <GradientHeader title="Services & pricing" onBack={onBack} sheetClassName="bg-[#F5F4F7]">
       <div className="font-poppins flex grow flex-col px-4 pb-24">
+        {/* Catalogue actions (WF-7): a full add-service form and the
+            recommended products a job may need. */}
+        {(onAddService || onOpenProducts) && (
+          <div className="mt-3 flex gap-2">
+            {onAddService && (
+              <button
+                type="button"
+                onClick={onAddService}
+                className="brand-hero grow cursor-pointer rounded-[11px] py-2.5 text-[13px] font-medium text-white"
+              >
+                + Add service
+              </button>
+            )}
+            {onOpenProducts && (
+              <button
+                type="button"
+                onClick={onOpenProducts}
+                className="grow cursor-pointer rounded-[11px] border-[0.5px] border-setl-violet bg-white py-2.5 text-[13px] font-medium text-setl-violet"
+              >
+                Products
+              </button>
+            )}
+          </div>
+        )}
+
         {services.length === 0 && (
           <p className="mt-2 rounded-[15px] bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             No services yet.

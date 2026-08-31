@@ -1,6 +1,6 @@
 // SP account tab: company identity + earnings, roster shortcut, and the role
 // switches (which used to clutter the home).
-export default function SPAccountScreen({ company, orders = [], onOpenEmployees, onSwitchCustomer, onSwitchWorker, onLogout }) {
+export default function SPAccountScreen({ company, orders = [], onOpenEmployees, onOpenWallet, onSwitchCustomer, onSwitchWorker, onLogout }) {
   const paid = orders.filter((o) => o.state === 'paid' || o.state === 'closed')
   const earnings = paid.reduce((s, o) => s + (o.total ?? 0), 0)
   const name = company.profile?.name || 'Your company'
@@ -32,6 +32,15 @@ export default function SPAccountScreen({ company, orders = [], onOpenEmployees,
         <span className="text-[15px] text-black">Manage employees</span>
         <svg width="7" height="12" viewBox="0 0 10 18" fill="none"><path d="m1 1 7 8-7 8" stroke="#C9C7D1" strokeWidth="2" strokeLinecap="round" /></svg>
       </button>
+
+      {onOpenWallet && (
+        <button type="button" onClick={onOpenWallet} className="mx-3 mt-4 flex w-[calc(100%-1.5rem)] items-center justify-between rounded-[15px] bg-white px-4 py-3.5 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+          <span className="text-[15px] font-medium text-setl-violet">Wallet &amp; payouts</span>
+          <svg width="9" height="15" viewBox="0 0 9 15" fill="none" stroke="#7E43FF" strokeWidth="1.8" strokeLinecap="round">
+            <path d="m1 1 6 6.5L1 14" />
+          </svg>
+        </button>
+      )}
 
       <button type="button" onClick={onSwitchCustomer} className="mx-3 mt-4 flex w-[calc(100%-1.5rem)] items-center justify-between rounded-[15px] bg-white px-4 py-3.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         <span className="text-[15px] font-medium text-setl-purple">Switch to customer app</span>

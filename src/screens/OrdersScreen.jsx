@@ -25,7 +25,7 @@ function listAction(order) {
   return null
 }
 
-export default function OrdersScreen({ orders, onOpenOrder, onBook }) {
+export default function OrdersScreen({ orders, onOpenOrder, onReportProblem, onBook }) {
   return (
     <div className="font-poppins flex min-h-screen flex-col bg-[#F5F4F7] px-3 pt-5 pb-24">
       <h1 className="text-center text-[17px] font-semibold text-black">My Orders</h1>
@@ -54,8 +54,8 @@ export default function OrdersScreen({ orders, onOpenOrder, onBook }) {
                 ? order.total
                 : (order.amountDue ?? order.total)
             return (
+              <div key={order.id} className="flex flex-col">
               <button
-                key={order.id}
                 type="button"
                 onClick={openable ? () => onOpenOrder(order, action) : undefined}
                 className={`flex items-center gap-3 rounded-[11px] bg-white p-3 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)] ${openable ? 'cursor-pointer' : 'cursor-default'}`}
@@ -97,6 +97,17 @@ export default function OrdersScreen({ orders, onOpenOrder, onBook }) {
                   )}
                 </div>
               </button>
+              {/* WF-9 — anything already under way can be disputed. */}
+              {onReportProblem && !['cancelled_by_customer', 'cancelled_by_provider'].includes(order.state) && (
+                <button
+                  type="button"
+                  onClick={() => onReportProblem(order)}
+                  className="mt-1 cursor-pointer self-end text-[11px] text-setl-muted underline"
+                >
+                  Report a problem
+                </button>
+              )}
+              </div>
             )
           })}
         </div>
