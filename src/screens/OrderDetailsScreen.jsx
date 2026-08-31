@@ -51,10 +51,12 @@ export default function OrderDetailsScreen({ booking, counts, place, onPay, onBa
         : booking.pestItems
         ? [
             { label: 'Call-out fee', qty: 1, price: booking.provider.bookingFee },
+            // Each room carries its own spread, so the price comes from the
+            // line item rather than rooms x a flat rate.
             ...booking.pestItems.map((p) => ({
-              label: `${p.label} (${p.rooms} ${p.rooms === 1 ? 'room' : 'rooms'})`,
+              label: `${p.label} (${p.rooms} ${p.rooms === 1 ? 'room' : 'rooms'}: ${p.levels.join(', ')})`,
               qty: p.rooms,
-              price: p.rooms * p.pricePerRoom,
+              price: p.price,
             })),
           ]
         : booking.washItems

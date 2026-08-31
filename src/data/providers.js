@@ -92,14 +92,45 @@ export const PEST_PROVIDERS = [
 ]
 
 // The pest types shown on the "Add pest control" screen, priced per room.
+// The six pests on the board, in its order, with its medallion colours
+// (pest.html: Ellipse 165 fills).
 export const PEST_TYPES = [
-  { key: 'cockroach', label: 'Cockroach control', pricePerRoom: 45, icon: '\u{1FAB3}' },
-  { key: 'ant', label: 'Ant control', pricePerRoom: 35, icon: '\u{1F41C}' },
-  { key: 'mice', label: 'Mice control', pricePerRoom: 70, icon: '\u{1F401}' },
-  { key: 'mosquito', label: 'Mosquito control', pricePerRoom: 40, icon: '\u{1F99F}' },
-  { key: 'lizards', label: 'Lizards control', pricePerRoom: 50, icon: '\u{1F98E}' },
-  { key: 'flea', label: 'Flea control', pricePerRoom: 55, icon: '\u{1FAB0}' },
+  { key: 'cockroach', label: 'Cockroach control', pricePerRoom: 45, icon: '\u{1FAB3}', color: '#D142FA' },
+  { key: 'mice', label: 'Mice control', pricePerRoom: 70, icon: '\u{1F401}', color: '#EB4D4B' },
+  { key: 'ant', label: 'Ant control', pricePerRoom: 35, icon: '\u{1F41C}', color: '#10D830' },
+  { key: 'mosquito', label: 'Mosquito control', pricePerRoom: 40, icon: '\u{1F99F}', color: '#1AAAE9' },
+  { key: 'lizards', label: 'Lizards control', pricePerRoom: 50, icon: '\u{1F98E}', color: '#FFA800' },
+  { key: 'anti', label: 'Anti control', pricePerRoom: 55, icon: '\u{1FAB0}', color: '#751AE9' },
 ]
+
+// "extent of spread room N?" — the board's three-stop slider. Severity scales
+// what the room costs, which is the point of asking per room rather than once.
+export const SPREAD_LEVELS = [
+  { key: 'small', label: 'small', factor: 0.8 },
+  { key: 'middle', label: 'middle', factor: 1 },
+  { key: 'wide', label: 'wide', factor: 1.4 },
+]
+
+// A pest task is one room at one severity. Price = the pest's per-room rate
+// scaled by that room's spread.
+export function pestTaskPrice(pest, level) {
+  const lv = SPREAD_LEVELS.find((l) => l.key === level) ?? SPREAD_LEVELS[1]
+  return Math.round(pest.pricePerRoom * lv.factor)
+}
+
+// `pests` is { [pestKey]: [levelKey, ...] } — one entry per configured room.
+export function pestLineItems(pests) {
+  return PEST_TYPES.flatMap((p) => {
+    const rooms = pests[p.key] ?? []
+    if (!rooms.length) return []
+    return [{
+      label: p.label,
+      rooms: rooms.length,
+      levels: rooms,
+      price: rooms.reduce((sum, lv) => sum + pestTaskPrice(p, lv), 0),
+    }]
+  })
+}
 
 export const TECH_PROVIDERS = [
   { id: 'tc1', name: 'FixIt Technicians', bookingFee: 40, rating: 4.6, color: '#B25B0E', perVisit: true, slots: ['Today 2:30pm', 'Today 6:00pm', 'Tomorrow 10:00am'] },

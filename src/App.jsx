@@ -50,7 +50,7 @@ import AdminShell from './screens/admin/AdminShell.jsx'
 import TabBar from './components/TabBar.jsx'
 import ProviderTabBar from './components/ProviderTabBar.jsx'
 import SPTabBar from './components/SPTabBar.jsx'
-import { SERVICES, PEST_TYPES, WASH_PACKAGES, WASH_EXTRAS, CLEANING_GROUPS, MY_VEHICLES, PROVIDER_ME, emptyCompany, seedServicePricing, defaultAvailability, estimateCatalog } from './data/providers.js'
+import { SERVICES, WASH_PACKAGES, WASH_EXTRAS, CLEANING_GROUPS, MY_VEHICLES, PROVIDER_ME, emptyCompany, seedServicePricing, defaultAvailability, estimateCatalog, pestLineItems } from './data/providers.js'
 import WizardScreen from './screens/WizardScreen.jsx'
 import { advance, createOrder, isActive, recordEvent, seedOrderIds, transition } from './data/orders.js'
 import { STARTING_TRANSACTIONS, topUpTransaction, walletBalance } from './data/wallet.js'
@@ -153,7 +153,9 @@ function App() {
   const [phone, setPhone] = useState('')
   const [counts, setCounts] = useState({ refill: 1, clean: 1 })
   const [hours, setHours] = useState(2) // hourly services (house cleaning)
-  const [pests, setPests] = useState({}) // pest control: { [pestKey]: infected rooms }
+  // pest control: { [pestKey]: ['small' | 'middle' | 'wide', ...] } — one
+  // spread level per infected room, per the board's per-room question.
+  const [pests, setPests] = useState({})
   const [cleanExtras, setCleanExtras] = useState({}) // cleaning add-ons: { [itemKey]: qty }
   const [wash, setWash] = useState({ vehicle: 'v1', size: 'large', pkg: 'basic', extras: [] })
   const [vehicles, setVehicles] = useState(MY_VEHICLES)
@@ -310,13 +312,11 @@ function App() {
     } else openProviders(service, 'booking', symptoms)
   }
 
-  // Turn the pest-room counters into checkout line items.
+  // Turn the configured pest rooms into checkout line items. A pest's rooms
+  // are stored as one spread level each ('small' | 'middle' | 'wide'), so the
+  // room's severity — not just how many rooms — drives what it costs.
   function pestItems() {
-    return PEST_TYPES.filter((p) => (pests[p.key] ?? 0) > 0).map((p) => ({
-      label: p.label,
-      rooms: pests[p.key],
-      pricePerRoom: p.pricePerRoom,
-    }))
+    return pestLineItems(pests)
   }
 
   // Turn the cleaning add-on counters into checkout line items.
