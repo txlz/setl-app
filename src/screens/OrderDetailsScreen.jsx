@@ -16,7 +16,7 @@ import { AC_PRICE_PER_UNIT, CUSTOMER_ME, SERVICES } from '../data/providers.js'
 //  - maintenance: approved estimate — same 0-due confirm, with the prepaid
 //                 inspection fee credited on the projected total
 export default function OrderDetailsScreen({ booking, counts, place, onPay, onBack, onReschedule, onChangeProvider }) {
-  const [method, setMethod] = useState('apple')
+  const [method, setMethod] = useState('wallet')
   const [voucherRate, setVoucherRate] = useState(0)
   const [confirming, setConfirming] = useState(false)
   const [rescheduling, setRescheduling] = useState(false) // date/time sheet open

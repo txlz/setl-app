@@ -10,7 +10,7 @@ import VoucherField from '../components/VoucherField.jsx'
 // Itemized: work items, base discount, inspection fee credit (repairs),
 // voucher — then the actual payment happens here (Phase 1, decision B).
 export default function InvoiceScreen({ order, onPay, onBack }) {
-  const [method, setMethod] = useState('apple')
+  const [method, setMethod] = useState('wallet')
   const [voucherRate, setVoucherRate] = useState(0)
   const [voucherCode, setVoucherCode] = useState('')
   const [paying, setPaying] = useState(false)
