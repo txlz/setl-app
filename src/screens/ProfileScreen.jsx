@@ -5,7 +5,7 @@ const MENU = [
   { id: 'help', label: 'Help & support' },
 ]
 
-export default function ProfileScreen({ phone, onSwitchMode, onLogout }) {
+export default function ProfileScreen({ phone, onSwitchMode, onOpenAdmin, onLogout }) {
   return (
     <div className="font-poppins flex min-h-screen flex-col bg-[#F5F4F7] pb-24">
       <div className="brand-header px-4 pt-8 pb-10 text-center text-white">
@@ -49,6 +49,19 @@ export default function ProfileScreen({ phone, onSwitchMode, onLogout }) {
           <span className="text-[15px] font-medium text-setl-purple">Switch to service provider app</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8442FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M8 3 4 7l4 4M4 7h13M16 21l4-4-4-4M20 17H7" />
+          </svg>
+        </button>
+      )}
+
+      {onOpenAdmin && (
+        <button
+          type="button"
+          onClick={onOpenAdmin}
+          className="mx-3 mt-3 flex cursor-pointer items-center justify-between rounded-[15px] bg-white px-4 py-3.5 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+        >
+          <span className="text-[15px] font-medium text-setl-violet">Open the admin dashboard</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7E43FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 3h7v7H3zM14 3h7v4h-7zM14 10h7v11h-7zM3 13h7v8H3z" />
           </svg>
         </button>
       )}

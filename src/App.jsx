@@ -40,6 +40,7 @@ import SPRequestDetailScreen from './screens/sp/SPRequestDetailScreen.jsx'
 import SPServicesScreen from './screens/sp/SPServicesScreen.jsx'
 import SPNotificationsScreen from './screens/sp/SPNotificationsScreen.jsx'
 import SPAccountScreen from './screens/sp/SPAccountScreen.jsx'
+import AdminShell from './screens/admin/AdminShell.jsx'
 import TabBar from './components/TabBar.jsx'
 import ProviderTabBar from './components/ProviderTabBar.jsx'
 import SPTabBar from './components/SPTabBar.jsx'
@@ -484,6 +485,11 @@ function App() {
     setScreen('home')
   }
 
+  function switchToAdmin() {
+    setMode('admin')
+    setScreen('admin')
+  }
+
   function switchToSP() {
     setMode('sp')
     setScreen(company.employees.length ? 'spHome' : 'spChooseService')
@@ -614,7 +620,7 @@ function App() {
         onBook={() => setScreen('home')}
       />
     ),
-    profile: <ProfileScreen phone={phone} onSwitchMode={switchToSP} onLogout={logout} />,
+    profile: <ProfileScreen phone={phone} onSwitchMode={switchToSP} onOpenAdmin={switchToAdmin} onLogout={logout} />,
     acService: (
       <AcServiceScreen
         counts={counts}
@@ -966,6 +972,16 @@ function App() {
         onBack={() => setScreen('spHome')}
       />
     ),
+    admin: (
+      <AdminShell
+        orders={orders}
+        company={company}
+        onUpdateOrder={(id, toState) =>
+          setOrders((os) => os.map((o) => (o.id === id ? transition(o, toState) : o)))
+        }
+        onExit={switchToCustomer}
+      />
+    ),
     spAccount: (
       <SPAccountScreen
         company={company}
@@ -983,6 +999,10 @@ function App() {
   const providerAlerts = orders.filter((o) =>
     ['scheduled', 'approved', 'awaiting_payment'].includes(o.state),
   ).length
+
+  // The admin panel is a desktop surface — it renders full-width instead of
+  // inside the 375px phone frame the three mobile apps share.
+  if (mode === 'admin') return screens.admin
 
   return (
     <div className="relative mx-auto min-h-screen w-full max-w-[375px] overflow-hidden bg-white shadow-xl">
