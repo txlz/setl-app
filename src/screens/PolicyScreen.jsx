@@ -4,7 +4,7 @@ import ScreenHeader from '../components/ScreenHeader.jsx'
 // the same layout renders both and a copy change is a one-line edit.
 //
 // The cancellation refund tiers are the product rule, not placeholder text:
-// free cancellation up to 1 hour before the slot, 50% inside that hour, and
+// free cancellation up to 1 hour before the slot, and
 // only 20% refunded in the final 30 minutes (the pro is already en route).
 const POLICIES = {
   privacy: {
@@ -51,17 +51,12 @@ const POLICIES = {
     // Rendered as a small table above the prose so the numbers are unmissable.
     tiers: [
       { when: 'More than 1 hour before', refund: '100%', tone: 'green' },
-      { when: 'Within the last hour', refund: '50%', tone: 'gold' },
       { when: 'Within the last 30 minutes', refund: '20%', tone: 'red' },
     ],
     sections: [
       {
         heading: 'Full refund',
         body: 'Cancel more than 1 hour before your appointment starts and you are refunded in full, including any inspection fee already paid. The refund lands back on the card you used, or as Setl credit in your Wallet if you prefer it faster.',
-      },
-      {
-        heading: 'Inside the last hour',
-        body: 'Cancel less than 1 hour before the slot and 50% of the amount paid is refunded. The remainder covers the provider for the time they have already committed to you.',
       },
       {
         heading: 'The last 30 minutes',
