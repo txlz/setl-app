@@ -1,4 +1,5 @@
 import ScreenHeader from '../components/ScreenHeader.jsx'
+import CarBrand from '../components/CarBrand.jsx'
 import GradientButton from '../components/GradientButton.jsx'
 import { CAR_SIZES, WASH_PACKAGES, WASH_EXTRAS } from '../data/providers.js'
 import carwashImg from '../assets/services/carwash.png'
@@ -72,7 +73,7 @@ export default function CarWashScreen({ wash, setWash, vehicles = [], onManageVe
                   on ? 'border-setl-purple bg-white' : 'border-setl-line bg-white'
                 }`}
               >
-                <span className="block h-1.5 w-8 rounded-full" style={{ background: v.color }} />
+                <CarBrand name={v.name} color={v.color} className="h-6 w-6" />
                 <span className="mt-2 block truncate text-sm text-setl-ink">{v.name}</span>
                 <span className="block text-xs text-setl-muted">{v.plate}</span>
               </button>

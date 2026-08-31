@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import ScreenHeader from '../components/ScreenHeader.jsx'
+import CarBrand from '../components/CarBrand.jsx'
 import GradientButton from '../components/GradientButton.jsx'
-import { CAR_SIZES } from '../data/providers.js'
+import { CAR_SIZES, CAR_BRANDS } from '../data/providers.js'
 
 const COLORS = ['#1D3F8F', '#C43B1D', '#2E9E4F', '#5A5A5A', '#D9B80E', '#7E43FF']
 
@@ -36,9 +37,11 @@ export default function VehiclesScreen({ vehicles, onSave, onRemove, onBack }) {
           >
             <span
               aria-hidden
-              className="h-10 w-10 shrink-0 rounded-full"
-              style={{ background: v.color }}
-            />
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+              style={{ background: `${v.color}1A` }}
+            >
+              <CarBrand name={v.name} color={v.color} className="h-[22px] w-[22px]" />
+            </span>
             <div className="min-w-0 grow">
               <p className="truncate text-[15px] text-setl-ink">{v.name}</p>
               <p className="text-xs text-setl-muted">
@@ -69,6 +72,23 @@ export default function VehiclesScreen({ vehicles, onSave, onRemove, onBack }) {
               placeholder="Nissan Patrol"
               className="mt-1 h-11 w-full rounded-[11px] border border-setl-line-3 px-3 text-sm text-setl-ink outline-none placeholder:text-setl-muted-3 focus:border-setl-purple"
             />
+            {/* Tapping a make prefills the name, so the saved car gets a real
+                brand mark instead of falling back to its initial. */}
+            <div className="no-scrollbar mt-2 flex gap-1.5 overflow-x-auto">
+              {CAR_BRANDS.map((b) => (
+                <button
+                  key={b}
+                  type="button"
+                  onClick={() =>
+                    setDraft({ ...draft, name: draft.name.trim() ? `${b} ${draft.name.trim().split(/\s+/).slice(1).join(' ')}`.trim() : `${b} ` })
+                  }
+                  className="flex shrink-0 cursor-pointer items-center gap-1.5 rounded-[9px] border border-setl-line-2 bg-white px-2 py-1"
+                >
+                  <CarBrand name={b} color="#626262" className="h-3.5 w-3.5" />
+                  <span className="text-[11px] text-setl-ink-3">{b}</span>
+                </button>
+              ))}
+            </div>
 
             <label className="mt-3 block text-xs text-setl-ink-3" htmlFor="veh-plate">
               Plate number

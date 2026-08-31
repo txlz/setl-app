@@ -202,6 +202,14 @@ export const WASH_EXTRAS = [
 export const MY_VEHICLES = [
   { id: 'v1', name: 'Nissan Patrol', plate: 'A 12345', size: 'large', color: '#1D3F8F' },
   { id: 'v2', name: 'Toyota Corolla', plate: 'B 55831', size: 'small', color: '#C43B1D' },
+  { id: 'v3', name: 'BMW X5', plate: 'D 90210', size: 'large', color: '#0166B1' },
+]
+
+// Makes we ship a real brand mark for (see components/CarBrand.jsx). Offered
+// as suggestions on the add-vehicle form so a typed name matches a logo.
+export const CAR_BRANDS = [
+  'Toyota', 'Nissan', 'BMW', 'Mercedes', 'Honda', 'Hyundai', 'Kia', 'Ford',
+  'Chevrolet', 'Audi', 'Volkswagen', 'Mitsubishi', 'Mazda', 'Porsche', 'Jeep',
 ]
 
 // What the inspector proposes after the visit, per service.
