@@ -15,6 +15,16 @@ const STATUS_STYLES = {
   // Cancelled / No-show / Disputed fall through to the gray default
 }
 
+// Settled orders can be rated. `orderAction` (the state machine's own helper)
+// stays untouched — rating isn't a state change, so it's decided here in the
+// list: a paid/closed order with no rating yet offers "Rate".
+function listAction(order) {
+  const action = orderAction(order) // 'pay' | 'track' | null
+  if (action) return action
+  if (['paid', 'closed'].includes(order.state) && !order.rating) return 'rate'
+  return null
+}
+
 export default function OrdersScreen({ orders, onOpenOrder, onBook }) {
   return (
     <div className="font-poppins flex min-h-screen flex-col bg-[#F5F4F7] px-3 pt-5 pb-24">
@@ -35,7 +45,7 @@ export default function OrdersScreen({ orders, onOpenOrder, onBook }) {
       ) : (
         <div className="mt-5 flex flex-col gap-3">
           {orders.map((order) => {
-            const action = orderAction(order) // 'pay' | 'track' | null
+            const action = listAction(order) // 'pay' | 'track' | 'rate' | null
             const openable = action !== null
             // Money shown: what was paid once settled, what's due (or the
             // expected cost) before that
@@ -71,6 +81,14 @@ export default function OrdersScreen({ orders, onOpenOrder, onBook }) {
                   <span className="text-sm font-semibold text-black">{amount} AED</span>
                   {action === 'pay' && (
                     <span className="text-[11px] font-medium text-setl-purple">Pay now</span>
+                  )}
+                  {action === 'rate' && (
+                    <span className="text-[11px] font-medium text-setl-violet">Rate</span>
+                  )}
+                  {order.rating && (
+                    <span className="text-[11px] text-setl-gold">
+                      {'★★★★★'.slice(0, order.rating.stars)}
+                    </span>
                   )}
                   {openable && (
                     <svg width="8" height="14" viewBox="0 0 10 18" fill="none">

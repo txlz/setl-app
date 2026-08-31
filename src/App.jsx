@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import SplashScreen from './screens/SplashScreen.jsx'
+import OnboardingScreen from './screens/OnboardingScreen.jsx'
 import CustomerLogin from './screens/CustomerLogin.jsx'
 import OtpScreen from './screens/OtpScreen.jsx'
 import LocationScreen from './screens/LocationScreen.jsx'
@@ -20,6 +21,11 @@ import RejectReasonScreen from './screens/RejectReasonScreen.jsx'
 import SuccessScreen from './screens/SuccessScreen.jsx'
 import OrdersScreen from './screens/OrdersScreen.jsx'
 import ProfileScreen from './screens/ProfileScreen.jsx'
+import EditProfileScreen from './screens/EditProfileScreen.jsx'
+import WalletScreen from './screens/WalletScreen.jsx'
+import SettingsScreen from './screens/SettingsScreen.jsx'
+import PolicyScreen from './screens/PolicyScreen.jsx'
+import RatingScreen from './screens/RatingScreen.jsx'
 import ChooseServiceScreen from './screens/provider/ChooseServiceScreen.jsx'
 import ProviderHomeScreen from './screens/provider/ProviderHomeScreen.jsx'
 import ProviderOrderScreen from './screens/provider/ProviderOrderScreen.jsx'
@@ -47,6 +53,7 @@ import SPTabBar from './components/SPTabBar.jsx'
 import { SERVICES, PEST_TYPES, WASH_PACKAGES, WASH_EXTRAS, CLEANING_GROUPS, MY_VEHICLES, PROVIDER_ME, emptyCompany, seedServicePricing, defaultAvailability, estimateCatalog } from './data/providers.js'
 import WizardScreen from './screens/WizardScreen.jsx'
 import { advance, createOrder, isActive, recordEvent, seedOrderIds, transition } from './data/orders.js'
+import { STARTING_TRANSACTIONS, topUpTransaction, walletBalance } from './data/wallet.js'
 
 const TAB_SCREENS = ['home', 'orders', 'profile']
 const PROVIDER_TAB_SCREENS = ['providerHome', 'providerRatings', 'providerNotifications', 'providerAccount']
@@ -69,6 +76,56 @@ function loadOrders() {
     // ignore corrupt storage
   }
   return []
+}
+
+// First-run intro. Written once the customer finishes (or skips through) the
+// onboarding deck, so returning users go splash -> login as before.
+const ONBOARDED_KEY = 'setl_onboarded'
+function loadOnboarded() {
+  try {
+    return localStorage.getItem(ONBOARDED_KEY) === '1'
+  } catch {
+    // storage blocked (private mode) — just show the intro
+    return false
+  }
+}
+
+// The customer's own details, edited on the Edit profile screen.
+const PROFILE_KEY = 'setl_profile'
+const DEFAULT_PROFILE = { name: 'Ahmed Alshamsi', email: 'ahmed@example.com', phone: '501234567' }
+function loadProfile() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(PROFILE_KEY) || 'null')
+    if (saved && typeof saved === 'object') return { ...DEFAULT_PROFILE, ...saved }
+  } catch {
+    // ignore corrupt storage
+  }
+  return DEFAULT_PROFILE
+}
+
+// Device preferences from the Settings screen.
+const SETTINGS_KEY = 'setl_settings'
+const DEFAULT_SETTINGS = { notifications: true, language: 'en', currency: 'AED' }
+function loadSettings() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(SETTINGS_KEY) || 'null')
+    if (saved && typeof saved === 'object') return { ...DEFAULT_SETTINGS, ...saved }
+  } catch {
+    // ignore corrupt storage
+  }
+  return DEFAULT_SETTINGS
+}
+
+// The wallet ledger (balance is always derived from it — see data/wallet.js).
+const WALLET_KEY = 'setl_wallet'
+function loadWallet() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(WALLET_KEY) || 'null')
+    if (Array.isArray(saved)) return saved
+  } catch {
+    // ignore corrupt storage
+  }
+  return STARTING_TRANSACTIONS
 }
 
 // The Service Provider (company) profile, persisted through onboarding.
@@ -142,6 +199,12 @@ function App() {
   const [spDetailBack, setSpDetailBack] = useState('spExistingRequests') // list to return to
   const [successInfo, setSuccessInfo] = useState(null) // { variant, total, credit } for SuccessScreen
   const [payingOrderId, setPayingOrderId] = useState(null) // order open on the invoice screen
+  const [onboarded, setOnboarded] = useState(loadOnboarded) // first-run intro seen?
+  const [profile, setProfile] = useState(loadProfile) // the customer's own details
+  const [settings, setSettings] = useState(loadSettings) // notifications / language / currency
+  const [wallet, setWallet] = useState(loadWallet) // wallet ledger
+  const [policyKind, setPolicyKind] = useState('privacy') // which policy is open
+  const [ratingOrderId, setRatingOrderId] = useState(null) // order being rated
   const [toast, setToast] = useState(null) // simulated push notification { key, text }
   const workTimers = useRef(new Set()) // `${orderId}:${state}` steps already scheduled
 
@@ -173,6 +236,17 @@ function App() {
       // ignore
     }
   }, [company])
+
+  // The customer's own preferences/details/credit persist the same way.
+  useEffect(() => {
+    try {
+      localStorage.setItem(PROFILE_KEY, JSON.stringify(profile))
+      localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings))
+      localStorage.setItem(WALLET_KEY, JSON.stringify(wallet))
+    } catch {
+      // ignore storage errors (private mode, quota)
+    }
+  }, [profile, settings, wallet])
 
   // Residual auto-simulation for orders no human is driving yet. A freshly
   // booked order now WAITS at 'scheduled' — the Service Provider dispatches it
@@ -522,6 +596,40 @@ function App() {
     setScreen('spRequestDetail')
   }
 
+  // ---- Customer account screens (wallet / settings / profile / rating) ----
+
+  // The intro deck is done: remember it so the next launch skips straight to
+  // login, and continue into the normal flow.
+  function finishOnboarding() {
+    setOnboarded(true)
+    try {
+      localStorage.setItem(ONBOARDED_KEY, '1')
+    } catch {
+      // ignore storage errors (private mode)
+    }
+    setScreen('login')
+  }
+
+  function topUpWallet(amount) {
+    setWallet((w) => [...w, topUpTransaction(amount)])
+    notify(`${amount} AED added to your wallet`)
+  }
+
+  // Rating is not an order state change — it's an attribute plus a history
+  // event, so the state machine is untouched.
+  function submitRating(rating) {
+    if (ratingOrderId == null) return
+    updateOrder(ratingOrderId, (o) => ({ ...recordEvent(o, 'rated', rating), rating }))
+    setRatingOrderId(null)
+    setScreen('orders')
+    notify('Thanks — your rating helps other customers')
+  }
+
+  function openPolicy(kind) {
+    setPolicyKind(kind)
+    setScreen('policy')
+  }
+
   function logout() {
     setMode('customer')
     setScreen('login')
@@ -544,11 +652,15 @@ function App() {
     setOrders([])
     setSuccessInfo(null)
     setPayingOrderId(null)
+    setRatingOrderId(null)
     workTimers.current = new Set()
   }
 
   const screens = {
-    splash: <SplashScreen onDone={() => setScreen('login')} />,
+    // First run gets the intro deck between the splash and login; after that
+    // the flag in localStorage sends returning customers straight to login.
+    splash: <SplashScreen onDone={() => setScreen(onboarded ? 'login' : 'onboarding')} />,
+    onboarding: <OnboardingScreen onDone={finishOnboarding} />,
     login: (
       <CustomerLogin
         asProvider={mode !== 'customer'}
@@ -601,6 +713,9 @@ function App() {
           if (action === 'pay') {
             setPayingOrderId(order.id)
             setScreen('invoice')
+          } else if (action === 'rate') {
+            setRatingOrderId(order.id)
+            setScreen('rating')
           } else {
             // Rebuild the tracking context from the live order (so tracking
             // works whether reached from booking or from the Orders list).
@@ -620,7 +735,54 @@ function App() {
         onBook={() => setScreen('home')}
       />
     ),
-    profile: <ProfileScreen phone={phone} onSwitchMode={switchToSP} onOpenAdmin={switchToAdmin} onLogout={logout} />,
+    profile: (
+      <ProfileScreen
+        phone={phone}
+        profile={profile}
+        walletBalance={walletBalance(wallet)}
+        onOpen={(id) => setScreen(id)}
+        onSwitchMode={switchToSP}
+        onOpenAdmin={switchToAdmin}
+        onLogout={logout}
+      />
+    ),
+    editProfile: (
+      <EditProfileScreen
+        profile={{ ...profile, phone: phone || profile.phone }}
+        onSave={(next) => {
+          setProfile(next)
+          setScreen('profile')
+          notify('Profile updated')
+        }}
+        onBack={() => setScreen('profile')}
+      />
+    ),
+    wallet: (
+      <WalletScreen
+        transactions={wallet}
+        onTopUp={topUpWallet}
+        onBack={() => setScreen('profile')}
+      />
+    ),
+    settings: (
+      <SettingsScreen
+        settings={settings}
+        onChange={(patch) => setSettings((s) => ({ ...s, ...patch }))}
+        onOpenPolicy={openPolicy}
+        onBack={() => setScreen('profile')}
+      />
+    ),
+    policy: <PolicyScreen kind={policyKind} onBack={() => setScreen('settings')} />,
+    rating: (
+      <RatingScreen
+        order={orders.find((o) => o.id === ratingOrderId) ?? null}
+        onSubmit={submitRating}
+        onBack={() => {
+          setRatingOrderId(null)
+          setScreen('orders')
+        }}
+      />
+    ),
     acService: (
       <AcServiceScreen
         counts={counts}
