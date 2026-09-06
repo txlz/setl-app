@@ -4,6 +4,7 @@ import AdminOrders from './AdminOrders.jsx'
 import AdminProviders from './AdminProviders.jsx'
 import AdminUsers from './AdminUsers.jsx'
 import AdminServices from './AdminServices.jsx'
+import AdminCatalog from './AdminCatalog.jsx'
 import AdminReports from './AdminReports.jsx'
 import SetlLogo from '../../components/SetlLogo.jsx'
 
@@ -12,6 +13,7 @@ const NAV = [
   { key: 'orders', label: 'Orders', icon: 'M4 5h16M4 12h16M4 19h10' },
   { key: 'providers', label: 'Providers', icon: 'M4 20a8 8 0 1 1 16 0M12 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z' },
   { key: 'users', label: 'Users', icon: 'M3 20a7 7 0 0 1 14 0M10 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z' },
+  { key: 'catalog', label: 'Home catalogue', icon: 'M4 5h6v6H4zM14 5h6v6h-6zM4 15h6v6H4zM14 15h6v6h-6z' },
   { key: 'services', label: 'Services', icon: 'M4 7h16v10H4zM8 7V5h8v2' },
   { key: 'reports', label: 'Reports', icon: 'M5 20V10M12 20V4M19 20v-7' },
 ]
@@ -26,6 +28,7 @@ export default function AdminShell({ orders, company, onUpdateOrder, onExit }) {
     orders: <AdminOrders orders={orders} onUpdateOrder={onUpdateOrder} />,
     providers: <AdminProviders />,
     users: <AdminUsers />,
+    catalog: <AdminCatalog />,
     services: <AdminServices company={company} />,
     reports: <AdminReports orders={orders} />,
   }

@@ -1,40 +1,17 @@
 import ScrollRow from '../components/ScrollRow.jsx'
 import { CUSTOMER_ME } from '../data/providers.js'
-import acImg from '../assets/ac.png'
-import sinkImg from '../assets/sink.png'
-import electricImg from '../assets/electric.png'
-// Service photography lifted from the Figma boards.
-import cleaningImg from '../assets/services/cleaning.png'
-import pestImg from '../assets/services/pest.png'
-import carwashImg from '../assets/services/carwash.png'
-import carpolishImg from '../assets/services/carpolish.png'
-import carglassImg from '../assets/services/carglass.png'
+import { ICONS, homeCards, carCards } from '../data/catalog.js'
+import { useCatalog } from '../data/useCatalog.js'
 
-// The real catalog from the FigJam board — every card opens a working flow.
-// `photo` fills the card edge-to-edge (real service photography); `img` is a
-// product cut-out that sits on a light tile; `gradient` is the fallback.
-const HOME_SERVICES = [
-  { name: 'AC cleaning & refilling', img: acImg, target: 'acService' },
-  { name: 'House cleaning', photo: cleaningImg, target: 'cleaningService' },
-  { name: 'Plumber', img: sinkImg, target: 'plumberProviders' },
-  { name: 'Electrician', img: electricImg, target: 'options:electrician' },
-  { name: 'Pest control', photo: pestImg, target: 'pestControl' },
-  { name: 'Technician', gradient: 'linear-gradient(135deg,#B25B0E,#E8A34C)', target: 'options:technician' },
-  { name: 'Network technician', gradient: 'linear-gradient(135deg,#1D8FC4,#6BD0F0)', target: 'options:network' },
-  { name: 'Curtains', gradient: 'linear-gradient(135deg,#B23A0E,#E88B4C)', target: 'options:curtains' },
-  { name: 'Outdoor furniture', gradient: 'linear-gradient(135deg,#3A7D2C,#8FC46B)', target: 'options:outdoor' },
-]
-
-const CAR_SERVICES = [
-  { name: 'car wash', photo: carwashImg, target: 'carWash' },
-  { name: 'car polish', photo: carpolishImg, target: 'carWash' },
-  { name: 'glass & windows', photo: carglassImg, target: 'carTint' },
-]
+// Which cards appear here, in what order, and with which artwork is an admin
+// decision — see data/catalog.js. This screen only renders the arrangement.
 
 function ServiceCard({ service, onClick }) {
-  // Only photography and gradients darken the tile. Anything else — a product
-  // cut-out, or artwork we haven't got yet — leaves the pale #F3F3F3 tile
-  // showing, so the label has to flip to dark ink to stay readable.
+  const icon = service.icon ? ICONS[service.icon] : null
+
+  // Only photography and gradients darken the tile. A product cut-out, a 3D
+  // icon, or artwork we haven't got yet leaves the pale #F3F3F3 tile showing,
+  // so the label has to flip to dark ink to stay readable.
   const isLightTile = !service.photo && !service.gradient
 
   return (
@@ -47,7 +24,23 @@ function ServiceCard({ service, onClick }) {
       {service.photo && (
         <img src={service.photo} alt="" className="h-full w-full object-cover" />
       )}
-      {service.img && (
+      {!service.photo && icon && (
+        // The 3D icons are transparent PNGs on a violet-tinted tile, sized to
+        // clear the 27px label plate at the bottom.
+        <span className="flex h-full w-full items-center justify-center bg-linear-to-b from-[#F6F1FF] to-[#EDE4FF] pb-6">
+          <img
+            src={icon.src}
+            srcSet={`${icon.src} 1x, ${icon.x2} 2x`}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width="64"
+            height="64"
+            className="h-16 w-16 object-contain drop-shadow-[0_4px_10px_rgba(90,40,160,0.18)]"
+          />
+        </span>
+      )}
+      {!service.photo && !icon && service.img && (
         <img src={service.img} alt="" className="h-full w-full object-contain p-3 pb-8" />
       )}
       {/* Label plate: 1.html:1370 — "Rectangle 944", 146x26.9, flat
@@ -67,13 +60,17 @@ function ServiceCard({ service, onClick }) {
           isLightTile ? 'text-setl-ink' : 'text-white'
         }`}
       >
-        {service.name}
+        {service.label}
       </span>
     </button>
   )
 }
 
 export default function HomeScreen({ onOpenService }) {
+  const { cats } = useCatalog()
+  const home = homeCards(cats)
+  const car = carCards(cats)
+
   return (
     <div className="font-poppins relative flex min-h-screen flex-col bg-setl-surface-2">
       {/* Header block: 375x222, radius 40, the boards' pink -> blue gradient. */}
@@ -178,9 +175,9 @@ export default function HomeScreen({ onOpenService }) {
         <section className="mt-5 rounded-[7px] bg-white px-3 py-4 shadow-card">
           <h2 className="text-[16px] font-medium text-setl-ink">Home services</h2>
           <ScrollRow className="mt-3">
-            {HOME_SERVICES.map((s) => (
+            {home.map((s) => (
               <ServiceCard
-                key={s.name}
+                key={s.id}
                 service={s}
                 onClick={s.target ? () => onOpenService(s.target) : undefined}
               />
@@ -192,9 +189,9 @@ export default function HomeScreen({ onOpenService }) {
         <section className="mt-5 rounded-[7px] bg-white px-3 py-4 shadow-card">
           <h2 className="text-[16px] font-medium text-setl-ink">Car services</h2>
           <ScrollRow className="mt-3">
-            {CAR_SERVICES.map((s) => (
+            {car.map((s) => (
               <ServiceCard
-                key={s.name}
+                key={s.id}
                 service={s}
                 onClick={s.target ? () => onOpenService(s.target) : undefined}
               />
