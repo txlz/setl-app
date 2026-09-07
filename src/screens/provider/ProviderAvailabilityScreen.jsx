@@ -77,8 +77,10 @@ export default function ProviderAvailabilityScreen({ availability, availableNow,
 
               {d.on && (
                 <div className="mt-3 flex flex-col gap-2 border-t border-gray-50 pt-3">
+                  {/* Keyed by the window itself, not its index — these rows
+                      are added and removed from the middle of the list. */}
                   {(d.windows ?? []).map((w, wi) => (
-                    <div key={wi} className="flex items-center gap-2">
+                    <div key={`${w.from}-${w.to}-${wi}`} className="flex items-center gap-2">
                       <TimeSelect value={w.from} onChange={(v) => setWindow(i, wi, { from: v })} />
                       <span className="text-xs text-setl-muted">to</span>
                       <TimeSelect value={w.to} onChange={(v) => setWindow(i, wi, { to: v })} />

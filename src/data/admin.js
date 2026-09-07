@@ -87,3 +87,26 @@ export function orderRow(order) {
     history: order.history ?? [],
   }
 }
+
+// ---- Admin decisions the customer app must respect ----
+
+const VERIFIED_KEY = 'setl_admin_verified'
+
+// Which companies admin has verified or revoked. Written by AdminProviders,
+// read by the customer's provider lists so revoking a company actually
+// removes it from what customers can book — otherwise the toggle is theatre.
+export function verifiedMap() {
+  try {
+    return JSON.parse(localStorage.getItem(VERIFIED_KEY) || '{}')
+  } catch {
+    return {}
+  }
+}
+
+// Default matches adminProviders(): the first two companies ship verified.
+export const isProviderVerified = (id, map = verifiedMap()) => map[id] ?? id <= 2
+
+// Providers a customer may book. Admin can revoke any of them.
+export function bookableProviders(list, map = verifiedMap()) {
+  return list.filter((p) => isProviderVerified(p.id, map))
+}

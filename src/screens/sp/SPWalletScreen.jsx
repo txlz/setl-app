@@ -5,7 +5,7 @@ import { PLATFORM_FEE_RATE } from '../../data/providers.js'
 // credits the company minus the platform fee once the job is settled. This
 // reads straight from the shared orders, so it agrees with what the customer
 // actually paid rather than a separate mock ledger.
-export default function SPWalletScreen({ orders = [], onBack }) {
+export default function SPWalletScreen({ orders = [], onWithdraw, onBack }) {
   const settled = orders.filter((o) => o.state === 'paid' || o.state === 'closed')
   const gross = settled.reduce((s, o) => s + (o.total || 0), 0)
   const fee = Math.round(gross * PLATFORM_FEE_RATE)
@@ -66,6 +66,7 @@ export default function SPWalletScreen({ orders = [], onBack }) {
         <button
           type="button"
           disabled={net <= 0}
+          onClick={() => onWithdraw?.(net)}
           className="brand-hero mt-6 h-[52px] w-full cursor-pointer rounded-[12px] text-[17px] font-medium text-white disabled:opacity-40"
         >
           Withdraw AED {net}

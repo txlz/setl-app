@@ -478,10 +478,16 @@ function App() {
 
   // ---- Provider (worker) app: acting on the shared order ----
   const workerOrder = orders.find((o) => o.id === workerOrderId) ?? null
-  // The worker (Alana) sees jobs that are unassigned or assigned to her.
-  const workerOrders = orders.filter((o) => !o.assignedName || o.assignedName === PROVIDER_ME.name)
-  // The SP employee record that maps to the worker app (links role/company).
-  const workerEmployee = company.employees.find((e) => e.name === PROVIDER_ME.name) ?? null
+  // Who the worker app is acting as. The SP types their own roster during
+  // onboarding, so matching PROVIDER_ME by name only works if they happen to
+  // type "Alana Cary" — otherwise dispatch, availability and the worker's job
+  // list all silently empty out. Prefer the real first employee and fall back
+  // to the demo identity when the roster is still empty.
+  const workerEmployee =
+    company.employees.find((e) => e.name === PROVIDER_ME.name) ?? company.employees[0] ?? null
+  const workerName = workerEmployee?.name ?? PROVIDER_ME.name
+  // The worker sees jobs that are unassigned or assigned to them.
+  const workerOrders = orders.filter((o) => !o.assignedName || o.assignedName === workerName)
   // Service Provider request lists + grid tile counts.
   const spActive = orders.filter(isActive)
   const spPrevious = orders.filter((o) => !isActive(o))
@@ -597,7 +603,7 @@ function App() {
   // The worker edits their own availability, stored on their employee record
   // so the SP sees it live when assigning.
   function updateWorker(patch) {
-    const idx = company.employees.findIndex((e) => e.name === PROVIDER_ME.name)
+    const idx = company.employees.findIndex((e) => e.name === workerName)
     if (idx >= 0) setEmployee(idx, patch)
   }
 
@@ -1015,7 +1021,9 @@ function App() {
         order={workerOrder}
         catalog={estimateCatalog(company, workerOrder?.serviceKey)}
         onSendEstimate={sendEstimate}
-        onDone={completeJob}
+        // Completion routes through proof capture; ProviderCompleteScreen
+        // records the photos and then calls completeJob itself.
+        onDone={() => setScreen('providerComplete')}
         onReport={reportJob}
         onDial={() => notify('Calling the customer…')}
         onBack={() => setScreen('providerHome')}
@@ -1033,10 +1041,17 @@ function App() {
     providerAccount: (
       <ProviderAccountScreen
         orders={workerOrders}
+        employee={workerEmployee}
         availableNow={workerEmployee?.availableNow ?? true}
         onOpenAvailability={() => setScreen('providerAvailability')}
         onOpenSchedule={() => setScreen('providerSchedule')}
         onOpenWallet={() => setScreen('providerWallet')}
+        // The company owns the trade list and the payout account, so these
+        // are read-only for a worker — say where they live instead of
+        // opening a screen the worker has no permission to change.
+        onOpenServices={() => notify('Your trades are set by your company in the provider app')}
+        onOpenPayout={() => notify('Payouts go to your company account')}
+        onOpenHelp={() => notify('Support: 800 SETL (7385)')}
         onSwitchToCustomer={switchToCustomer}
         onLogout={logout}
       />
@@ -1232,7 +1247,15 @@ function App() {
         onBack={() => setScreen('spServices')}
       />
     ),
-    spWallet: <SPWalletScreen orders={orders} onBack={() => setScreen('spAccount')} />,
+    spWallet: (
+      <SPWalletScreen
+        orders={orders}
+        // Bank payouts are out of scope for the prototype; say so rather than
+        // leaving a primary button that silently does nothing.
+        onWithdraw={(net) => notify(`Payout of AED ${net} requested — settles in 2 working days`)}
+        onBack={() => setScreen('spAccount')}
+      />
+    ),
     spServices: (
       <SPServicesScreen
         company={company}
@@ -1244,7 +1267,13 @@ function App() {
         onBack={() => setScreen('spHome')}
       />
     ),
-    spNotifications: <SPNotificationsScreen orders={orders} onBack={() => setScreen('spHome')} />,
+    spNotifications: (
+      <SPNotificationsScreen
+        orders={orders}
+        onOpenRequest={(order) => openSpDetail(order, 'spNotifications')}
+        onBack={() => setScreen('spHome')}
+      />
+    ),
     spEmployeesManage: (
       <SPEmployeesScreen
         title="Employees"
@@ -1261,8 +1290,15 @@ function App() {
       <AdminShell
         orders={orders}
         company={company}
-        onUpdateOrder={(id, toState) =>
-          setOrders((os) => os.map((o) => (o.id === id ? transition(o, toState) : o)))
+        // Stamp the actor onto the history entry. Without it an admin
+        // cancellation reads as though the provider cancelled, which is who
+        // the state name blames.
+        onUpdateOrder={(id, toState, reason) =>
+          setOrders((os) =>
+            os.map((o) =>
+              o.id === id ? transition(o, toState, { by: 'admin', ...(reason && { reason }) }) : o,
+            ),
+          )
         }
         onExit={switchToCustomer}
       />

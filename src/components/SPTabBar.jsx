@@ -36,7 +36,12 @@ function TabIcon({ id, active }) {
 }
 
 // Bottom navigation for the Service Provider (company) app.
-export default function SPTabBar({ active, onChange, notifBadge = 0 }) {
+// Requests and the employee roster are opened from Home and have no tab of
+// their own, so they keep Home lit rather than leaving the whole bar grey.
+const OWNED_BY_HOME = ['spExistingRequests', 'spPreviousRequests', 'spEmployeesManage']
+
+export default function SPTabBar({ active: screen, onChange, notifBadge = 0 }) {
+  const active = OWNED_BY_HOME.includes(screen) ? 'spHome' : screen
   return (
     <nav className="fixed inset-x-0 bottom-0 z-30 mx-auto w-full max-w-[375px] border-t border-setl-surface-3 bg-white pt-1 pb-2 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
       <div className="flex">

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ORDER_BUCKETS, orderRow } from '../../data/admin.js'
-import { statusLabel } from '../../data/orders.js'
+import { statusLabel, canTransition } from '../../data/orders.js'
 
 // Every order in the platform, filtered by the four buckets from the design
 // doc. Rows come from the same store the customer/worker apps write, so this
@@ -97,6 +97,11 @@ export default function AdminOrders({ orders, onUpdateOrder }) {
                 <li key={i} className="flex gap-2 text-[11px]">
                   <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-setl-violet" />
                   <span className="text-setl-ink-3">{statusLabel(h.state)}</span>
+                  {h.meta?.by && (
+                    <span className="rounded-[3px] bg-setl-violet/12 px-1.5 text-[10px] text-setl-violet">
+                      by {h.meta.by}
+                    </span>
+                  )}
                   <span className="ml-auto text-setl-muted-2">
                     {new Date(h.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
@@ -104,10 +109,13 @@ export default function AdminOrders({ orders, onUpdateOrder }) {
               ))}
             </ol>
 
-            {!['paid', 'closed', 'cancelled_by_customer', 'cancelled_by_provider'].includes(open.state) && (
+            {/* Ask the state machine rather than keeping a second list in
+                sync with it — transition() throws on a move TRANSITIONS
+                forbids, and a job already under way is one of those. */}
+            {canTransition(open, 'cancelled_by_provider') && (
               <button
                 type="button"
-                onClick={() => { onUpdateOrder(open.id, 'cancelled_by_provider'); setOpenId(null) }}
+                onClick={() => { onUpdateOrder(open.id, 'cancelled_by_provider', 'Cancelled by admin'); setOpenId(null) }}
                 className="mt-4 w-full cursor-pointer rounded-[9px] border border-setl-red px-3 py-2 text-[12px] text-setl-red hover:bg-setl-red/5"
               >
                 Cancel this order

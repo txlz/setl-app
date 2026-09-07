@@ -3,11 +3,11 @@ function notificationsFor(orders) {
   const items = []
   for (const o of orders) {
     const no = `SETL-${String(o.id).padStart(4, '0')}`
-    if (o.state === 'scheduled' && !o.assignedName) items.push({ id: `${o.id}-new`, icon: 'new', title: 'New customer request', body: `${o.service} · needs assigning · ${no}` })
-    else if (o.assignedName && ['scheduled', 'provider_en_route', 'in_progress', 'work_in_progress'].includes(o.state)) items.push({ id: `${o.id}-asg`, icon: 'ok', title: 'Job in progress', body: `${o.assignedName} · ${o.service} · ${no}` })
-    else if (o.state === 'estimate_ready') items.push({ id: `${o.id}-est`, icon: 'wait', title: 'Estimate sent to customer', body: `${o.assignedName ?? ''} · ${no}` })
-    else if (o.state === 'awaiting_payment') items.push({ id: `${o.id}-done`, icon: 'ok', title: 'Job completed', body: `Awaiting customer payment · ${no}` })
-    else if (o.state === 'paid' || o.state === 'closed') items.push({ id: `${o.id}-paid`, icon: 'pay', title: 'Payment received', body: `${o.total ?? 0} AED · ${no}` })
+    if (o.state === 'scheduled' && !o.assignedName) items.push({ id: `${o.id}-new`, order: o, icon: 'new', title: 'New customer request', body: `${o.service} · needs assigning · ${no}` })
+    else if (o.assignedName && ['scheduled', 'provider_en_route', 'in_progress', 'work_in_progress'].includes(o.state)) items.push({ id: `${o.id}-asg`, order: o, icon: 'ok', title: 'Job in progress', body: `${o.assignedName} · ${o.service} · ${no}` })
+    else if (o.state === 'estimate_ready') items.push({ id: `${o.id}-est`, order: o, icon: 'wait', title: 'Estimate sent to customer', body: `${o.assignedName ?? ''} · ${no}` })
+    else if (o.state === 'awaiting_payment') items.push({ id: `${o.id}-done`, order: o, icon: 'ok', title: 'Job completed', body: `Awaiting customer payment · ${no}` })
+    else if (o.state === 'paid' || o.state === 'closed') items.push({ id: `${o.id}-paid`, order: o, icon: 'pay', title: 'Payment received', body: `${o.total ?? 0} AED · ${no}` })
   }
   return items.reverse()
 }
@@ -19,7 +19,7 @@ const ICON = {
   pay: { bg: 'bg-green-50', fg: '#22A366', d: 'M3 10h18M6 15h4' },
 }
 
-export default function SPNotificationsScreen({ orders = [], onBack }) {
+export default function SPNotificationsScreen({ orders = [], onOpenRequest, onBack }) {
   const items = notificationsFor(orders)
   return (
     <div className="font-poppins min-h-screen bg-[#F5F4F7] pb-24">
@@ -39,12 +39,17 @@ export default function SPNotificationsScreen({ orders = [], onBack }) {
           {items.map((n) => {
             const ic = ICON[n.icon]
             return (
-              <div key={n.id} className="flex items-center gap-3 rounded-[15px] bg-white p-3.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+              <button
+                key={n.id}
+                type="button"
+                onClick={() => onOpenRequest?.(n.order)}
+                className="flex w-full cursor-pointer items-center gap-3 rounded-[15px] bg-white p-3.5 text-left shadow-[0_2px_8px_rgba(0,0,0,0.06)] active:bg-setl-surface-3"
+              >
                 <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${ic.bg}`}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={ic.fg} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d={ic.d} /></svg>
                 </span>
                 <div className="min-w-0"><p className="text-sm font-semibold text-black">{n.title}</p><p className="truncate text-xs text-setl-muted">{n.body}</p></div>
-              </div>
+              </button>
             )
           })}
         </div>

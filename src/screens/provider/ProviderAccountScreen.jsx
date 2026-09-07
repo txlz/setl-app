@@ -2,30 +2,39 @@ import { PROVIDER_ME } from '../../data/providers.js'
 
 // Worker account: identity, earnings, availability, and the switch back to
 // the customer app (so the two-sided flow is demoable on one device).
-export default function ProviderAccountScreen({ orders = [], availableNow, onOpenAvailability, onOpenSchedule, onOpenWallet, onSwitchToCustomer, onLogout }) {
+export default function ProviderAccountScreen({ orders = [], employee, availableNow, onOpenAvailability, onOpenSchedule, onOpenWallet, onOpenServices, onOpenPayout, onOpenHelp, onSwitchToCustomer, onLogout }) {
   const paid = orders.filter((o) => o.state === 'paid' || o.state === 'closed')
   const earnings = paid.reduce((s, o) => s + (o.total ?? 0), 0)
   const jobsDone = PROVIDER_ME.jobsDone + paid.length
+
+  // The SP types their own roster, so show the real worker when there is one
+  // and fall back to the demo identity only when the roster is empty.
+  const me = {
+    name: employee?.name ?? PROVIDER_ME.name,
+    trade: employee?.role ?? PROVIDER_ME.trade,
+    color: PROVIDER_ME.color,
+    rating: PROVIDER_ME.rating,
+  }
 
   const menu = [
     { id: 'availability', label: 'My availability', value: availableNow ? 'Available now' : 'Off', accent: availableNow, onClick: onOpenAvailability },
     { id: 'schedule', label: 'My schedule', onClick: onOpenSchedule },
     { id: 'earnings', label: 'Earnings', onClick: onOpenWallet },
-    { id: 'services', label: 'My services' },
-    { id: 'payout', label: 'Payout method' },
-    { id: 'help', label: 'Help & support' },
+    { id: 'services', label: 'My services', value: me.trade, onClick: onOpenServices },
+    { id: 'payout', label: 'Payout method', onClick: onOpenPayout },
+    { id: 'help', label: 'Help & support', onClick: onOpenHelp },
   ]
 
   return (
     <div className="font-poppins flex min-h-screen flex-col bg-[#F5F4F7] pb-24">
       <div className="brand-header px-4 pt-8 pb-10 text-center text-white">
         <div className="flex flex-col items-center gap-2">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/25 text-[17px] font-semibold" style={{ background: PROVIDER_ME.color }}>
-            {PROVIDER_ME.name[0]}
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/25 text-[17px] font-semibold" style={{ background: me.color }}>
+            {me.name[0]}
           </div>
           <div>
-            <p className="text-[15px] font-semibold">{PROVIDER_ME.name}</p>
-            <p className="text-sm text-white/85">{PROVIDER_ME.trade} · ★ {PROVIDER_ME.rating}</p>
+            <p className="text-[15px] font-semibold">{me.name}</p>
+            <p className="text-sm text-white/85">{me.trade} · ★ {me.rating}</p>
           </div>
         </div>
       </div>

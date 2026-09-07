@@ -4,6 +4,7 @@ import ProviderCard from '../components/ProviderCard.jsx'
 import ProgressSteps from '../components/ProgressSteps.jsx'
 import DateTimeSheet from '../components/DateTimeSheet.jsx'
 import { SERVICES } from '../data/providers.js'
+import { bookableProviders } from '../data/admin.js'
 
 // One provider list for every service and both variants, driven by the
 // SERVICES config:
@@ -17,7 +18,9 @@ export default function ProvidersScreen({ service: serviceId, variant, onConfirm
   const [query, setQuery] = useState('')
   const [selected, setSelected] = useState(null) // provider whose date/time sheet is open
 
-  const providers = service.providers.filter((p) =>
+  // Admin can revoke a company (Admin > Providers); a revoked one must stop
+  // appearing here, or the verification toggle means nothing.
+  const providers = bookableProviders(service.providers).filter((p) =>
     p.name.toLowerCase().includes(query.toLowerCase()),
   )
   const title = service.listTitle[variant] ?? service.label
@@ -60,6 +63,13 @@ export default function ProvidersScreen({ service: serviceId, variant, onConfirm
 
         {/* Cards are 333 wide at left 21 on the board (1.html:499, :556) */}
         <div className="flex flex-col gap-3 px-[21px] pt-4 pb-4">
+          {providers.length === 0 && (
+            <p className="rounded-[15px] bg-white p-5 text-center text-sm text-setl-muted shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+              {query
+                ? `No companies match “${query}”.`
+                : 'No companies are available for this service right now. Please try again later.'}
+            </p>
+          )}
           {providers.map((p, i) => (
             <ProviderCard
               key={`${p.id}-${i}`}
