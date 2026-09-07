@@ -47,7 +47,11 @@ export default function SPAccountScreen({ company, orders = [], onOpenEmployees,
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8442FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3 4 7l4 4M4 7h13M16 21l4-4-4-4M20 17H7" /></svg>
       </button>
       <button type="button" onClick={onSwitchWorker} className="mx-3 mt-3 flex w-[calc(100%-1.5rem)] items-center justify-between rounded-[15px] bg-white px-4 py-3.5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-        <span className="text-[15px] font-medium text-setl-purple">Open a worker view (Alana)</span>
+        {/* Name the worker this actually opens — the roster is typed during
+            onboarding, so it is rarely the seeded demo employee. */}
+        <span className="text-[15px] font-medium text-setl-purple">
+          Open a worker view{company?.employees?.[0]?.name ? ` (${company.employees[0].name.split(' ')[0]})` : ''}
+        </span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8442FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3 4 7l4 4M4 7h13M16 21l4-4-4-4M20 17H7" /></svg>
       </button>
       <button type="button" onClick={onLogout} className="mx-3 mt-3 w-[calc(100%-1.5rem)] rounded-[15px] bg-white px-4 py-3.5 text-left text-[15px] text-red-500 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">Log out</button>

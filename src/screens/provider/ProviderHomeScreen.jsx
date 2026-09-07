@@ -90,6 +90,9 @@ export default function ProviderHomeScreen({ orders, onOpenOrder, employee, comp
   const subtitle = employee
     ? `${employee.role}${companyName ? ` · ${companyName}` : ''}`
     : PROVIDER_ME.trade
+  // The name has to come from the same employee as the subtitle, or the
+  // header shows one worker's name over another's role.
+  const name = employee?.name ?? PROVIDER_ME.name
   const relevant = orders.filter((o) => bucket(o.state) !== 'other')
   const groups = [
     { key: 'new', title: 'New Request', items: relevant.filter((o) => bucket(o.state) === 'new') },
@@ -107,9 +110,9 @@ export default function ProviderHomeScreen({ orders, onOpenOrder, employee, comp
             className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-white/40 text-[17px] font-bold text-white shadow-lg"
             style={{ background: PROVIDER_ME.color }}
           >
-            {PROVIDER_ME.name[0]}
+            {name[0]}
           </div>
-          <p className="mt-3 text-[15px] font-semibold text-white">{PROVIDER_ME.name}</p>
+          <p className="mt-3 text-[15px] font-semibold text-white">{name}</p>
           <p className="text-sm text-white/85">{subtitle}</p>
         </div>
       </div>
